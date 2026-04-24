@@ -340,10 +340,10 @@
       '<a href="' + productUrl + '" class="product-img-link" aria-label="' + escHtml(name) + '">' +
         '<div class="product-img">' +
           '<span class="product-brand-badge">' + escHtml(product.brand) + '</span>' +
-          pdfHtml +
           imgHtml +
         '</div>' +
       '</a>' +
+      pdfHtml +
       '<div class="product-body">' +
         '<div class="product-ref">' + escHtml(product.ref) + '</div>' +
         '<div class="product-name">' + escHtml(name) + '</div>' +
