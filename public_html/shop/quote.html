@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ILS Shop — Request a Quote</title>
+  <meta name="description" content="Submit your quote request to ILS. Our B2B sales team will respond within 24 hours with custom pricing.">
+  <link rel="stylesheet" href="shop.css">
+  <style>
+    @media (max-width: 768px) {
+      .nav-logo-sub { display: none !important; }
+      .nav-logo-sep { display: none !important; }
+      .nav-shop-crumb { display: none !important; }
+      .nav-inner { justify-content: space-between !important; }
+      .nav-right { gap: 12px !important; margin-left: auto !important; }
+      .quote-btn { padding: 9px 12px !important; gap: 0 !important; }
+      .quote-btn svg { width: 20px !important; height: 20px !important; }
+      .quote-btn span[data-en] { display: none !important; }
+    }
+  </style>
+  <style>
+    .page-hero {
+      background: var(--navy);
+      background-image: radial-gradient(ellipse 60% 50% at 50% -10%, rgba(201,165,92,.08) 0%, transparent 70%);
+      padding: calc(var(--nav-h) + 56px) 48px 56px;
+      text-align: center;
+    }
+    .page-hero h1 {
+      font-family: var(--font-serif);
+      font-size: clamp(32px, 4vw, 48px);
+      color: var(--white);
+      margin-bottom: 12px;
+    }
+    .page-hero h1 em { font-style: italic; color: var(--gold); }
+    .page-hero p { font-size: 16px; color: rgba(255,255,255,.55); }
+
+    /* PROGRESS */
+    .progress-bar {
+      background: var(--white);
+      border-bottom: 1px solid rgba(0,0,0,.08);
+      padding: 20px 48px;
+    }
+    .progress-inner {
+      max-width: 700px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+    }
+    .step {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+      font-weight: 600;
+    }
+    .step-num {
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13px; font-weight: 700;
+      transition: var(--transition);
+    }
+    .step.active .step-num  { background: var(--gold); color: var(--navy); }
+    .step.done .step-num    { background: #2d6a4f; color: var(--white); }
+    .step.inactive .step-num{ background: rgba(0,0,0,.08); color: var(--text-muted); }
+    .step.active .step-label  { color: var(--navy); }
+    .step.done .step-label    { color: #2d6a4f; }
+    .step.inactive .step-label{ color: var(--text-muted); }
+    .step-line { flex: 1; height: 2px; background: rgba(0,0,0,.08); margin: 0 12px; }
+    .step-line.done { background: #2d6a4f; }
+
+    /* LAYOUT */
+    .quote-main {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 48px 48px 80px;
+      display: grid;
+      grid-template-columns: 1fr 360px;
+      gap: 40px;
+      align-items: start;
+    }
+
+    /* FORM CARD */
+    .form-card {
+      background: var(--white);
+      border: 1px solid rgba(0,0,0,.07);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+    .form-card-header {
+      background: var(--navy);
+      padding: 24px 32px;
+    }
+    .form-card-title {
+      font-family: var(--font-serif);
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 4px;
+    }
+    .form-card-sub {
+      font-size: 13px;
+      color: rgba(255,255,255,.5);
+    }
+    .form-card-body { padding: 32px; }
+
+    /* FORM FIELDS */
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+    .form-group { margin-bottom: 20px; }
+    .form-group:last-child { margin-bottom: 0; }
+    .form-label {
+      display: block;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--navy);
+      margin-bottom: 8px;
+    }
+    .form-label .req { color: var(--gold); margin-left: 2px; }
+    .form-input, .form-select, .form-textarea {
+      width: 100%;
+      padding: 12px 16px;
+      font-size: 14px;
+      font-family: var(--font-sans);
+      color: var(--text-primary);
+      background: var(--bg);
+      border: 1.5px solid rgba(0,0,0,.1);
+      border-radius: 8px;
+      transition: border-color var(--transition), box-shadow var(--transition);
+      outline: none;
+      box-sizing: border-box;
+    }
+    .form-input:focus, .form-select:focus, .form-textarea:focus {
+      border-color: var(--gold);
+      box-shadow: 0 0 0 3px rgba(201,165,92,.12);
+      background: var(--white);
+    }
+    .form-input::placeholder, .form-textarea::placeholder { color: var(--text-muted); }
+    .form-select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg width='10' height='6' viewBox='0 0 10 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%236B7280' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; padding-right: 36px; cursor: pointer; }
+    .form-textarea { resize: vertical; min-height: 120px; line-height: 1.6; }
+
+    .form-divider {
+      height: 1px;
+      background: rgba(0,0,0,.06);
+      margin: 28px 0;
+    }
+
+    /* GDPR note */
+    .form-gdpr {
+      font-size: 12px;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-top: 20px;
+      padding: 12px;
+      background: var(--bg);
+      border-radius: 6px;
+      border: 1px solid rgba(0,0,0,.06);
+    }
+
+    /* SUBMIT BUTTON */
+    .submit-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      padding: 18px;
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--navy);
+      background: var(--gold);
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-family: var(--font-sans);
+      transition: var(--transition);
+      letter-spacing: .02em;
+      margin-top: 28px;
+    }
+    .submit-btn:hover:not(:disabled) {
+      background: var(--gold-light);
+      transform: translateY(-1px);
+      box-shadow: 0 8px 24px rgba(201,165,92,.3);
+    }
+    .submit-btn:disabled {
+      opacity: .6;
+      cursor: not-allowed;
+      transform: none;
+    }
+    .submit-btn .btn-spinner {
+      width: 18px; height: 18px;
+      border: 2.5px solid rgba(10,22,40,.2);
+      border-top-color: var(--navy);
+      border-radius: 50%;
+      animation: spin .7s linear infinite;
+      display: none;
+    }
+    .submit-btn.loading .btn-spinner { display: block; }
+    .submit-btn.loading .btn-text { display: none; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* INLINE ERROR / SUCCESS */
+    .form-error {
+      display: none;
+      background: rgba(192,57,43,.06);
+      border: 1px solid rgba(192,57,43,.2);
+      border-radius: 8px;
+      padding: 14px 18px;
+      font-size: 14px;
+      color: #c0392b;
+      margin-top: 16px;
+      align-items: flex-start;
+      gap: 10px;
+    }
+    .form-error.visible { display: flex; }
+
+    /* SIDEBAR */
+    .quote-sidebar {
+      position: sticky;
+      top: calc(var(--nav-h) + 24px);
+    }
+    .sidebar-card {
+      background: var(--white);
+      border: 1px solid rgba(0,0,0,.07);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      margin-bottom: 16px;
+    }
+    .sidebar-card-header {
+      background: var(--navy);
+      padding: 16px 20px;
+    }
+    .sidebar-card-title {
+      font-family: var(--font-serif);
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--white);
+    }
+    .sidebar-card-body { padding: 0; }
+
+    .sidebar-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 20px;
+      border-bottom: 1px solid rgba(0,0,0,.05);
+    }
+    .sidebar-item:last-child { border-bottom: none; }
+    .sidebar-item-img {
+      width: 44px; height: 44px;
+      border-radius: 6px;
+      background: var(--navy);
+      background-image: radial-gradient(ellipse 80% 80% at 50% 40%, rgba(201,165,92,.12), transparent 70%);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      font-family: var(--font-serif);
+      font-size: 9px;
+      font-weight: 700;
+      color: var(--gold);
+      text-align: center;
+      padding: 3px;
+      line-height: 1.2;
+    }
+    .sidebar-item-info { flex: 1; min-width: 0; }
+    .sidebar-item-brand {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+    .sidebar-item-name {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--navy);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .sidebar-item-ref { font-size: 11px; color: var(--text-muted); }
+
+    .sidebar-footer {
+      padding: 16px 20px;
+      border-top: 1px solid rgba(0,0,0,.06);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .sidebar-count {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--navy);
+    }
+    .sidebar-edit-link {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--gold);
+      text-decoration: none;
+    }
+    .sidebar-edit-link:hover { text-decoration: underline; }
+
+    /* Trust items */
+    .trust-card {
+      background: var(--white);
+      border: 1px solid rgba(0,0,0,.07);
+      border-radius: var(--radius);
+      padding: 20px;
+    }
+    .trust-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    .trust-item:last-child { margin-bottom: 0; }
+    .trust-icon {
+      width: 32px; height: 32px;
+      background: rgba(201,165,92,.1);
+      border-radius: 6px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      color: var(--gold);
+    }
+    .trust-title { font-size: 13px; font-weight: 700; color: var(--navy); margin-bottom: 2px; }
+    .trust-sub { font-size: 12px; color: var(--text-muted); line-height: 1.5; }
+
+    /* No items redirect */
+    .empty-redirect {
+      text-align: center;
+      padding: 80px 32px;
+      display: none;
+    }
+    .empty-redirect.visible { display: block; }
+
+    @media (max-width: 900px) {
+      .quote-main { grid-template-columns: 1fr; padding: 32px 32px 64px; }
+      .quote-sidebar { position: static; }
+    }
+    @media (max-width: 768px) {
+      .progress-bar { padding: 16px 20px; }
+      .page-hero { padding: calc(var(--nav-h) + 40px) 20px 40px; }
+      .quote-main { padding: 24px 20px 56px; }
+      .form-row { grid-template-columns: 1fr; gap: 0; }
+      .form-card-body { padding: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav id="navbar" class="scrolled">
+    <div class="nav-inner">
+      <a href="../index.html?skip=1" class="nav-logo">
+        <span class="nav-logo-mark">ILS</span>
+        <div class="nav-logo-sep"></div>
+        <span class="nav-logo-sub">International<br>Link Solutions</span>
+      </a>
+      <span class="nav-shop-crumb" data-en="Request Quote" data-fr="Demande de devis">Request Quote</span>
+      <ul class="nav-links">
+        <li><a href="index.html" data-en="All Products" data-fr="Tous les produits">All Products</a></li>
+        <li><a href="laboratory.html" data-en="Laboratory" data-fr="Laboratoire">Laboratory</a></li>
+        <li><a href="chemistry.html" data-en="Chemistry" data-fr="Chimie">Chemistry</a></li>
+      </ul>
+      <div class="nav-right">
+        <button class="lang-btn active" data-lang="en">EN</button>
+        <span class="lang-sep">|</span>
+        <button class="lang-btn" data-lang="fr">FR</button>
+        <a href="quote-list.html" class="quote-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/></svg>
+          <span data-en="Quote List" data-fr="Devis">Quote List</span>
+          <span class="quote-count" data-count="0">0</span>
+        </a>
+        <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </nav>
+
+  <div id="mobileMenu">
+    <button class="mobile-close" id="mobileClose">&#x2715;</button>
+    <a href="index.html">All Products</a>
+    <a href="laboratory.html">Laboratory</a>
+    <a href="chemistry.html">Chemistry</a>
+    <a href="quote-list.html" class="btn btn-gold" style="margin-top:16px;">Quote List</a>
+  </div>
+
+  <!-- HERO -->
+  <section class="page-hero">
+    <div class="shop-hero-badge" style="margin-bottom:20px;">
+      <span data-en="B2B · Custom pricing · 24h response" data-fr="B2B · Tarification personnalisée · Réponse sous 24h">B2B · Custom pricing · 24h response</span>
+    </div>
+    <h1>
+      <span data-en="Request a" data-fr="Votre">Request a</span>
+      <em data-en="Custom Quote" data-fr="Demande de Devis">Custom Quote</em>
+    </h1>
+    <p data-en="Fill in your details and our sales team will respond within 24 hours with tailored pricing."
+       data-fr="Remplissez vos coordonnées et notre équipe commerciale vous répondra sous 24 heures avec une tarification adaptée.">
+      Fill in your details and our sales team will respond within 24 hours with tailored pricing.
+    </p>
+  </section>
+
+  <!-- PROGRESS -->
+  <div class="progress-bar">
+    <div class="progress-inner">
+      <div class="step done">
+        <div class="step-num">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <span class="step-label" data-en="Quote List" data-fr="Liste de devis">Quote List</span>
+      </div>
+      <div class="step-line done"></div>
+      <div class="step active">
+        <div class="step-num">2</div>
+        <span class="step-label" data-en="Your Details" data-fr="Vos coordonnées">Your Details</span>
+      </div>
+      <div class="step-line"></div>
+      <div class="step inactive">
+        <div class="step-num">3</div>
+        <span class="step-label" data-en="Confirmation" data-fr="Confirmation">Confirmation</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN -->
+  <div class="quote-main">
+
+    <!-- LEFT: FORM -->
+    <div>
+      <!-- Empty redirect (no products) -->
+      <div class="empty-redirect" id="emptyRedirect">
+        <div style="width:72px;height:72px;background:rgba(201,165,92,.08);border:2px solid var(--border-strong);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 24px;color:var(--gold);">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/></svg>
+        </div>
+        <h3 style="font-family:var(--font-serif);font-size:22px;color:var(--navy);margin-bottom:8px;" data-en="No products in your list" data-fr="Aucun produit dans votre liste">No products in your list</h3>
+        <p style="color:var(--text-muted);font-size:15px;margin-bottom:28px;" data-en="Add products to your quote list before requesting a quote." data-fr="Ajoutez des produits à votre liste avant de soumettre une demande.">Add products to your quote list before requesting a quote.</p>
+        <a href="index.html" class="btn btn-gold" style="font-size:15px;padding:14px 32px;" data-en="Browse Products" data-fr="Voir le catalogue">Browse Products</a>
+      </div>
+
+      <!-- FORM -->
+      <div class="form-card" id="quoteFormCard">
+        <div class="form-card-header">
+          <div class="form-card-title" data-en="Your Information" data-fr="Vos informations">Your Information</div>
+          <div class="form-card-sub" data-en="All fields marked * are required" data-fr="Tous les champs marqués * sont requis">All fields marked * are required</div>
+        </div>
+        <div class="form-card-body">
+          <form id="quoteForm" novalidate>
+
+            <!-- Name + Company -->
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="fieldName">
+                  <span data-en="Full Name" data-fr="Nom complet">Full Name</span>
+                  <span class="req">*</span>
+                </label>
+                <input id="fieldName" name="from_name" type="text" class="form-input"
+                  placeholder="Dr. Marie Dupont"
+                  data-en-placeholder="Dr. Marie Dupont"
+                  data-fr-placeholder="Dr. Marie Dupont"
+                  required autocomplete="name">
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="fieldCompany">
+                  <span data-en="Company / Institution" data-fr="Société / Établissement">Company / Institution</span>
+                  <span class="req">*</span>
+                </label>
+                <input id="fieldCompany" name="company" type="text" class="form-input"
+                  placeholder="Institut Pasteur"
+                  data-en-placeholder="Institut Pasteur"
+                  data-fr-placeholder="Institut Pasteur"
+                  required autocomplete="organization">
+              </div>
+            </div>
+
+            <!-- Email + Phone -->
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="fieldEmail">
+                  <span data-en="Email Address" data-fr="Adresse e-mail">Email Address</span>
+                  <span class="req">*</span>
+                </label>
+                <input id="fieldEmail" name="reply_to" type="email" class="form-input"
+                  placeholder="m.dupont@exemple.fr"
+                  required autocomplete="email">
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="fieldPhone">
+                  <span data-en="Phone Number" data-fr="Numéro de téléphone">Phone Number</span>
+                </label>
+                <input id="fieldPhone" name="phone" type="tel" class="form-input"
+                  placeholder="+33 6 12 34 56 78"
+                  autocomplete="tel">
+              </div>
+            </div>
+
+            <!-- Country + Division -->
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="fieldCountry">
+                  <span data-en="Country" data-fr="Pays">Country</span>
+                  <span class="req">*</span>
+                </label>
+                <select id="fieldCountry" name="country" class="form-select" required>
+                  <option value="" data-en="Select your country" data-fr="Sélectionnez votre pays">Select your country</option>
+                  <option value="France">France</option>
+                  <option value="Algeria">Algeria / Algérie</option>
+                  <option value="Morocco">Morocco / Maroc</option>
+                  <option value="Tunisia">Tunisia / Tunisie</option>
+                  <option value="Belgium">Belgium / Belgique</option>
+                  <option value="Switzerland">Switzerland / Suisse</option>
+                  <option value="Luxembourg">Luxembourg</option>
+                  <option value="Other">Other / Autre</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="fieldDivision">
+                  <span data-en="Division of Interest" data-fr="Domaine d'intérêt">Division of Interest</span>
+                </label>
+                <select id="fieldDivision" name="division" class="form-select">
+                  <option value="" data-en="Select a domain" data-fr="Sélectionnez un domaine">Select a domain</option>
+                  <option value="Laboratory Equipment" data-en="Laboratory Equipment" data-fr="Équipements de laboratoire">Laboratory Equipment</option>
+                  <option value="Chemical Products" data-en="Chemical Products" data-fr="Produits chimiques">Chemical Products</option>
+                  <option value="Both" data-en="Laboratory & Chemistry" data-fr="Laboratoire &amp; Chimie">Laboratory &amp; Chemistry</option>
+                  <option value="Metrology" data-en="Metrology" data-fr="Métrologie">Metrology</option>
+                  <option value="Energy" data-en="Energy" data-fr="Énergie">Energy</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-divider"></div>
+
+            <!-- Message -->
+            <div class="form-group">
+              <label class="form-label" for="fieldMessage">
+                <span data-en="Additional Information" data-fr="Informations complémentaires">Additional Information</span>
+              </label>
+              <textarea id="fieldMessage" name="message" class="form-textarea"
+                placeholder="Delivery timeline, required quantities, purity grades, special requirements…"
+                data-en-placeholder="Delivery timeline, required quantities, purity grades, special requirements…"
+                data-fr-placeholder="Délai de livraison, quantités requises, grades de pureté, exigences particulières…"></textarea>
+            </div>
+
+            <!-- Hidden fields -->
+            <input type="hidden" id="fieldProducts" name="products_list" value="">
+            <input type="hidden" id="fieldProductCount" name="product_count" value="0">
+            <input type="hidden" id="fieldLang" name="language" value="en">
+
+            <!-- GDPR -->
+            <div class="form-gdpr" data-en="Your information is used solely to process your quote request and will not be shared with third parties. In accordance with GDPR, you may request access, correction or deletion of your data at any time by contacting privacy@ils-link.com."
+                 data-fr="Vos informations sont utilisées uniquement pour traiter votre demande de devis et ne seront pas partagées avec des tiers. Conformément au RGPD, vous pouvez demander l'accès, la rectification ou la suppression de vos données à tout moment en contactant privacy@ils-link.com.">
+              Your information is used solely to process your quote request and will not be shared with third parties. In accordance with GDPR, you may request access, correction or deletion of your data at any time by contacting privacy@ils-link.com.
+            </div>
+
+            <!-- Error message -->
+            <div class="form-error" id="formError">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:1px;"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+              <span id="formErrorText"></span>
+            </div>
+
+            <!-- Submit -->
+            <button type="submit" class="submit-btn" id="submitBtn">
+              <div class="btn-spinner"></div>
+              <span class="btn-text" style="display:flex;align-items:center;gap:10px;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                <span data-en="Send Quote Request" data-fr="Envoyer ma demande">Send Quote Request</span>
+              </span>
+            </button>
+
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT: SIDEBAR -->
+    <div class="quote-sidebar" id="quoteSidebar">
+
+      <!-- Products Summary -->
+      <div class="sidebar-card">
+        <div class="sidebar-card-header">
+          <div class="sidebar-card-title" data-en="Your Quote List" data-fr="Votre liste de devis">Your Quote List</div>
+        </div>
+        <div class="sidebar-card-body" id="sidebarItems"></div>
+        <div class="sidebar-footer">
+          <span class="sidebar-count" id="sidebarCount">— products</span>
+          <a href="quote-list.html" class="sidebar-edit-link" data-en="Edit list →" data-fr="Modifier →">Edit list →</a>
+        </div>
+      </div>
+
+      <!-- Trust signals -->
+      <div class="trust-card">
+        <div class="trust-item">
+          <div class="trust-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <div>
+            <div class="trust-title" data-en="24h Response" data-fr="Réponse sous 24h">24h Response</div>
+            <div class="trust-sub" data-en="Our sales team replies within one business day." data-fr="Notre équipe commerciale répond sous un jour ouvré.">Our sales team replies within one business day.</div>
+          </div>
+        </div>
+        <div class="trust-item">
+          <div class="trust-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <div>
+            <div class="trust-title" data-en="GDPR Compliant" data-fr="Conforme RGPD">GDPR Compliant</div>
+            <div class="trust-sub" data-en="Your data is protected and never sold to third parties." data-fr="Vos données sont protégées et jamais vendues à des tiers.">Your data is protected and never sold to third parties.</div>
+          </div>
+        </div>
+        <div class="trust-item">
+          <div class="trust-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+          </div>
+          <div>
+            <div class="trust-title" data-en="Custom B2B Pricing" data-fr="Tarif B2B personnalisé">Custom B2B Pricing</div>
+            <div class="trust-sub" data-en="Volume discounts and tailored terms for every client." data-fr="Remises volume et conditions adaptées à chaque client.">Volume discounts and tailored terms for every client.</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <div class="footer-brand-name">ILS</div>
+          <div class="footer-brand-sub">International Link Solutions</div>
+          <p class="footer-tagline">Precision in Lab, Metrology &amp; Energy.</p>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-title">Shop</div>
+          <ul>
+            <li><a href="index.html">All Products</a></li>
+            <li><a href="laboratory.html">Laboratory</a></li>
+            <li><a href="chemistry.html">Chemistry</a></li>
+            <li><a href="quote-list.html">Quote List</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <div class="footer-col-title">Legal</div>
+          <ul>
+            <li><a href="../privacy.html">Privacy Policy</a></li>
+            <li><a href="../terms.html">Terms</a></li>
+          </ul>
+          <div style="margin-top:16px;font-size:12px;color:rgba(255,255,255,.25);line-height:1.6;">SIRET: 928 301 340 00016<br>TVA: FR82928301340</div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copy">© 2026 International Link Solutions — 30 Rue Branly, 90000 Belfort, France</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- EmailJS SDK -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script src="products.js"></script>
+  <script>
+  (function () {
+    // ─── EmailJS config ───────────────────────────────────────────────
+    var EMAILJS_SERVICE  = 'service_361cnke';
+    var EMAILJS_TEMPLATE = 'template_jn4l5w3';
+    var EMAILJS_KEY      = 'oNdhQcZjRogc6ilm7';
+
+    emailjs.init({ publicKey: EMAILJS_KEY });
+
+    // ─── State ────────────────────────────────────────────────────────
+    var lang      = localStorage.getItem('ils-lang') || 'en';
+    var quoteList = JSON.parse(localStorage.getItem('ils-quote') || '[]');
+
+    // ─── Language ─────────────────────────────────────────────────────
+    function applyLang() {
+      document.querySelectorAll('.lang-btn').forEach(function(b){
+        b.classList.toggle('active', b.dataset.lang === lang);
+      });
+      document.querySelectorAll('[data-en]').forEach(function(el){
+        var text = lang === 'fr' ? el.dataset.fr : el.dataset.en;
+        if (!text) return;
+        if (el.tagName === 'OPTION') { el.textContent = text; return; }
+        if (text.includes('<')) el.innerHTML = text;
+        else el.textContent = text;
+      });
+      // Placeholder handling
+      document.querySelectorAll('[data-en-placeholder]').forEach(function(el){
+        el.placeholder = lang === 'fr' ? (el.dataset.frPlaceholder || el.dataset.enPlaceholder) : el.dataset.enPlaceholder;
+      });
+      // Hidden lang field
+      var langField = document.getElementById('fieldLang');
+      if (langField) langField.value = lang;
+      // Update navbar badge
+      updateNavBadge();
+      // Re-render sidebar
+      renderSidebar();
+    }
+
+    document.querySelectorAll('.lang-btn').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        lang = btn.dataset.lang;
+        localStorage.setItem('ils-lang', lang);
+        applyLang();
+      });
+    });
+
+    // ─── Navbar badge ─────────────────────────────────────────────────
+    function updateNavBadge() {
+      document.querySelectorAll('.quote-count').forEach(function(el){
+        el.textContent = quoteList.length;
+        el.dataset.count = quoteList.length;
+      });
+    }
+
+    // ─── Mobile menu ──────────────────────────────────────────────────
+    var hamburger  = document.getElementById('hamburger');
+    var mobileMenu = document.getElementById('mobileMenu');
+    var mobileClose= document.getElementById('mobileClose');
+    if (hamburger)   hamburger.addEventListener('click', function(){ hamburger.classList.toggle('active'); mobileMenu.classList.toggle('open'); document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : ''; });
+    if (mobileClose) mobileClose.addEventListener('click', function(){ hamburger.classList.remove('active'); mobileMenu.classList.remove('open'); document.body.style.overflow = ''; });
+
+    // ─── Sidebar rendering ────────────────────────────────────────────
+    function renderSidebar() {
+      var container  = document.getElementById('sidebarItems');
+      var countEl    = document.getElementById('sidebarCount');
+      var formCard   = document.getElementById('quoteFormCard');
+      var emptyRedir = document.getElementById('emptyRedirect');
+
+      if (quoteList.length === 0) {
+        formCard.style.display = 'none';
+        emptyRedir.classList.add('visible');
+        document.getElementById('quoteSidebar').style.display = 'none';
+        return;
+      }
+
+      formCard.style.display = '';
+      emptyRedir.classList.remove('visible');
+      document.getElementById('quoteSidebar').style.display = '';
+
+      countEl.textContent = quoteList.length + ' ' + (lang === 'fr'
+        ? (quoteList.length > 1 ? 'produits' : 'produit')
+        : (quoteList.length > 1 ? 'products' : 'product'));
+
+      var html = quoteList.map(function(item){
+        var p    = ILS_PRODUCTS.find(function(pr){ return pr.id === item.id; });
+        var name = p ? (lang === 'fr' && p.nameFr ? p.nameFr : p.nameEn) : (item.name || item.id);
+        var brand= item.brand || (p ? p.brand : '');
+        var ref  = item.ref  || (p ? p.ref  : '');
+        return '<div class="sidebar-item">' +
+          '<div class="sidebar-item-img">' + brand + '</div>' +
+          '<div class="sidebar-item-info">' +
+            '<div class="sidebar-item-brand">' + brand + '</div>' +
+            '<div class="sidebar-item-name" title="' + name + '">' + name + '</div>' +
+            '<div class="sidebar-item-ref">Ref: ' + ref + '</div>' +
+          '</div>' +
+        '</div>';
+      }).join('');
+
+      container.innerHTML = html;
+
+      // Populate hidden products field for email
+      var productLines = quoteList.map(function(item, i){
+        var p    = ILS_PRODUCTS.find(function(pr){ return pr.id === item.id; });
+        var name = p ? p.nameEn : (item.name || item.id);
+        var brand= item.brand || (p ? p.brand : '');
+        var ref  = item.ref  || (p ? p.ref  : '');
+        return (i + 1) + '. ' + brand + ' — ' + name + ' (Ref: ' + ref + ')';
+      }).join('\n');
+
+      document.getElementById('fieldProducts').value = productLines;
+      document.getElementById('fieldProductCount').value = quoteList.length;
+    }
+
+    // ─── Form validation ──────────────────────────────────────────────
+    function validateForm() {
+      var name    = document.getElementById('fieldName').value.trim();
+      var company = document.getElementById('fieldCompany').value.trim();
+      var email   = document.getElementById('fieldEmail').value.trim();
+      var country = document.getElementById('fieldCountry').value;
+
+      if (!name) return lang === 'fr' ? 'Veuillez indiquer votre nom complet.' : 'Please enter your full name.';
+      if (!company) return lang === 'fr' ? 'Veuillez indiquer votre société ou établissement.' : 'Please enter your company or institution.';
+      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return lang === 'fr' ? 'Veuillez entrer une adresse e-mail valide.' : 'Please enter a valid email address.';
+      if (!country) return lang === 'fr' ? 'Veuillez sélectionner votre pays.' : 'Please select your country.';
+      return null;
+    }
+
+    // ─── Form submit ─────────────────────────────────────────────────
+    document.getElementById('quoteForm').addEventListener('submit', function(e){
+      e.preventDefault();
+
+      var errorEl   = document.getElementById('formError');
+      var errorText = document.getElementById('formErrorText');
+      var submitBtn = document.getElementById('submitBtn');
+
+      errorEl.classList.remove('visible');
+
+      var validationError = validateForm();
+      if (validationError) {
+        errorText.textContent = validationError;
+        errorEl.classList.add('visible');
+        errorEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        return;
+      }
+
+      // Loading state
+      submitBtn.disabled = true;
+      submitBtn.classList.add('loading');
+
+      // Build template params
+      var params = {
+        from_name:     document.getElementById('fieldName').value.trim(),
+        company:       document.getElementById('fieldCompany').value.trim(),
+        reply_to:      document.getElementById('fieldEmail').value.trim(),
+        phone:         document.getElementById('fieldPhone').value.trim() || '—',
+        country:       document.getElementById('fieldCountry').value,
+        division:      document.getElementById('fieldDivision').value || '—',
+        message:       document.getElementById('fieldMessage').value.trim() || '—',
+        products_list: document.getElementById('fieldProducts').value,
+        product_count: document.getElementById('fieldProductCount').value,
+        language:      lang
+      };
+
+      emailjs.send(EMAILJS_SERVICE, EMAILJS_TEMPLATE, params)
+        .then(function(){
+          // Clear quote list on success
+          localStorage.removeItem('ils-quote');
+          // Redirect to confirmation
+          window.location.href = 'confirmation.html';
+        })
+        .catch(function(err){
+          submitBtn.disabled = false;
+          submitBtn.classList.remove('loading');
+          var msg = lang === 'fr'
+            ? 'Une erreur est survenue lors de l\'envoi. Veuillez réessayer ou nous contacter directement à sales@ils-link.com.'
+            : 'An error occurred while sending your request. Please try again or contact us directly at sales@ils-link.com.';
+          errorText.textContent = msg;
+          errorEl.classList.add('visible');
+          errorEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+          console.error('EmailJS error:', err);
+        });
+    });
+
+    // ─── Init ─────────────────────────────────────────────────────────
+    applyLang();
+
+  })();
+  </script>
+</body>
+</html>

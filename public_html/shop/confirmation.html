@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ILS Shop — Quote Request Sent</title>
+  <meta name="description" content="Your quote request has been received by ILS. Our sales team will respond within 24 hours.">
+  <link rel="stylesheet" href="shop.css">
+  <style>
+    @media (max-width: 768px) {
+      .nav-logo-sub { display: none !important; }
+      .nav-logo-sep { display: none !important; }
+      .nav-shop-crumb { display: none !important; }
+      .nav-inner { justify-content: space-between !important; }
+      .nav-right { gap: 12px !important; margin-left: auto !important; }
+      .quote-btn { padding: 9px 12px !important; gap: 0 !important; }
+      .quote-btn svg { width: 20px !important; height: 20px !important; }
+      .quote-btn span[data-en] { display: none !important; }
+    }
+  </style>
+  <style>
+    /* PROGRESS */
+    .progress-bar {
+      background: var(--white);
+      border-bottom: 1px solid rgba(0,0,0,.08);
+      padding: 20px 48px;
+    }
+    .progress-inner {
+      max-width: 700px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+    }
+    .step {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+      font-weight: 600;
+    }
+    .step-num {
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13px; font-weight: 700;
+      transition: var(--transition);
+    }
+    .step.done .step-num    { background: #2d6a4f; color: var(--white); }
+    .step.active .step-num  { background: var(--gold); color: var(--navy); }
+    .step.done .step-label  { color: #2d6a4f; }
+    .step.active .step-label{ color: var(--navy); font-weight: 700; }
+    .step-line      { flex: 1; height: 2px; background: rgba(0,0,0,.08); margin: 0 12px; }
+    .step-line.done { background: #2d6a4f; }
+
+    /* CONFIRMATION HERO */
+    .confirm-hero {
+      background: var(--navy);
+      background-image: radial-gradient(ellipse 70% 60% at 50% 0%, rgba(201,165,92,.1) 0%, transparent 65%);
+      padding: calc(var(--nav-h) + 80px) 48px 80px;
+      text-align: center;
+    }
+
+    /* Animated checkmark */
+    .check-circle {
+      width: 96px; height: 96px;
+      margin: 0 auto 40px;
+      position: relative;
+    }
+    .check-bg {
+      width: 96px; height: 96px;
+      border-radius: 50%;
+      background: rgba(45,106,79,.15);
+      border: 2px solid rgba(45,106,79,.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: popIn .5s cubic-bezier(.175,.885,.32,1.275) both;
+    }
+    .check-bg svg {
+      stroke-dasharray: 36;
+      stroke-dashoffset: 36;
+      animation: drawCheck .4s .4s ease forwards;
+    }
+    @keyframes popIn {
+      from { transform: scale(.5); opacity: 0; }
+      to   { transform: scale(1);  opacity: 1; }
+    }
+    @keyframes drawCheck {
+      to { stroke-dashoffset: 0; }
+    }
+
+    .confirm-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(45,106,79,.12);
+      border: 1px solid rgba(45,106,79,.3);
+      border-radius: 999px;
+      padding: 6px 16px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: #4ade80;
+      margin-bottom: 28px;
+      animation: fadeUp .5s .2s ease both;
+    }
+    .confirm-badge-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: #4ade80;
+      animation: pulse 1.5s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%       { opacity: .4; transform: scale(.7); }
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .confirm-title {
+      font-family: var(--font-serif);
+      font-size: clamp(34px, 5vw, 56px);
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.15;
+      margin-bottom: 20px;
+      animation: fadeUp .5s .3s ease both;
+    }
+    .confirm-title em { font-style: italic; color: var(--gold); }
+
+    .confirm-sub {
+      font-size: 17px;
+      color: rgba(255,255,255,.6);
+      max-width: 520px;
+      margin: 0 auto 48px;
+      line-height: 1.7;
+      animation: fadeUp .5s .4s ease both;
+    }
+
+    /* REF number */
+    .confirm-ref {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 10px;
+      padding: 14px 24px;
+      font-size: 14px;
+      color: rgba(255,255,255,.6);
+      margin-bottom: 48px;
+      animation: fadeUp .5s .5s ease both;
+    }
+    .confirm-ref strong {
+      font-family: var(--font-serif);
+      font-size: 16px;
+      color: var(--gold);
+      font-weight: 700;
+      letter-spacing: .05em;
+    }
+
+    /* CTA buttons */
+    .confirm-actions {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+      animation: fadeUp .5s .6s ease both;
+    }
+
+    /* WHAT HAPPENS NEXT */
+    .next-section {
+      background: var(--bg);
+      padding: 80px 48px;
+      border-top: 1px solid rgba(0,0,0,.06);
+    }
+    .next-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .next-overline {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 12px;
+    }
+    .next-title {
+      font-family: var(--font-serif);
+      font-size: clamp(26px, 3.5vw, 36px);
+      color: var(--navy);
+      margin-bottom: 48px;
+    }
+    .next-steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+    .next-step-card {
+      background: var(--white);
+      border: 1px solid rgba(0,0,0,.07);
+      border-radius: var(--radius);
+      padding: 32px 28px;
+      text-align: left;
+      transition: box-shadow var(--transition);
+    }
+    .next-step-card:hover { box-shadow: 0 8px 28px rgba(0,0,0,.08); }
+    .next-step-num {
+      width: 40px; height: 40px;
+      border-radius: 10px;
+      background: rgba(201,165,92,.1);
+      border: 1px solid rgba(201,165,92,.2);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-serif);
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--gold);
+      margin-bottom: 20px;
+    }
+    .next-step-title {
+      font-family: var(--font-serif);
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 8px;
+    }
+    .next-step-text {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.65;
+    }
+
+    /* EXPLORE MORE */
+    .explore-section {
+      background: var(--navy);
+      padding: 72px 48px;
+      text-align: center;
+      border-top: 1px solid var(--border);
+    }
+    .explore-inner { max-width: 640px; margin: 0 auto; }
+    .explore-title {
+      font-family: var(--font-serif);
+      font-size: clamp(26px, 3.5vw, 36px);
+      color: var(--white);
+      margin-bottom: 12px;
+    }
+    .explore-sub {
+      font-size: 15px;
+      color: rgba(255,255,255,.5);
+      margin-bottom: 36px;
+      line-height: 1.7;
+    }
+    .explore-cards {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .explore-card {
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: var(--radius);
+      padding: 20px 24px;
+      text-align: left;
+      text-decoration: none;
+      width: 180px;
+      transition: var(--transition);
+    }
+    .explore-card:hover {
+      background: rgba(201,165,92,.08);
+      border-color: rgba(201,165,92,.3);
+      transform: translateY(-2px);
+    }
+    .explore-card-icon {
+      font-size: 24px;
+      margin-bottom: 12px;
+      display: block;
+    }
+    .explore-card-title {
+      font-family: var(--font-serif);
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 4px;
+    }
+    .explore-card-sub {
+      font-size: 12px;
+      color: rgba(255,255,255,.4);
+    }
+
+    @media (max-width: 768px) {
+      .progress-bar { padding: 16px 20px; }
+      .confirm-hero { padding: calc(var(--nav-h) + 56px) 20px 56px; }
+      .next-section { padding: 56px 20px; }
+      .next-steps { grid-template-columns: 1fr; gap: 16px; }
+      .explore-section { padding: 56px 20px; }
+      .explore-cards { flex-direction: column; align-items: center; }
+      .explore-card { width: 100%; max-width: 280px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav id="navbar" class="scrolled">
+    <div class="nav-inner">
+      <a href="../index.html?skip=1" class="nav-logo">
+        <span class="nav-logo-mark">ILS</span>
+        <div class="nav-logo-sep"></div>
+        <span class="nav-logo-sub">International<br>Link Solutions</span>
+      </a>
+      <span class="nav-shop-crumb" data-en="Confirmation" data-fr="Confirmation">Confirmation</span>
+      <ul class="nav-links">
+        <li><a href="index.html" data-en="All Products" data-fr="Tous les produits">All Products</a></li>
+        <li><a href="laboratory.html" data-en="Laboratory" data-fr="Laboratoire">Laboratory</a></li>
+        <li><a href="chemistry.html" data-en="Chemistry" data-fr="Chimie">Chemistry</a></li>
+      </ul>
+      <div class="nav-right">
+        <button class="lang-btn active" data-lang="en">EN</button>
+        <span class="lang-sep">|</span>
+        <button class="lang-btn" data-lang="fr">FR</button>
+        <a href="quote-list.html" class="quote-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/></svg>
+          <span data-en="Quote List" data-fr="Devis">Quote List</span>
+          <span class="quote-count" data-count="0">0</span>
+        </a>
+        <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </nav>
+
+  <div id="mobileMenu">
+    <button class="mobile-close" id="mobileClose">&#x2715;</button>
+    <a href="index.html">All Products</a>
+    <a href="laboratory.html">Laboratory</a>
+    <a href="chemistry.html">Chemistry</a>
+  </div>
+
+  <!-- PROGRESS -->
+  <div class="progress-bar">
+    <div class="progress-inner">
+      <div class="step done">
+        <div class="step-num">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <span class="step-label" data-en="Quote List" data-fr="Liste de devis">Quote List</span>
+      </div>
+      <div class="step-line done"></div>
+      <div class="step done">
+        <div class="step-num">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <span class="step-label" data-en="Your Details" data-fr="Vos coordonnées">Your Details</span>
+      </div>
+      <div class="step-line done"></div>
+      <div class="step active">
+        <div class="step-num">3</div>
+        <span class="step-label" data-en="Confirmation" data-fr="Confirmation">Confirmation</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONFIRMATION HERO -->
+  <section class="confirm-hero">
+
+    <!-- Animated check -->
+    <div class="check-circle">
+      <div class="check-bg">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="20 6 9 17 4 12"/>
+        </svg>
+      </div>
+    </div>
+
+    <div class="confirm-badge">
+      <span class="confirm-badge-dot"></span>
+      <span data-en="Request Sent Successfully" data-fr="Demande envoyée avec succès">Request Sent Successfully</span>
+    </div>
+
+    <h1 class="confirm-title">
+      <span data-en="Thank You for" data-fr="Merci pour">Thank You for</span><br>
+      <em data-en="Your Request" data-fr="Votre Demande">Your Request</em>
+    </h1>
+
+    <p class="confirm-sub"
+       data-en="Your quote request has been received by our sales team. We will review your product selection and get back to you within 24 hours with custom B2B pricing."
+       data-fr="Votre demande de devis a bien été reçue par notre équipe commerciale. Nous examinerons votre sélection et vous répondrons sous 24 heures avec une tarification B2B personnalisée.">
+      Your quote request has been received by our sales team. We will review your product selection and get back to you within 24 hours with custom B2B pricing.
+    </p>
+
+    <div class="confirm-ref">
+      <span data-en="Reference:" data-fr="Référence :">Reference:</span>
+      <strong id="quoteRef">ILS-2026-0000</strong>
+    </div>
+
+    <div class="confirm-actions">
+      <a href="index.html" class="btn btn-gold" style="font-size:15px;padding:16px 32px;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        <span data-en="Continue Shopping" data-fr="Continuer les achats">Continue Shopping</span>
+      </a>
+      <a href="../contact.html" class="btn btn-outline" style="font-size:15px;padding:16px 32px;" data-en="Contact Us" data-fr="Nous contacter">Contact Us</a>
+    </div>
+
+  </section>
+
+  <!-- WHAT HAPPENS NEXT -->
+  <section class="next-section">
+    <div class="next-inner">
+      <div class="next-overline" data-en="Next Steps" data-fr="Prochaines étapes">Next Steps</div>
+      <h2 class="next-title" data-en="What Happens Now?" data-fr="Que se passe-t-il maintenant ?">What Happens Now?</h2>
+      <div class="next-steps">
+
+        <div class="next-step-card">
+          <div class="next-step-num">1</div>
+          <div class="next-step-title" data-en="Request Received" data-fr="Demande reçue">Request Received</div>
+          <p class="next-step-text"
+             data-en="Your quote request has been delivered to our sales team at sales@ils-link.com. You will receive a confirmation email shortly."
+             data-fr="Votre demande a été transmise à notre équipe commerciale à sales@ils-link.com. Vous recevrez un e-mail de confirmation prochainement.">
+            Your quote request has been delivered to our sales team at sales@ils-link.com. You will receive a confirmation email shortly.
+          </p>
+        </div>
+
+        <div class="next-step-card">
+          <div class="next-step-num">2</div>
+          <div class="next-step-title" data-en="Expert Review" data-fr="Examen par nos experts">Expert Review</div>
+          <p class="next-step-text"
+             data-en="Our specialists will review your product selection, verify availability and prepare a custom quote tailored to your volume and region."
+             data-fr="Nos spécialistes examineront votre sélection, vérifieront la disponibilité et prépareront un devis personnalisé selon votre volume et votre région.">
+            Our specialists will review your product selection, verify availability and prepare a custom quote tailored to your volume and region.
+          </p>
+        </div>
+
+        <div class="next-step-card">
+          <div class="next-step-num">3</div>
+          <div class="next-step-title" data-en="Quote Within 24h" data-fr="Devis sous 24h">Quote Within 24h</div>
+          <p class="next-step-text"
+             data-en="You will receive your personalised quote by email within one business day. Our team is available to discuss any specific requirements."
+             data-fr="Vous recevrez votre devis personnalisé par e-mail sous un jour ouvré. Notre équipe est disponible pour discuter de toute exigence spécifique.">
+            You will receive your personalised quote by email within one business day. Our team is available to discuss any specific requirements.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPLORE MORE -->
+  <section class="explore-section">
+    <div class="explore-inner">
+      <div class="label-overline" style="margin-bottom:12px;" data-en="Continue Exploring" data-fr="Continuer à explorer">Continue Exploring</div>
+      <h2 class="explore-title" data-en="Discover Our Catalogue" data-fr="Découvrez notre catalogue">Discover Our Catalogue</h2>
+      <p class="explore-sub"
+         data-en="Browse our full range of laboratory equipment and chemical products from world-leading manufacturers."
+         data-fr="Parcourez notre gamme complète d'équipements de laboratoire et de produits chimiques des meilleurs fabricants mondiaux.">
+        Browse our full range of laboratory equipment and chemical products from world-leading manufacturers.
+      </p>
+      <div class="explore-cards">
+        <a href="laboratory.html" class="explore-card">
+          <span class="explore-card-icon">🔬</span>
+          <div class="explore-card-title" data-en="Laboratory" data-fr="Laboratoire">Laboratory</div>
+          <div class="explore-card-sub" data-en="Memmert, Sartorius, Eppendorf…" data-fr="Memmert, Sartorius, Eppendorf…">Memmert, Sartorius, Eppendorf…</div>
+        </a>
+        <a href="chemistry.html" class="explore-card">
+          <span class="explore-card-icon">⚗️</span>
+          <div class="explore-card-title" data-en="Chemistry" data-fr="Chimie">Chemistry</div>
+          <div class="explore-card-sub" data-en="SRL India — 5,000+ reagents" data-fr="SRL India — +5 000 réactifs">SRL India — 5,000+ reagents</div>
+        </a>
+        <a href="../contact.html" class="explore-card">
+          <span class="explore-card-icon">✉️</span>
+          <div class="explore-card-title" data-en="Contact ILS" data-fr="Contacter ILS">Contact ILS</div>
+          <div class="explore-card-sub" data-en="sales@ils-link.com" data-fr="sales@ils-link.com">sales@ils-link.com</div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <div class="footer-brand-name">ILS</div>
+          <div class="footer-brand-sub">International Link Solutions</div>
+          <p class="footer-tagline">Precision in Lab, Metrology &amp; Energy.</p>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-title">Shop</div>
+          <ul>
+            <li><a href="index.html">All Products</a></li>
+            <li><a href="laboratory.html">Laboratory</a></li>
+            <li><a href="chemistry.html">Chemistry</a></li>
+            <li><a href="quote-list.html">Quote List</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <div class="footer-col-title">Legal</div>
+          <ul>
+            <li><a href="../privacy.html">Privacy Policy</a></li>
+            <li><a href="../terms.html">Terms</a></li>
+          </ul>
+          <div style="margin-top:16px;font-size:12px;color:rgba(255,255,255,.25);line-height:1.6;">SIRET: 928 301 340 00016<br>TVA: FR82928301340</div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copy">© 2026 International Link Solutions — 30 Rue Branly, 90000 Belfort, France</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+  (function () {
+    var lang = localStorage.getItem('ils-lang') || 'en';
+
+    // ─── Generate reference number ────────────────────────────────────
+    var ref = 'ILS-2026-' + Math.floor(Math.random() * 90000 + 10000);
+    document.getElementById('quoteRef').textContent = ref;
+
+    // ─── Language ─────────────────────────────────────────────────────
+    function applyLang() {
+      document.querySelectorAll('.lang-btn').forEach(function(b){
+        b.classList.toggle('active', b.dataset.lang === lang);
+      });
+      document.querySelectorAll('[data-en]').forEach(function(el){
+        var text = lang === 'fr' ? el.dataset.fr : el.dataset.en;
+        if (!text) return;
+        if (el.tagName === 'OPTION') { el.textContent = text; return; }
+        if (text.includes('<')) el.innerHTML = text;
+        else el.textContent = text;
+      });
+      // Navbar badge (quote list is cleared after submit)
+      var quoteList = JSON.parse(localStorage.getItem('ils-quote') || '[]');
+      document.querySelectorAll('.quote-count').forEach(function(el){
+        el.textContent = quoteList.length;
+        el.dataset.count = quoteList.length;
+      });
+    }
+
+    document.querySelectorAll('.lang-btn').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        lang = btn.dataset.lang;
+        localStorage.setItem('ils-lang', lang);
+        applyLang();
+      });
+    });
+
+    // ─── Mobile menu ──────────────────────────────────────────────────
+    var hamburger  = document.getElementById('hamburger');
+    var mobileMenu = document.getElementById('mobileMenu');
+    var mobileClose= document.getElementById('mobileClose');
+    if (hamburger)   hamburger.addEventListener('click', function(){ hamburger.classList.toggle('active'); mobileMenu.classList.toggle('open'); document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : ''; });
+    if (mobileClose) mobileClose.addEventListener('click', function(){ hamburger.classList.remove('active'); mobileMenu.classList.remove('open'); document.body.style.overflow = ''; });
+
+    applyLang();
+
+  })();
+  </script>
+</body>
+</html>

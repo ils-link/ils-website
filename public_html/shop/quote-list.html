@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ILS Shop — Quote List</title>
+  <link rel="stylesheet" href="shop.css">
+  <style>
+    @media (max-width: 768px) {
+      .nav-logo-sub { display: none !important; }
+      .nav-logo-sep { display: none !important; }
+      .nav-shop-crumb { display: none !important; }
+      .nav-inner { justify-content: space-between !important; }
+      .nav-right { gap: 12px !important; margin-left: auto !important; }
+      .quote-btn { padding: 9px 12px !important; gap: 0 !important; }
+      .quote-btn svg { width: 20px !important; height: 20px !important; }
+      .quote-btn span[data-en] { display: none !important; }
+    }
+    .page-hero {
+      background: var(--navy);
+      background-image: radial-gradient(ellipse 60% 50% at 50% -10%, rgba(201,165,92,.08) 0%, transparent 70%);
+      padding: calc(var(--nav-h) + 56px) 48px 56px;
+      text-align: center;
+    }
+    .page-hero h1 {
+      font-family: var(--font-serif);
+      font-size: clamp(32px, 4vw, 48px);
+      color: var(--white);
+      margin-bottom: 12px;
+    }
+    .page-hero h1 em { font-style: italic; color: var(--gold); }
+    .page-hero p { font-size: 16px; color: rgba(255,255,255,.55); }
+
+    /* PROGRESS STEPS */
+    .progress-bar {
+      background: var(--white);
+      border-bottom: 1px solid rgba(0,0,0,.08);
+      padding: 20px 48px;
+    }
+    .progress-inner {
+      max-width: 700px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+    }
+    .step {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+      font-weight: 600;
+    }
+    .step-num {
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13px; font-weight: 700;
+      transition: var(--transition);
+    }
+    .step.active .step-num { background: var(--gold); color: var(--navy); }
+    .step.done .step-num { background: #2d6a4f; color: var(--white); }
+    .step.inactive .step-num { background: rgba(0,0,0,.08); color: var(--text-muted); }
+    .step.active .step-label { color: var(--navy); }
+    .step.done .step-label { color: #2d6a4f; }
+    .step.inactive .step-label { color: var(--text-muted); }
+    .step-line {
+      flex: 1;
+      height: 2px;
+      background: rgba(0,0,0,.08);
+      margin: 0 12px;
+    }
+    .step-line.done { background: #2d6a4f; }
+
+    /* MAIN LAYOUT */
+    .quote-main {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 48px 48px 80px;
+      display: grid;
+      grid-template-columns: 1fr 360px;
+      gap: 40px;
+      align-items: start;
+    }
+
+    /* ITEMS LIST */
+    .quote-items-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+    .quote-items-title {
+      font-family: var(--font-serif);
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--navy);
+    }
+    .clear-all-btn {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-muted);
+      background: none;
+      border: none;
+      cursor: pointer;
+      transition: color var(--transition);
+      padding: 0;
+    }
+    .clear-all-btn:hover { color: #c0392b; }
+
+    .items-actions {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .print-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--navy);
+      background: none;
+      border: 1.5px solid rgba(10,22,40,.12);
+      border-radius: 6px;
+      padding: 7px 12px;
+      cursor: pointer;
+      transition: var(--transition);
+      font-family: var(--font-sans);
+      letter-spacing: .02em;
+    }
+    .print-btn:hover { border-color: var(--gold); color: var(--gold); background: rgba(201,165,92,.04); }
+    .print-btn:disabled { opacity: .4; cursor: not-allowed; }
+    .print-btn:disabled:hover { border-color: rgba(10,22,40,.12); color: var(--navy); background: none; }
+
+    /* PRINT STYLES — clean A4 quote sheet */
+    @media print {
+      @page { size: A4; margin: 18mm 15mm; }
+      body { background: #fff !important; color: #000 !important; font-size: 11pt; }
+      nav#navbar, #mobileMenu, .page-hero, .progress-bar,
+      .quote-summary, .quote-empty, footer, .clear-all-btn,
+      .print-btn, .remove-item-btn, .view-product-link,
+      .continue-btn, .proceed-btn { display: none !important; }
+      .quote-main { display: block !important; padding: 0 !important; max-width: none !important; margin: 0 !important; }
+      .quote-items-header { border-bottom: 2px solid #000; padding-bottom: 8mm; margin-bottom: 6mm; }
+      .quote-items-title { font-size: 18pt !important; }
+      .print-header { display: block !important; }
+      .quote-item {
+        break-inside: avoid;
+        page-break-inside: avoid;
+        border: 1px solid #ccc !important;
+        box-shadow: none !important;
+        padding: 10pt 12pt !important;
+        margin-bottom: 6pt !important;
+      }
+      .quote-item-img { background: #fff !important; color: #000 !important; border: 1px solid #ccc; }
+      .quote-item-name, .quote-item-brand, .quote-item-ref { color: #000 !important; }
+      .print-footer { display: block !important; margin-top: 10mm; padding-top: 5mm; border-top: 1px solid #ccc; font-size: 9pt; color: #444; }
+    }
+    .print-header, .print-footer { display: none; }
+
+    .quote-item {
+      background: var(--white);
+      border: 1px solid rgba(0,0,0,.07);
+      border-radius: var(--radius);
+      padding: 20px 24px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin-bottom: 12px;
+      transition: var(--transition);
+    }
+    .quote-item:hover { box-shadow: 0 4px 16px rgba(0,0,0,.07); }
+
+    .quote-item-img {
+      width: 72px; height: 72px;
+      border-radius: 8px;
+      background: var(--navy);
+      background-image: radial-gradient(ellipse 80% 80% at 50% 40%, rgba(201,165,92,.1), transparent 70%);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      font-family: var(--font-serif);
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--gold);
+      text-align: center;
+      padding: 4px;
+      line-height: 1.2;
+    }
+
+    .quote-item-info { flex: 1; }
+    .quote-item-brand {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 4px;
+    }
+    .quote-item-name {
+      font-family: var(--font-serif);
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 4px;
+      line-height: 1.3;
+    }
+    .quote-item-ref {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .quote-item-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+    .view-product-link {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color var(--transition);
+    }
+    .view-product-link:hover { color: var(--gold); }
+    .remove-item-btn {
+      width: 32px; height: 32px;
+      display: flex; align-items: center; justify-content: center;
+      border: 1.5px solid rgba(0,0,0,.1);
+      border-radius: 6px;
+      color: var(--text-muted);
+      background: none;
+      cursor: pointer;
+      font-size: 16px;
+      transition: var(--transition);
+    }
+    .remove-item-btn:hover { border-color: #c0392b; color: #c0392b; background: rgba(192,57,43,.04); }
+
+    /* EMPTY STATE */
+    .quote-empty {
+      text-align: center;
+      padding: 80px 32px;
+      display: none;
+    }
+    .quote-empty.visible { display: block; }
+    .quote-empty-icon {
+      width: 80px; height: 80px;
+      background: rgba(201,165,92,.08);
+      border: 2px solid var(--border-strong);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 24px;
+      color: var(--gold);
+    }
+    .quote-empty h3 {
+      font-family: var(--font-serif);
+      font-size: 24px;
+      color: var(--navy);
+      margin-bottom: 8px;
+    }
+    .quote-empty p { color: var(--text-muted); font-size: 15px; margin-bottom: 32px; }
+
+    /* SUMMARY SIDEBAR */
+    .quote-summary {
+      position: sticky;
+      top: calc(var(--nav-h) + 24px);
+      background: var(--white);
+      border: 1px solid rgba(0,0,0,.07);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+    .summary-header {
+      background: var(--navy);
+      padding: 20px 24px;
+    }
+    .summary-title {
+      font-family: var(--font-serif);
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--white);
+    }
+    .summary-body { padding: 24px; }
+
+    .summary-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 0;
+      font-size: 14px;
+      border-bottom: 1px solid rgba(0,0,0,.06);
+    }
+    .summary-row:last-of-type { border-bottom: none; }
+    .summary-row-label { color: var(--text-secondary); }
+    .summary-row-val { font-weight: 600; color: var(--text-primary); }
+    .summary-row-val.gold { color: var(--gold); font-size: 16px; }
+
+    .summary-note {
+      font-size: 12px;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin: 16px 0;
+      padding: 12px;
+      background: var(--bg);
+      border-radius: 6px;
+      border: 1px solid rgba(0,0,0,.06);
+    }
+
+    .proceed-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      padding: 16px;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--navy);
+      background: var(--gold);
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-family: var(--font-sans);
+      text-decoration: none;
+      transition: var(--transition);
+      letter-spacing: .02em;
+    }
+    .proceed-btn:hover {
+      background: var(--gold-light);
+      transform: translateY(-1px);
+      box-shadow: 0 8px 24px rgba(201,165,92,.3);
+    }
+    .proceed-btn.disabled {
+      opacity: .45;
+      pointer-events: none;
+      cursor: not-allowed;
+    }
+    .continue-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      padding: 13px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      background: none;
+      border: 1.5px solid rgba(0,0,0,.1);
+      border-radius: 8px;
+      text-decoration: none;
+      transition: var(--transition);
+      margin-top: 10px;
+    }
+    .continue-btn:hover { border-color: var(--gold); color: var(--gold); }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .quote-main { grid-template-columns: 1fr; padding: 32px 32px 64px; }
+      .quote-summary { position: static; }
+    }
+    @media (max-width: 768px) {
+      .progress-bar { padding: 16px 20px; }
+      .page-hero { padding: calc(var(--nav-h) + 40px) 20px 40px; }
+      .quote-main { padding: 24px 20px 56px; }
+      .quote-item { flex-wrap: wrap; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav id="navbar" class="scrolled">
+    <div class="nav-inner">
+      <a href="../index.html?skip=1" class="nav-logo">
+        <span class="nav-logo-mark">ILS</span>
+        <div class="nav-logo-sep"></div>
+        <span class="nav-logo-sub">International<br>Link Solutions</span>
+      </a>
+      <span class="nav-shop-crumb" data-en="Quote List" data-fr="Liste de devis">Quote List</span>
+      <ul class="nav-links">
+        <li><a href="index.html" data-en="All Products" data-fr="Tous les produits">All Products</a></li>
+        <li><a href="laboratory.html" data-en="Laboratory" data-fr="Laboratoire">Laboratory</a></li>
+        <li><a href="chemistry.html" data-en="Chemistry" data-fr="Chimie">Chemistry</a></li>
+      </ul>
+      <div class="nav-right">
+        <button class="lang-btn active" data-lang="en">EN</button>
+        <span class="lang-sep">|</span>
+        <button class="lang-btn" data-lang="fr">FR</button>
+        <a href="quote-list.html" class="quote-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/></svg>
+          <span data-en="Quote List" data-fr="Devis">Quote List</span>
+          <span class="quote-count" data-count="0">0</span>
+        </a>
+        <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </nav>
+
+  <div id="mobileMenu">
+    <button class="mobile-close" id="mobileClose">&#x2715;</button>
+    <a href="index.html">All Products</a>
+    <a href="laboratory.html">Laboratory</a>
+    <a href="chemistry.html">Chemistry</a>
+  </div>
+
+  <!-- HERO -->
+  <section class="page-hero">
+    <div class="shop-hero-badge" style="margin-bottom:20px;">
+      <span data-en="B2B · No pricing displayed · Custom quotes only" data-fr="B2B · Sans tarif affiché · Devis personnalisés uniquement">B2B · No pricing displayed · Custom quotes only</span>
+    </div>
+    <h1 data-en="Your <em>Quote List</em>" data-fr="Votre <em>Liste de Devis</em>">Your <em>Quote List</em></h1>
+    <p data-en="Review your selected products and proceed to request a tailored quote." data-fr="Vérifiez vos produits sélectionnés et soumettez votre demande de devis.">
+      Review your selected products and proceed to request a tailored quote.
+    </p>
+  </section>
+
+  <!-- PROGRESS -->
+  <div class="progress-bar">
+    <div class="progress-inner">
+      <div class="step active">
+        <div class="step-num">1</div>
+        <span class="step-label" data-en="Quote List" data-fr="Liste de devis">Quote List</span>
+      </div>
+      <div class="step-line"></div>
+      <div class="step inactive">
+        <div class="step-num">2</div>
+        <span class="step-label" data-en="Your Details" data-fr="Vos coordonnées">Your Details</span>
+      </div>
+      <div class="step-line"></div>
+      <div class="step inactive">
+        <div class="step-num">3</div>
+        <span class="step-label" data-en="Confirmation" data-fr="Confirmation">Confirmation</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN -->
+  <div class="quote-main">
+
+    <!-- Items -->
+    <div>
+      <!-- Print-only header (hidden on screen, visible on printed page) -->
+      <div class="print-header">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6mm;">
+          <div>
+            <div style="font-family:var(--font-serif);font-size:24pt;font-weight:700;color:#000;letter-spacing:.02em;">ILS</div>
+            <div style="font-size:9pt;color:#666;letter-spacing:.08em;text-transform:uppercase;">International Link Solutions</div>
+          </div>
+          <div style="text-align:right;font-size:9pt;color:#444;line-height:1.6;">
+            30 Rue Branly, 90000 Belfort, France<br>
+            SIRET: 928 301 340 00016 · TVA: FR82928301340<br>
+            sales@ils-link.com
+          </div>
+        </div>
+        <div style="font-family:var(--font-serif);font-size:16pt;font-weight:600;color:#000;margin-bottom:2mm;">Quote Request Draft</div>
+        <div style="font-size:9pt;color:#666;">Generated <span id="printDate"></span> · Reference: <span id="printRef"></span></div>
+      </div>
+
+      <div class="quote-items-header">
+        <h2 class="quote-items-title" id="itemsTitle">Products Selected</h2>
+        <div class="items-actions">
+          <button class="print-btn" id="printBtn" data-en="Print / PDF" data-fr="Imprimer / PDF">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+            <span data-en="Print / PDF" data-fr="Imprimer / PDF">Print / PDF</span>
+          </button>
+          <button class="clear-all-btn" id="clearAllBtn" data-en="Clear all" data-fr="Tout supprimer">Clear all</button>
+        </div>
+      </div>
+
+      <!-- Print-only footer -->
+      <div class="print-footer">
+        This document is a draft quote request generated from the ILS online catalogue and does not constitute a commercial offer. Final pricing will be issued by ILS after review. Response within 24 hours.
+      </div>
+
+      <div id="quoteItems"></div>
+
+      <!-- Empty state -->
+      <div class="quote-empty" id="quoteEmpty">
+        <div class="quote-empty-icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/></svg>
+        </div>
+        <h3 data-en="Your quote list is empty" data-fr="Votre liste de devis est vide">Your quote list is empty</h3>
+        <p data-en="Browse our catalogue and add products to your quote list." data-fr="Parcourez notre catalogue et ajoutez des produits à votre liste.">
+          Browse our catalogue and add products to your quote list.
+        </p>
+        <a href="index.html" class="btn btn-gold" style="font-size:15px;padding:14px 32px;" data-en="Browse Products" data-fr="Voir le catalogue">Browse Products</a>
+      </div>
+    </div>
+
+    <!-- Summary -->
+    <div class="quote-summary">
+      <div class="summary-header">
+        <div class="summary-title" data-en="Quote Summary" data-fr="Récapitulatif">Quote Summary</div>
+      </div>
+      <div class="summary-body">
+        <div class="summary-row">
+          <span class="summary-row-label" data-en="Products selected" data-fr="Produits sélectionnés">Products selected</span>
+          <span class="summary-row-val gold" id="summaryCount">0</span>
+        </div>
+        <div class="summary-row">
+          <span class="summary-row-label" data-en="Pricing" data-fr="Tarification">Pricing</span>
+          <span class="summary-row-val" data-en="Custom B2B quote" data-fr="Devis B2B personnalisé">Custom B2B quote</span>
+        </div>
+        <div class="summary-row">
+          <span class="summary-row-label" data-en="Response time" data-fr="Délai de réponse">Response time</span>
+          <span class="summary-row-val" data-en="Within 24 hours" data-fr="Sous 24 heures">Within 24 hours</span>
+        </div>
+
+        <div class="summary-note" data-en="ILS provides custom B2B pricing tailored to your volume, region and project. No prices are displayed — your request will be reviewed by our sales team." data-fr="ILS fournit une tarification B2B personnalisée selon votre volume, région et projet. Aucun prix n'est affiché — votre demande sera examinée par notre équipe commerciale.">
+          ILS provides custom B2B pricing tailored to your volume, region and project. No prices are displayed — your request will be reviewed by our sales team.
+        </div>
+
+        <a href="quote.html" class="proceed-btn disabled" id="proceedBtn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          <span data-en="Request Quote" data-fr="Demander un devis">Request Quote</span>
+        </a>
+        <a href="index.html" class="continue-btn">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+          <span data-en="Continue Shopping" data-fr="Continuer les achats">Continue Shopping</span>
+        </a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <div class="footer-brand-name">ILS</div>
+          <div class="footer-brand-sub">International Link Solutions</div>
+          <p class="footer-tagline">Precision in Lab, Metrology &amp; Energy.</p>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-title">Shop</div>
+          <ul><li><a href="index.html">All Products</a></li><li><a href="laboratory.html">Laboratory</a></li><li><a href="chemistry.html">Chemistry</a></li></ul>
+        </div>
+
+        <div class="footer-col">
+          <div class="footer-col-title">Legal</div>
+          <ul><li><a href="../privacy.html">Privacy Policy</a></li><li><a href="../terms.html">Terms</a></li></ul>
+          <div style="margin-top:16px;font-size:12px;color:rgba(255,255,255,.25);line-height:1.6;">SIRET: 928 301 340 00016<br>TVA: FR82928301340</div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copy">© 2026 International Link Solutions — 30 Rue Branly, 90000 Belfort, France</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="products.js"></script>
+  <script>
+  (function () {
+    var lang = localStorage.getItem('ils-lang') || 'en';
+    var quoteList = JSON.parse(localStorage.getItem('ils-quote') || '[]');
+
+    // Language switcher
+    document.querySelectorAll('.lang-btn').forEach(function(btn){
+      btn.classList.toggle('active', btn.dataset.lang === lang);
+      btn.addEventListener('click', function(){
+        lang = btn.dataset.lang;
+        localStorage.setItem('ils-lang', lang);
+        document.querySelectorAll('.lang-btn').forEach(function(b){ b.classList.toggle('active', b.dataset.lang === lang); });
+        renderItems();
+        applyLang();
+      });
+    });
+
+    function applyLang() {
+      document.querySelectorAll('[data-en]').forEach(function(el){
+        var text = lang === 'fr' ? el.dataset.fr : el.dataset.en;
+        if (!text) return;
+        if (el.tagName === 'A' || el.tagName === 'BUTTON' || el.tagName === 'SPAN' || el.tagName === 'DIV' || el.tagName === 'P') {
+          if (text.includes('<')) el.innerHTML = text;
+          else el.textContent = text;
+        }
+      });
+    }
+
+    // Mobile menu
+    var hamburger = document.getElementById('hamburger');
+    var mobileMenu = document.getElementById('mobileMenu');
+    var mobileClose = document.getElementById('mobileClose');
+    if (hamburger) hamburger.addEventListener('click', function(){ hamburger.classList.toggle('active'); mobileMenu.classList.toggle('open'); document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : ''; });
+    if (mobileClose) mobileClose.addEventListener('click', function(){ hamburger.classList.remove('active'); mobileMenu.classList.remove('open'); document.body.style.overflow = ''; });
+
+    function saveAndRender() {
+      localStorage.setItem('ils-quote', JSON.stringify(quoteList));
+      renderItems();
+    }
+
+    function renderItems() {
+      var container = document.getElementById('quoteItems');
+      var emptyEl   = document.getElementById('quoteEmpty');
+      var countEl   = document.getElementById('summaryCount');
+      var proceedBtn= document.getElementById('proceedBtn');
+      var titleEl   = document.getElementById('itemsTitle');
+
+      // Update navbar counts
+      document.querySelectorAll('.quote-count').forEach(function(el){
+        el.textContent = quoteList.length;
+        el.dataset.count = quoteList.length;
+      });
+
+      countEl.textContent = quoteList.length;
+
+      var printBtnEl = document.getElementById('printBtn');
+
+      if (quoteList.length === 0) {
+        container.innerHTML = '';
+        emptyEl.classList.add('visible');
+        proceedBtn.classList.add('disabled');
+        if (printBtnEl) printBtnEl.disabled = true;
+        titleEl.textContent = lang === 'fr' ? 'Aucun produit sélectionné' : 'No products selected';
+        return;
+      }
+
+      emptyEl.classList.remove('visible');
+      proceedBtn.classList.remove('disabled');
+      if (printBtnEl) printBtnEl.disabled = false;
+      titleEl.textContent = quoteList.length + ' ' + (lang === 'fr'
+        ? (quoteList.length > 1 ? 'produits sélectionnés' : 'produit sélectionné')
+        : (quoteList.length > 1 ? 'products selected' : 'product selected'));
+
+      var html = quoteList.map(function(item) {
+        // Find full product data
+        var p = ILS_PRODUCTS.find(function(pr){ return pr.id === item.id; });
+        var name = p ? (lang === 'fr' && p.nameFr ? p.nameFr : p.nameEn) : item.name;
+        var brand = item.brand || (p ? p.brand : '');
+        var ref   = item.ref  || (p ? p.ref : '');
+
+        return '<div class="quote-item" data-id="' + item.id + '">' +
+          '<div class="quote-item-img">' + brand + '</div>' +
+          '<div class="quote-item-info">' +
+            '<div class="quote-item-brand">' + brand + '</div>' +
+            '<div class="quote-item-name">' + name + '</div>' +
+            '<div class="quote-item-ref">Ref: ' + ref + '</div>' +
+          '</div>' +
+          '<div class="quote-item-actions">' +
+            '<a href="product.html?id=' + item.id + '" class="view-product-link">' + (lang === 'fr' ? 'Voir →' : 'View →') + '</a>' +
+            '<button class="remove-item-btn" data-id="' + item.id + '" title="' + (lang === 'fr' ? 'Supprimer' : 'Remove') + '">&#x2715;</button>' +
+          '</div>' +
+        '</div>';
+      }).join('');
+
+      container.innerHTML = html;
+
+      // Bind remove buttons
+      container.querySelectorAll('.remove-item-btn').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var id = btn.dataset.id;
+          quoteList = quoteList.filter(function(item){ return item.id !== id; });
+          saveAndRender();
+        });
+      });
+    }
+
+    // Print / Export PDF
+    var printBtn = document.getElementById('printBtn');
+    if (printBtn) {
+      printBtn.addEventListener('click', function(){
+        if (quoteList.length === 0) return;
+        // Populate print-only metadata
+        var now = new Date();
+        var dateStr = now.toLocaleDateString(lang === 'fr' ? 'fr-FR' : 'en-GB', {
+          year: 'numeric', month: 'long', day: 'numeric'
+        });
+        var ref = 'ILS-' + now.getFullYear() +
+                  String(now.getMonth() + 1).padStart(2, '0') +
+                  String(now.getDate()).padStart(2, '0') + '-' +
+                  Math.random().toString(36).slice(2, 6).toUpperCase();
+        var dateEl = document.getElementById('printDate');
+        var refEl  = document.getElementById('printRef');
+        if (dateEl) dateEl.textContent = dateStr;
+        if (refEl)  refEl.textContent  = ref;
+        window.print();
+      });
+    }
+
+    // Clear all
+    document.getElementById('clearAllBtn').addEventListener('click', function(){
+      if (quoteList.length === 0) return;
+      var msg = lang === 'fr' ? 'Vider la liste de devis ?' : 'Clear your entire quote list?';
+      if (confirm(msg)) {
+        quoteList = [];
+        saveAndRender();
+      }
+    });
+
+    // Navbar always scrolled on this page
+    var navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', function(){
+      navbar.classList.toggle('scrolled', window.scrollY > 0);
+    });
+    navbar.classList.add('scrolled');
+
+    // Init
+    applyLang();
+    renderItems();
+  })();
+  </script>
+</body>
+</html>

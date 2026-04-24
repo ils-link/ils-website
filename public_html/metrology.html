@@ -1,0 +1,1601 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="canonical" href="https://ils-link.com/metrology.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Metrology — On-Site Calibration Services | ILS</title>
+    <meta name="description" content="Calibration et étalonnage mobile sur site en France pour laboratoires pharmaceutiques, agroalimentaires et industriels. Lancement octobre 2026.">
+    <meta property="og:title" content="ILS — Metrology Division">
+    <meta property="og:description" content="On-site calibration services — we come to you. Launching October 2026.">
+    <meta property="og:type" content="website">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="192x192" href="favicon-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="favicon-512x512.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+    <style>
+        /* ========================================
+           CSS RESET & CUSTOM PROPERTIES
+           ======================================== */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --navy: #0A1628;
+            --navy-light: #111d33;
+            --gold: #C9A55C;
+            --gold-light: #d4b876;
+            --gold-dark: #b08f47;
+            --bg: #F8F7F4;
+            --charcoal: #1a1a2e;
+            --text-primary: #1a1a2e;
+            --text-secondary: #5a5a6e;
+            --text-muted: #8a8a9a;
+            --white: #ffffff;
+            --border: rgba(201, 165, 92, 0.15);
+            --ease-premium: cubic-bezier(0.32, 0.72, 0, 1);
+            --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background-color: var(--bg);
+            color: var(--text-primary);
+            line-height: 1.65;
+            overflow-x: hidden;
+        }
+
+        /* ========================================
+           TYPOGRAPHY
+           ======================================== */
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', Georgia, serif;
+            line-height: 1.15;
+            letter-spacing: -0.02em;
+        }
+
+        h1 { font-size: clamp(2.5rem, 5.5vw, 4.25rem); font-weight: 600; }
+        h2 { font-size: clamp(2rem, 4vw, 3rem); font-weight: 600; }
+        h3 { font-size: clamp(1.25rem, 2vw, 1.5rem); font-weight: 600; }
+
+        p { max-width: 65ch; color: var(--text-secondary); }
+        a { text-decoration: none; color: inherit; }
+
+        /* ========================================
+           UTILITY
+           ======================================== */
+        .container {
+            max-width: 1320px;
+            margin: 0 auto;
+            padding: 0 clamp(1.25rem, 4vw, 3rem);
+        }
+
+        /* ========================================
+           BUTTONS
+           ======================================== */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.9rem 2rem;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.875rem;
+            font-weight: 600;
+            letter-spacing: 0.03em;
+            border-radius: 4px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.4s var(--ease-premium);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.6s var(--ease-premium);
+        }
+
+        .btn:hover::before { left: 100%; }
+        .btn:active { transform: translateY(1px) scale(0.98); }
+
+        .btn-gold {
+            background: linear-gradient(135deg, var(--gold), var(--gold-light));
+            color: var(--navy);
+        }
+
+        .btn-gold:hover {
+            background: linear-gradient(135deg, var(--gold-light), var(--gold));
+            box-shadow: 0 8px 32px rgba(201, 165, 92, 0.35);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--white);
+            border: 1.5px solid rgba(255,255,255,0.4);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+            box-shadow: 0 0 20px rgba(201, 165, 92, 0.15);
+        }
+
+        .btn-navy {
+            background: var(--navy);
+            color: var(--gold);
+        }
+
+        .btn-navy:hover {
+            background: var(--navy-light);
+            box-shadow: 0 8px 32px rgba(10, 22, 40, 0.3);
+        }
+
+        /* ========================================
+           NAVIGATION
+           ======================================== */
+        .navbar {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            padding: 1.25rem 0;
+            transition: all 0.5s var(--ease-premium);
+        }
+
+        .navbar.scrolled {
+            background: rgba(10, 22, 40, 0.92);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            padding: 0.75rem 0;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .navbar .container { display: flex; align-items: center; justify-content: space-between; }
+
+        .nav-logo { display: flex; flex-direction: column; gap: 0; }
+
+        .nav-logo-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.75rem; font-weight: 700;
+            color: var(--gold); line-height: 1; letter-spacing: 0.08em;
+        }
+
+        .nav-logo-sub {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.6rem; font-weight: 400;
+            color: rgba(255,255,255,0.55);
+            letter-spacing: 0.12em; text-transform: uppercase; margin-top: 2px;
+        }
+
+        .nav-links {
+            display: flex !important;
+            align-items: center; gap: 2.25rem; list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 0.8125rem; font-weight: 500;
+            color: rgba(255,255,255,0.75); letter-spacing: 0.02em;
+            position: relative; padding-bottom: 3px;
+            transition: color 0.3s var(--ease-premium);
+        }
+
+        .nav-links a::after {
+            content: ''; position: absolute; bottom: 0; left: 0;
+            width: 0; height: 1.5px; background: var(--gold);
+            transition: width 0.4s var(--ease-premium);
+        }
+
+        .nav-links a:hover { color: var(--white); }
+        .nav-links a:hover::after { width: 100%; }
+
+
+        .nav-shop-btn {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: transparent;
+            color: var(--gold);
+            border: 1px solid rgba(201,165,92,0.4);
+            padding: 0.5rem 1rem;
+            border-radius: 30px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            text-decoration: none;
+            white-space: nowrap;
+            flex-shrink: 0;
+            transition: background 0.2s, border-color 0.2s, transform 0.2s;
+        }
+        .nav-shop-btn:hover {
+            background: rgba(201,165,92,0.1);
+            border-color: rgba(201,165,92,0.7);
+            transform: translateY(-1px);
+        }
+        .nav-shop-badge {
+            background: rgba(201,165,92,0.15);
+            color: var(--gold);
+            font-size: 0.6rem;
+            font-weight: 700;
+            padding: 2px 6px;
+            border-radius: 10px;
+            letter-spacing: 0.08em;
+        }
+        .nav-cta { padding: 0.6rem 1.4rem; font-size: 0.8125rem; }
+
+        .hamburger {
+            display: none !important;
+            flex-direction: column; gap: 5px; cursor: pointer;
+            padding: 4px; background: none; border: none;
+        }
+
+        .hamburger span {
+            display: block; width: 24px; height: 2px;
+            background: var(--white); transition: all 0.3s var(--ease-premium);
+            transform-origin: center;
+        }
+
+        .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+        .hamburger.active span:nth-child(2) { opacity: 0; }
+        .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+        .mobile-menu {
+            display: none; position: fixed; inset: 0;
+            background: rgba(10, 22, 40, 0.97);
+            backdrop-filter: blur(30px); -webkit-backdrop-filter: blur(30px);
+            z-index: 99; flex-direction: column; align-items: center;
+            justify-content: center; gap: 2rem;
+            opacity: 0; pointer-events: none;
+            transition: opacity 0.4s var(--ease-premium);
+        }
+
+        .mobile-menu.open { opacity: 1; pointer-events: all; }
+
+        .mobile-menu a {
+            font-family: 'Playfair Display', serif; font-size: 1.75rem;
+            color: rgba(255,255,255,0.8); transition: color 0.3s ease;
+        }
+
+        .mobile-menu.open a { opacity: 1; }
+        .mobile-menu a:hover { color: var(--gold); }
+
+        /* ========================================
+           HERO SECTION
+           ======================================== */
+        .hero {
+            position: relative; min-height: 100dvh;
+            display: flex; align-items: center;
+            background: var(--navy); overflow: hidden;
+        }
+
+        .hero-gradient {
+            position: absolute; inset: 0;
+            background:
+                radial-gradient(ellipse 60% 50% at 20% 50%, rgba(201, 165, 92, 0.06) 0%, transparent 70%),
+                radial-gradient(ellipse 40% 60% at 80% 30%, rgba(201, 165, 92, 0.04) 0%, transparent 60%);
+            pointer-events: none; z-index: 1;
+        }
+
+        .hero .container { position: relative; z-index: 2; padding-top: 8rem; padding-bottom: 4rem; }
+
+        .breadcrumb {
+            font-size: 0.8rem; color: rgba(255,255,255,0.35);
+            margin-bottom: 1.5rem; letter-spacing: 0.02em;
+        }
+        .breadcrumb a { color: rgba(255,255,255,0.45); transition: color 0.3s ease; }
+        .breadcrumb a:hover { color: var(--gold); }
+        .breadcrumb .sep { margin: 0 0.5rem; color: rgba(255,255,255,0.2); }
+
+        .hero-badge {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            padding: 0.5rem 1.25rem;
+            background: rgba(201, 165, 92, 0.08);
+            border: 1px solid rgba(201, 165, 92, 0.2);
+            border-radius: 100px; font-size: 0.75rem; font-weight: 500;
+            color: var(--gold); letter-spacing: 0.06em; margin-bottom: 2rem;
+        }
+
+        .hero-badge-dot {
+            width: 6px; height: 6px; background: var(--gold);
+            border-radius: 50%; animation: pulse-dot 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(0.7); }
+        }
+
+        .hero h1 { color: var(--white); max-width: 820px; margin-bottom: 1.5rem; }
+        .hero h1 span { color: var(--gold); }
+
+        .hero-sub {
+            font-size: clamp(1rem, 1.5vw, 1.15rem);
+            color: rgba(255,255,255,0.55); max-width: 580px;
+            margin-bottom: 2.5rem; line-height: 1.7;
+        }
+
+        .hero-buttons { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+        .scroll-indicator {
+            position: absolute; bottom: 2.5rem; left: 50%;
+            transform: translateX(-50%); z-index: 2;
+            display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+            animation: float-arrow 2.5s ease-in-out infinite;
+        }
+
+        .scroll-arrow {
+            width: 20px; height: 20px;
+            border-right: 1.5px solid rgba(255,255,255,0.3);
+            border-bottom: 1.5px solid rgba(255,255,255,0.3);
+            transform: rotate(45deg);
+        }
+
+        @keyframes float-arrow {
+            0%, 100% { transform: translateX(-50%) translateY(0); opacity: 0.6; }
+            50% { transform: translateX(-50%) translateY(8px); opacity: 1; }
+        }
+
+        /* ========================================
+           SECTION HEADERS
+           ======================================== */
+        .section-header {
+            text-align: center;
+            margin-bottom: clamp(3rem, 6vw, 4.5rem);
+        }
+
+        .section-header .eyebrow {
+            display: inline-block; font-size: 0.7rem; font-weight: 600;
+            color: var(--gold); letter-spacing: 0.15em;
+            text-transform: uppercase; margin-bottom: 1rem;
+        }
+
+        .section-header h2 { color: var(--navy); margin-bottom: 1rem; }
+
+        .section-header p {
+            margin: 0 auto; color: var(--text-muted); font-size: 1.05rem;
+        }
+
+        /* ========================================
+           DIFFERENTIATOR BANNER
+           ======================================== */
+        .differentiator {
+            background: var(--navy);
+            padding: clamp(3rem, 5vw, 4rem) 0;
+            position: relative;
+        }
+
+        .differentiator::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            opacity: 0.25;
+        }
+
+        .diff-box {
+            border-left: 4px solid var(--gold);
+            padding: clamp(2rem, 3vw, 2.5rem) clamp(2rem, 4vw, 3rem);
+            background: rgba(255,255,255,0.03);
+            border-radius: 0 12px 12px 0;
+        }
+
+        .diff-top {
+            display: flex; align-items: center; gap: 1.25rem;
+            margin-bottom: 1rem;
+        }
+
+        .diff-icon {
+            width: 64px; height: 64px; flex-shrink: 0;
+            display: flex; align-items: center; justify-content: center;
+            background: rgba(201,165,92,0.1);
+            border: 1px solid rgba(201,165,92,0.2);
+            border-radius: 14px;
+        }
+
+        .diff-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            font-weight: 700; color: var(--white);
+        }
+
+        .diff-subtitle {
+            font-size: 0.8rem; font-weight: 600;
+            color: var(--gold); letter-spacing: 0.08em;
+            text-transform: uppercase; margin-bottom: 1.25rem;
+        }
+
+        .diff-text {
+            font-size: 1rem; line-height: 1.75;
+            color: rgba(255,255,255,0.55); max-width: 700px;
+            margin-bottom: 1.5rem;
+        }
+
+        .diff-pills {
+            display: flex; gap: 0.75rem; flex-wrap: wrap;
+        }
+
+        .diff-pill {
+            display: inline-flex; align-items: center; gap: 0.4rem;
+            padding: 0.45rem 1rem;
+            background: rgba(201,165,92,0.08);
+            border: 1px solid rgba(201,165,92,0.2);
+            border-radius: 100px;
+            font-size: 0.8rem; font-weight: 600;
+            color: var(--gold); letter-spacing: 0.02em;
+        }
+
+        /* ========================================
+           ABOUT SECTION (WHAT IS METROLOGY)
+           ======================================== */
+        .about-srl { padding: 0; }
+
+        .about-srl-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; }
+
+        .about-srl-left {
+            background: var(--navy);
+            padding: clamp(3rem, 6vw, 5rem) clamp(2rem, 4vw, 4rem);
+            display: flex; flex-direction: column; justify-content: center;
+        }
+
+        .about-srl-eyebrow {
+            display: inline-block; font-size: 0.7rem; font-weight: 600;
+            color: var(--gold); letter-spacing: 0.15em;
+            text-transform: uppercase; margin-bottom: 1rem;
+        }
+
+        .about-srl-left h2 { color: var(--white); margin-bottom: 1.5rem; }
+
+        .about-srl-text {
+            font-size: 1rem; line-height: 1.75;
+            color: rgba(255, 255, 255, 0.55);
+            margin-bottom: 1.75rem; max-width: 520px;
+        }
+
+        .about-srl-right {
+            background: #0F2040;
+            padding: clamp(3rem, 6vw, 5rem) clamp(2rem, 4vw, 3.5rem);
+            display: flex; flex-direction: column; justify-content: center; gap: 0;
+        }
+
+        .srl-feature {
+            display: grid; grid-template-columns: 48px 1fr;
+            gap: 1rem; align-items: start;
+            padding: 1.5rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .srl-feature:first-child { padding-top: 0; }
+        .srl-feature:last-child { border-bottom: none; padding-bottom: 0; }
+
+        .srl-feature-icon {
+            width: 48px; height: 48px;
+            display: flex; align-items: center; justify-content: center;
+            background: rgba(201, 165, 92, 0.08);
+            border: 1px solid rgba(201, 165, 92, 0.12);
+            border-radius: 10px;
+        }
+
+        .srl-feature-content h3 {
+            font-family: 'Inter', sans-serif; font-size: 0.95rem;
+            font-weight: 600; color: var(--white);
+            margin-bottom: 0.35rem; letter-spacing: 0.01em;
+        }
+
+        .srl-feature-content p {
+            font-size: 0.875rem; color: rgba(255, 255, 255, 0.45);
+            line-height: 1.6; max-width: 360px;
+        }
+
+        /* ========================================
+           SERVICES / PRODUCT CARDS
+           ======================================== */
+        .products {
+            padding: clamp(5rem, 10vw, 8rem) 0;
+            background: var(--navy);
+        }
+
+        .products .section-header h2 { color: var(--white); }
+        .products .section-header p { color: rgba(255,255,255,0.45); }
+
+        .products-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
+        }
+
+        .product-card {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(201, 165, 92, 0.12);
+            border-radius: 12px;
+            padding: clamp(2rem, 3vw, 2.75rem);
+            transition: all 0.5s var(--ease-premium);
+            position: relative; overflow: hidden;
+        }
+
+        .product-card::before {
+            content: ''; position: absolute; inset: -1px;
+            border-radius: 13px; padding: 1px;
+            background: linear-gradient(135deg, transparent 30%, rgba(201, 165, 92, 0.4) 100%);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor; mask-composite: exclude;
+            opacity: 0; transition: opacity 0.5s var(--ease-premium);
+        }
+
+        .product-card:hover {
+            transform: translateY(-6px);
+            background: rgba(255, 255, 255, 0.07);
+            box-shadow: 0 20px 60px rgba(201, 165, 92, 0.15), 0 8px 24px rgba(0, 0, 0, 0.2);
+        }
+
+        .product-card:hover::before { opacity: 1; }
+
+        .product-icon {
+            width: 52px; height: 52px;
+            display: flex; align-items: center; justify-content: center;
+            background: rgba(201, 165, 92, 0.12); border-radius: 10px;
+            margin-bottom: 1.5rem;
+            transition: background 0.4s var(--ease-premium);
+        }
+
+        .product-card:hover .product-icon {
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+        }
+
+        .product-card h3 { color: var(--white); margin-bottom: 0.75rem; }
+        .product-card p { font-size: 0.925rem; line-height: 1.7; color: rgba(255,255,255,0.55); }
+
+        .core-badge {
+            display: inline-flex; align-items: center; gap: 0.35rem;
+            padding: 0.3rem 0.75rem; margin-bottom: 1rem;
+            background: rgba(201,165,92,0.1);
+            border: 1px solid rgba(201,165,92,0.25);
+            border-radius: 100px;
+            font-size: 0.65rem; font-weight: 700;
+            color: var(--gold); letter-spacing: 0.08em; text-transform: uppercase;
+        }
+
+        /* ========================================
+           WHY ILS / LABS SECTION
+           ======================================== */
+        .why-ils {
+            padding: clamp(5rem, 10vw, 8rem) 0;
+            background: var(--bg);
+        }
+
+        .why-ils .section-header h2 { color: var(--navy); }
+
+        .why-grid {
+            display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem;
+        }
+
+        .why-card {
+            padding: clamp(2rem, 3vw, 2.75rem);
+            background: var(--white);
+            border: 1px solid rgba(201, 165, 92, 0.08);
+            border-radius: 12px;
+            transition: all 0.5s var(--ease-premium);
+        }
+
+        .why-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 60px rgba(201, 165, 92, 0.12), 0 8px 24px rgba(0, 0, 0, 0.06);
+        }
+
+        .why-icon {
+            width: 56px; height: 56px;
+            display: flex; align-items: center; justify-content: center;
+            background: rgba(201, 165, 92, 0.08);
+            border: 1px solid rgba(201, 165, 92, 0.12);
+            border-radius: 12px; margin-bottom: 1.25rem;
+        }
+
+        .why-card h3 { color: var(--navy); margin-bottom: 0.5rem; font-size: 1.15rem; }
+        .why-card p { font-size: 0.9rem; line-height: 1.65; margin-bottom: 1rem; }
+
+        .tag-row { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+
+        .tag-pill {
+            padding: 0.25rem 0.65rem;
+            background: rgba(201,165,92,0.06);
+            border: 1px solid rgba(201,165,92,0.15);
+            border-radius: 100px;
+            font-size: 0.7rem; font-weight: 600;
+            color: var(--gold-dark); letter-spacing: 0.03em;
+        }
+
+        /* ========================================
+           SECTORS SECTION
+           ======================================== */
+        .sectors {
+            background: var(--navy);
+            padding: clamp(5rem, 10vw, 8rem) 0;
+            position: relative;
+        }
+
+        .sectors::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            opacity: 0.25;
+        }
+
+        .sectors .section-header h2 { color: var(--white); }
+        .sectors .section-header p { color: rgba(255,255,255,0.45); }
+
+        .sectors-grid {
+            display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem;
+        }
+
+        .sector-card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 12px; text-align: center;
+            padding: clamp(2rem, 3vw, 2.5rem) 1.5rem;
+            transition: all 0.5s var(--ease-premium);
+        }
+
+        .sector-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(201,165,92,0.15);
+            box-shadow: 0 12px 40px rgba(201,165,92,0.1);
+        }
+
+        .sector-icon {
+            width: 56px; height: 56px;
+            display: flex; align-items: center; justify-content: center;
+            background: rgba(201,165,92,0.08);
+            border: 1px solid rgba(201,165,92,0.12);
+            border-radius: 12px; margin: 0 auto 1.25rem;
+        }
+
+        .sector-card h3 { color: var(--white); margin-bottom: 0.5rem; font-size: 1.1rem; }
+        .sector-card p { font-size: 0.85rem; color: rgba(255,255,255,0.45); line-height: 1.6; margin: 0 auto; }
+
+        /* ========================================
+           CONTACT / QUOTE SECTION
+           ======================================== */
+        .contact {
+            background: var(--navy);
+            padding: clamp(5rem, 10vw, 8rem) 0;
+            position: relative; overflow: hidden;
+        }
+
+        .contact::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            opacity: 0.25;
+        }
+
+        .contact-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: clamp(3rem, 6vw, 5rem); }
+        .contact-info h2 { color: var(--white); margin-bottom: 1.5rem; }
+        .contact-info p { color: rgba(255,255,255,0.5); font-size: 1rem; line-height: 1.7; margin-bottom: 2.5rem; }
+
+        .contact-details { display: flex; flex-direction: column; gap: 1.25rem; }
+        .contact-detail { display: flex; align-items: flex-start; gap: 0.75rem; }
+
+        .contact-detail-icon {
+            width: 40px; height: 40px;
+            display: flex; align-items: center; justify-content: center;
+            background: rgba(201, 165, 92, 0.08);
+            border: 1px solid rgba(201, 165, 92, 0.15);
+            border-radius: 8px; flex-shrink: 0;
+        }
+
+        .contact-detail-icon svg { width: 18px; height: 18px; stroke: var(--gold); stroke-width: 1.5; fill: none; }
+
+        .contact-detail-text { display: flex; flex-direction: column; gap: 0.15rem; }
+
+        .contact-detail-label {
+            font-size: 0.7rem; font-weight: 600; color: var(--gold);
+            letter-spacing: 0.1em; text-transform: uppercase;
+        }
+
+        .contact-detail-value { font-size: 0.925rem; color: rgba(255,255,255,0.7); }
+
+        .contact-form {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 14px; padding: clamp(2rem, 3vw, 2.75rem);
+        }
+
+        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+        .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+        .form-group.full-width { grid-column: 1 / -1; }
+
+        .form-group label {
+            font-size: 0.75rem; font-weight: 600;
+            color: rgba(255,255,255,0.45); letter-spacing: 0.06em; text-transform: uppercase;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 6px; padding: 0.8rem 1rem;
+            font-family: 'Inter', sans-serif; font-size: 0.9rem;
+            color: var(--white); transition: all 0.3s var(--ease-premium); outline: none;
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder { color: rgba(255,255,255,0.2); }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            border-color: var(--gold);
+            box-shadow: 0 0 0 3px rgba(201, 165, 92, 0.1);
+        }
+
+        .form-group select {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='rgba(255,255,255,0.4)' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+            padding-right: 2.5rem;
+        }
+
+        .form-group select option { background: var(--navy); color: var(--white); }
+        .form-group textarea { resize: vertical; min-height: 120px; }
+
+        .checkbox-group { display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem; }
+
+        .checkbox-item { display: flex; align-items: center; gap: 0.5rem; cursor: pointer; }
+        .checkbox-item input[type="checkbox"] { width: 16px; height: 16px; accent-color: var(--gold); cursor: pointer; padding: 0; }
+        .checkbox-item span { font-size: 0.85rem; color: rgba(255,255,255,0.6); }
+
+        .form-submit { margin-top: 1.5rem; width: 100%; }
+        .form-submit .btn { width: 100%; justify-content: center; padding: 1rem; }
+
+        .form-note {
+            text-align: center; margin-top: 1rem;
+            font-size: 0.8rem; color: rgba(255,255,255,0.3);
+            line-height: 1.6; max-width: 400px;
+            margin-left: auto; margin-right: auto;
+        }
+
+        /* ========================================
+           FOOTER
+           ======================================== */
+        .footer {
+            background: var(--navy);
+            border-top: 1px solid rgba(255,255,255,0.05);
+            padding: clamp(3rem, 6vw, 4.5rem) 0 0;
+        }
+
+        .footer-grid {
+            display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr;
+            gap: clamp(2rem, 4vw, 3rem);
+            padding-bottom: clamp(3rem, 6vw, 4rem);
+        }
+
+        .footer-brand .nav-logo { margin-bottom: 1rem; }
+
+        .footer-tagline {
+            font-size: 0.875rem; color: rgba(255,255,255,0.4);
+            line-height: 1.6; max-width: 280px;
+        }
+
+        .footer-col h4 {
+            font-family: 'Inter', sans-serif; font-size: 0.7rem; font-weight: 700;
+            color: var(--gold); letter-spacing: 0.12em;
+            text-transform: uppercase; margin-bottom: 1.25rem;
+        }
+
+        .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.65rem; }
+
+        .footer-col a {
+            font-size: 0.85rem; color: rgba(255,255,255,0.45);
+            transition: color 0.3s ease;
+        }
+
+        .footer-col a:hover { color: var(--gold); }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.05);
+            padding: 1.5rem 0; text-align: center;
+        }
+
+        .footer-bottom p { font-size: 0.75rem; color: rgba(255,255,255,0.3); max-width: none; }
+
+        /* ========================================
+           NOISE OVERLAY
+           ======================================== */
+        .noise-overlay {
+            position: fixed; inset: 0; z-index: 9999;
+            pointer-events: none; opacity: 0.025;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+            background-repeat: repeat; background-size: 256px 256px;
+        }
+
+        /* ========================================
+           LANGUAGE SWITCHER
+           ======================================== */
+        .lang-switcher { display: flex; align-items: center; gap: 0.4rem; margin-right: 1.5rem; }
+        .lang-switcher span { color: rgba(255,255,255,0.3); font-size: 0.8rem; }
+        .lang-btn { background: none; border: none; cursor: pointer; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em; color: rgba(255,255,255,0.4); transition: color 0.2s; padding: 0; font-family: 'Inter', sans-serif; }
+        .lang-btn.active { color: var(--gold); }
+        .lang-btn:hover { color: var(--white); }
+
+        /* ========================================
+           RESPONSIVE
+           ======================================== */
+        @media (max-width: 1024px) {
+            .products-grid { grid-template-columns: repeat(2, 1fr); }
+            .sectors-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none !important; }
+            .nav-shop-btn { display: none !important; }
+            .nav-cta { display: none !important; }
+            .hamburger { display: flex !important; }
+            .lang-switcher { display: flex !important; margin-right: 0.5rem; }
+            .mobile-menu { display: flex; justify-content: flex-start; padding-top: 100px; }
+            .hero .container { padding-top: 7rem; }
+            .about-srl-grid { grid-template-columns: 1fr; }
+            .about-srl-left, .about-srl-right { padding: clamp(2.5rem, 5vw, 3.5rem) clamp(1.25rem, 4vw, 2.5rem); }
+            .products-grid { grid-template-columns: 1fr; }
+            .why-grid { grid-template-columns: 1fr; }
+            .sectors-grid { grid-template-columns: 1fr; }
+            .contact-grid { grid-template-columns: 1fr; }
+            .form-grid { grid-template-columns: 1fr; }
+            .checkbox-group { grid-template-columns: 1fr; }
+            .diff-pills { flex-direction: column; }
+            .footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
+            .footer-brand { grid-column: 1 / -1; }
+        }
+
+        @media (max-width: 480px) {
+            .hero-buttons { flex-direction: column; }
+            .hero-buttons .btn { width: 100%; justify-content: center; }
+            .footer-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NOISE OVERLAY -->
+    <div class="noise-overlay" aria-hidden="true"></div>
+
+    <!-- NAVIGATION -->
+    <nav class="navbar" id="navbar" role="navigation" aria-label="Main navigation">
+        <div class="container">
+            <a href="index.html" class="nav-logo" aria-label="ILS - International Link Solutions">
+                <span class="nav-logo-text">ILS</span>
+                <span class="nav-logo-sub">International Link Solutions</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="laboratory.html" data-en="Laboratory" data-fr="Laboratoire">Laboratory</a></li>
+                <li><a href="chemistry.html" data-en="Chemistry" data-fr="Chimie">Chemistry</a></li>
+                <li><a href="metrology.html" style="color:var(--gold);" data-en="Metrology" data-fr="Métrologie">Metrology</a></li>
+                <li><a href="energy.html" data-en="Energy" data-fr="Énergie">Energy</a></li>
+                <li><a href="about.html" data-en="About" data-fr="À propos">About</a></li>
+                <li><a href="contact.html" data-en="Contact" data-fr="Contact">Contact</a></li>
+            </ul>
+            <div class="lang-switcher">
+                <button class="lang-btn active" data-lang="en">EN</button>
+                <span>|</span>
+                <button class="lang-btn" data-lang="fr">FR</button>
+            </div>
+            <a href="/shop/index.html" class="nav-shop-btn" aria-label="Browse ILS Shop">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+                <span data-en="Browse Shop" data-fr="Boutique">Browse Shop</span>
+            </a>
+            <a href="#register" class="btn btn-gold nav-cta" data-en="Pre-register" data-fr="Pré-enregistrer">Pre-register</a>
+            <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- MOBILE MENU -->
+    <div class="mobile-menu" id="mobileMenu" role="dialog" aria-label="Mobile navigation">
+        <a href="laboratory.html" data-en="Laboratory" data-fr="Laboratoire">Laboratory</a>
+        <a href="chemistry.html" data-en="Chemistry" data-fr="Chimie">Chemistry</a>
+        <a href="metrology.html" style="color:var(--gold);" data-en="Metrology" data-fr="Métrologie">Metrology</a>
+        <a href="energy.html" data-en="Energy" data-fr="Énergie">Energy</a>
+        <a href="about.html" data-en="About" data-fr="À propos">About</a>
+        <a href="contact.html" data-en="Contact" data-fr="Contact">Contact</a>
+
+        <a href="#register" class="btn btn-gold" style="margin-top: 0.5rem;" data-en="Pre-register" data-fr="Pré-enregistrer">Pre-register</a>
+    </div>
+
+    <!-- HERO SECTION -->
+    <section class="hero" id="hero">
+        <div class="hero-gradient"></div>
+        <div class="container">
+            <div class="breadcrumb">
+                <a href="index.html" data-en="Home" data-fr="Accueil">Home</a>
+                <span class="sep">&rsaquo;</span>
+                <span data-en="Metrology" data-fr="Métrologie">Metrology</span>
+            </div>
+            <div class="hero-badge" data-html="" data-en='<span class="hero-badge-dot"></span> New Division &mdash; Launching October 2026' data-fr='<span class="hero-badge-dot"></span> Nouvelle Division &mdash; Lancement Octobre 2026'>
+                <span class="hero-badge-dot"></span>
+                New Division &mdash; Launching October 2026
+            </div>
+            <h1 data-html="" data-en="Precision <span>Metrology Services</span> for Industry &amp; Research" data-fr="Services de <span>Métrologie</span> de Précision pour l'Industrie &amp; la Recherche">Precision <span>Metrology Services</span> for Industry &amp; Research</h1>
+            <p class="hero-sub" data-en="ILS brings calibration directly to your facility — no disassembly, no shipping, no downtime. Our mobile metrology team serves agri-food, pharmaceutical, biology and analytical testing laboratories across France and Europe." data-fr="ILS apporte la calibration directement dans vos locaux — pas de démontage, pas d'expédition, pas de temps d'arrêt. Notre équipe mobile de métrologie dessert les laboratoires agroalimentaires, pharmaceutiques, de biologie et d'analyse en France et en Europe.">ILS brings calibration directly to your facility — no disassembly, no shipping, no downtime. Our mobile metrology team serves agri-food, pharmaceutical, biology and analytical testing laboratories across France and Europe.</p>
+            <div class="hero-buttons">
+                <a href="#register" class="btn btn-gold" data-html="" data-en='Pre-register Interest <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><path d="M7 17l9.2-9.2M17 17V7H7"/></svg>' data-fr='Pré-enregistrer mon intérêt <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><path d="M7 17l9.2-9.2M17 17V7H7"/></svg>'>
+                    Pre-register Interest
+                    <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><path d="M7 17l9.2-9.2M17 17V7H7"/></svg>
+                </a>
+                <a href="#services" class="btn btn-outline" data-en="Discover Our Services" data-fr="Découvrir nos services">Discover Our Services</a>
+            </div>
+        </div>
+        <div class="scroll-indicator" aria-hidden="true">
+            <div class="scroll-arrow"></div>
+        </div>
+    </section>
+
+    <!-- KEY DIFFERENTIATOR BANNER -->
+    <section class="differentiator" id="differentiator">
+        <div class="container">
+            <div class="diff-box">
+                <div class="diff-top">
+                    <div class="diff-icon">
+                        <i data-lucide="truck" style="width:32px;height:32px;color:#C9A55C;stroke-width:1.5;"></i>
+                    </div>
+                    <div class="diff-title" data-en="We Come To You — Always" data-fr="Nous Venons Chez Vous — Toujours">We Come To You &mdash; Always</div>
+                </div>
+                <div class="diff-subtitle" data-en="Mobile Metrology · On-Site Calibration · Zero Downtime" data-fr="Métrologie Mobile · Calibration Sur Site · Zéro Temps d'Arrêt">Mobile Metrology &middot; On-Site Calibration &middot; Zero Downtime</div>
+                <p class="diff-text" data-en="Unlike traditional calibration laboratories that require you to ship your instruments, ILS operates exclusively on-site at your facility. Our mobile team brings certified calibration equipment directly to your laboratory or production floor — saving you time, logistics costs and production downtime. Workshop interventions are available only in exceptional circumstances." data-fr="Contrairement aux laboratoires de calibration traditionnels qui exigent l'expédition de vos instruments, ILS opère exclusivement sur site dans vos locaux. Notre équipe mobile apporte l'équipement de calibration certifié directement dans votre laboratoire ou sur votre chaîne de production — vous économisant temps, coûts logistiques et temps d'arrêt de production. Les interventions en atelier ne sont disponibles que dans des circonstances exceptionnelles.">Unlike traditional calibration laboratories that require you to ship your instruments, ILS operates exclusively on-site at your facility. Our mobile team brings certified calibration equipment directly to your laboratory or production floor — saving you time, logistics costs and production downtime. Workshop interventions are available only in exceptional circumstances.</p>
+                <div class="diff-pills">
+                    <span class="diff-pill" data-en="✓ No equipment removal" data-fr="✓ Pas de déplacement d'équipements">&#10003; No equipment removal</span>
+                    <span class="diff-pill" data-en="✓ No shipping costs" data-fr="✓ Pas de frais de transport">&#10003; No shipping costs</span>
+                    <span class="diff-pill" data-en="✓ No production stops" data-fr="✓ Pas d'arrêt de production">&#10003; No production stops</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WHAT IS METROLOGY -->
+    <section class="about-srl" id="what-is">
+        <div class="about-srl-grid">
+            <div class="about-srl-left">
+                <span class="about-srl-eyebrow" data-en="The Science of Measurement" data-fr="La Science de la Mesure">The Science of Measurement</span>
+                <h2 data-en="What is Metrology?" data-fr="Qu'est-ce que la Métrologie ?">What is Metrology?</h2>
+                <p class="about-srl-text" data-en="Metrology is the science of measurement. It ensures that measurements are accurate, repeatable and traceable to international standards — essential for quality control, regulatory compliance and industrial performance across all regulated industries." data-fr="La métrologie est la science de la mesure. Elle garantit que les mesures sont précises, répétables et traçables aux normes internationales — essentiel pour le contrôle qualité, la conformité réglementaire et la performance industrielle dans toutes les industries réglementées.">Metrology is the science of measurement. It ensures that measurements are accurate, repeatable and traceable to international standards — essential for quality control, regulatory compliance and industrial performance across all regulated industries.</p>
+            </div>
+            <div class="about-srl-right">
+                <div class="srl-feature">
+                    <div class="srl-feature-icon">
+                        <i data-lucide="ruler" style="width:22px;height:22px;color:#C9A55C;stroke-width:1.5;"></i>
+                    </div>
+                    <div class="srl-feature-content">
+                        <h3 data-en="Measurement Accuracy" data-fr="Précision de Mesure">Measurement Accuracy</h3>
+                        <p data-en="Accurate, repeatable results traceable to SI units and international standards." data-fr="Résultats précis et répétables, traçables aux unités SI et aux normes internationales.">Accurate, repeatable results traceable to SI units and international standards.</p>
+                    </div>
+                </div>
+                <div class="srl-feature">
+                    <div class="srl-feature-icon">
+                        <i data-lucide="shield-check" style="width:22px;height:22px;color:#C9A55C;stroke-width:1.5;"></i>
+                    </div>
+                    <div class="srl-feature-content">
+                        <h3 data-en="Regulatory Compliance" data-fr="Conformité Réglementaire">Regulatory Compliance</h3>
+                        <p data-en="ISO 17025, ISO 9001, GMP and HACCP require calibrated instruments with full traceability." data-fr="ISO 17025, ISO 9001, BPF et HACCP exigent des instruments calibrés avec une traçabilité complète.">ISO 17025, ISO 9001, GMP and HACCP require calibrated instruments with full traceability.</p>
+                    </div>
+                </div>
+                <div class="srl-feature">
+                    <div class="srl-feature-icon">
+                        <i data-lucide="trending-up" style="width:22px;height:22px;color:#C9A55C;stroke-width:1.5;"></i>
+                    </div>
+                    <div class="srl-feature-content">
+                        <h3 data-en="Industrial Performance" data-fr="Performance Industrielle">Industrial Performance</h3>
+                        <p data-en="Uncalibrated instruments cause defective products, failed audits and significant financial losses." data-fr="Les instruments non calibrés causent des produits défectueux, des audits échoués et des pertes financières significatives.">Uncalibrated instruments cause defective products, failed audits and significant financial losses.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- OUR METROLOGY SERVICES -->
+    <section class="products" id="services">
+        <div class="container">
+            <div class="section-header">
+                <span class="eyebrow" data-en="Calibration Services" data-fr="Services de Calibration">Calibration Services</span>
+                <h2 data-en="Our Metrology Services" data-fr="Nos Services de Métrologie">Our Metrology Services</h2>
+                <p data-en="All services delivered on-site at your facility — we come to you." data-fr="Tous les services délivrés sur site dans vos locaux — nous venons chez vous.">All services delivered on-site at your facility — we come to you.</p>
+            </div>
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="core-badge" data-en="★ Core Service" data-fr="★ Service Principal">&#9733; Core Service</div>
+                    <div class="product-icon">
+                        <i data-lucide="truck" style="width:28px;height:28px;color:#C9A55C;stroke-width:1.5;"></i>
+                    </div>
+                    <h3 data-en="On-Site Mobile Calibration" data-fr="Calibration Mobile Sur Site">On-Site Mobile Calibration</h3>
+                    <p data-en="Our flagship service. Certified technicians travel to your site with all necessary calibration equipment. No disruption to your operations." data-fr="Notre service phare. Des techniciens certifiés se déplacent sur votre site avec tout l'équipement de calibration nécessaire. Aucune perturbation de vos opérations.">Our flagship service. Certified technicians travel to your site with all necessary calibration equipment. No disruption to your operations.</p>
+                </div>
+                <div class="product-card">
+                    <div class="product-icon">
+                        <i data-lucide="scale" style="width:28px;height:28px;color:#C9A55C;stroke-width:1.5;"></i>
+                    </div>
+                    <h3 data-en="Mass &amp; Weighing (Class I-II)" data-fr="Masse &amp; Pesée (Classe I-II)">Mass &amp; Weighing (Class I-II)</h3>
+                    <p data-en="Analytical and precision balances calibrated on-site. Pharmaceutical, food and research laboratory applications." data-fr="Balances analytiques et de précision calibrées sur site. Applications pharmaceutiques, alimentaires et de laboratoire de recherche.">Analytical and precision balances calibrated on-site. Pharmaceutical, food and research laboratory applications.</p>
+                </div>
+                <div class="product-card">
+                    <div class="product-icon">
+                        <i data-lucide="thermometer" style="width:28px;height:28px;color:#C9A55C;stroke-width:1.5;"></i>
+                    </div>
+                    <h3 data-en="Temperature &amp; Humidity" data-fr="Température &amp; Humidité">Temperature &amp; Humidity</h3>
+                    <p data-en="On-site calibration of thermostatic chambers, ovens, incubators and freezers. Bath option: -20°C to +150°C." data-fr="Calibration sur site des enceintes thermostatiques, étuves, incubateurs et congélateurs. Option bain : -20°C à +150°C.">On-site calibration of thermostatic chambers, ovens, incubators and freezers. Bath option: -20&deg;C to +150&deg;C.</p>
+                </div>
+                <div class="product-card">
+                    <div class="product-icon">
+                        <i data-lucide="droplets" style="width:28px;height:28px;color:#C9A55C;stroke-width:1.5;"></i>
+                    </div>
+                    <h3 data-en="pH-metry" data-fr="pH-métrie">pH-metry</h3>
+                    <p data-en="On-site pH meter and electrode calibration for analytical chemistry and QC labs." data-fr="Calibration sur site des pH-mètres et électrodes pour les laboratoires de chimie analytique et CQ.">On-site pH meter and electrode calibration for analytical chemistry and QC labs.</p>
+                </div>
+                <div class="product-card">
+                    <div class="product-icon">
+                        <i data-lucide="zap" style="width:28px;height:28px;color:#C9A55C;stroke-width:1.5;"></i>
+                    </div>
+                    <h3 data-en="Conductivity" data-fr="Conductivité">Conductivity</h3>
+                    <p data-en="On-site conductivity meter calibration for water analysis and pharma QC." data-fr="Calibration sur site des conductimètres pour l'analyse de l'eau et le CQ pharmaceutique.">On-site conductivity meter calibration for water analysis and pharma QC.</p>
+                </div>
+                <div class="product-card">
+                    <div class="product-icon">
+                        <i data-lucide="activity" style="width:28px;height:28px;color:#C9A55C;stroke-width:1.5;"></i>
+                    </div>
+                    <h3 data-en="Spectrophotometry &amp; Turbidimetry" data-fr="Spectrophotométrie &amp; Turbidimétrie">Spectrophotometry &amp; Turbidimetry</h3>
+                    <p data-en="On-site UV-Visible spectrophotometer and turbidimeter calibration for analytical labs." data-fr="Calibration sur site des spectrophotomètres UV-Visible et turbidimètres pour les laboratoires d'analyse.">On-site UV-Visible spectrophotometer and turbidimeter calibration for analytical labs.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TWO MOBILE CALIBRATION UNITS -->
+    <section class="why-ils" id="labs">
+        <div class="container">
+            <div class="section-header">
+                <span class="eyebrow" data-en="Our Infrastructure" data-fr="Notre Infrastructure">Our Infrastructure</span>
+                <h2 data-en="Two Mobile Calibration Units" data-fr="Deux Unités de Calibration Mobiles">Two Mobile Calibration Units</h2>
+                <p data-en="Fully equipped teams that travel to your site — no workshop visit required" data-fr="Des équipes entièrement équipées qui se déplacent sur votre site — aucune visite en atelier requise">Fully equipped teams that travel to your site — no workshop visit required</p>
+            </div>
+            <div class="why-grid">
+                <div class="why-card">
+                    <div class="why-icon">
+                        <i data-lucide="flask-conical" style="width:26px;height:26px;color:#C9A55C;stroke-width:1.5;"></i>
+                    </div>
+                    <h3 data-en="Mobile Chemistry Unit" data-fr="Unité Mobile de Chimie">Mobile Chemistry Unit</h3>
+                    <p data-en="Our chemistry calibration technician travels to your facility with all necessary equipment for analytical instrument calibration — pH meters, conductivity meters, spectrophotometers and turbidimeters. Everything comes to you." data-fr="Notre technicien de calibration en chimie se déplace dans vos locaux avec tout l'équipement nécessaire pour la calibration des instruments analytiques — pH-mètres, conductimètres, spectrophotomètres et turbidimètres. Tout vient à vous.">Our chemistry calibration technician travels to your facility with all necessary equipment for analytical instrument calibration — pH meters, conductivity meters, spectrophotometers and turbidimeters. Everything comes to you.</p>
+                    <div class="tag-row">
+                        <span class="tag-pill" data-en="pH-metry" data-fr="pH-métrie">pH-metry</span>
+                        <span class="tag-pill" data-en="Conductivity" data-fr="Conductivité">Conductivity</span>
+                        <span class="tag-pill" data-en="Spectrophotometry" data-fr="Spectrophotométrie">Spectrophotometry</span>
+                        <span class="tag-pill" data-en="Turbidimetry" data-fr="Turbidimétrie">Turbidimetry</span>
+                    </div>
+                </div>
+                <div class="why-card">
+                    <div class="why-icon">
+                        <i data-lucide="thermometer" style="width:26px;height:26px;color:#C9A55C;stroke-width:1.5;"></i>
+                    </div>
+                    <h3 data-en="Mobile Physical Unit" data-fr="Unité Mobile Physique">Mobile Physical Unit</h3>
+                    <p data-en="Our physical calibration technician travels to your facility with portable calibration standards for temperature, humidity and mass measurements. Class I-II capability on-site." data-fr="Notre technicien de calibration physique se déplace dans vos locaux avec des étalons de calibration portables pour les mesures de température, humidité et masse. Capacité Classe I-II sur site.">Our physical calibration technician travels to your facility with portable calibration standards for temperature, humidity and mass measurements. Class I-II capability on-site.</p>
+                    <div class="tag-row">
+                        <span class="tag-pill" data-en="Temperature" data-fr="Température">Temperature</span>
+                        <span class="tag-pill" data-en="Humidity" data-fr="Humidité">Humidity</span>
+                        <span class="tag-pill" data-en="Mass" data-fr="Masse">Mass</span>
+                        <span class="tag-pill" data-en="Weighing" data-fr="Pesée">Weighing</span>
+                    </div>
+                </div>
+            </div>
+            <p style="text-align:center; margin-top:2.5rem; font-size:0.85rem; color:var(--text-muted); font-style:italic;" data-en="All interventions are performed on-site at your facility. Workshop visits are available only in exceptional circumstances upon request." data-fr="Toutes les interventions sont réalisées sur site dans vos locaux. Les visites en atelier ne sont disponibles que dans des circonstances exceptionnelles sur demande.">All interventions are performed on-site at your facility. Workshop visits are available only in exceptional circumstances upon request.</p>
+        </div>
+    </section>
+
+    <!-- INDUSTRIES WE SERVE -->
+    <section class="sectors" id="sectors">
+        <div class="container">
+            <div class="section-header">
+                <span class="eyebrow" data-en="Target Markets" data-fr="Marchés Cibles">Target Markets</span>
+                <h2 data-en="Industries We Serve" data-fr="Industries que nous servons">Industries We Serve</h2>
+            </div>
+            <div class="sectors-grid">
+                <div class="sector-card">
+                    <div class="sector-icon">
+                        <i data-lucide="wheat" style="width:26px;height:26px;color:#C9A55C;stroke-width:1.5;"></i>
+                    </div>
+                    <h3 data-en="Agri-food Industry" data-fr="Industrie Agroalimentaire">Agri-food Industry</h3>
+                    <p data-en="On-site calibration for food production and quality control laboratories." data-fr="Calibration sur site pour les laboratoires de production alimentaire et de contrôle qualité.">On-site calibration for food production and quality control laboratories.</p>
+                </div>
+                <div class="sector-card">
+                    <div class="sector-icon">
+                        <i data-lucide="pill" style="width:26px;height:26px;color:#C9A55C;stroke-width:1.5;"></i>
+                    </div>
+                    <h3 data-en="Pharmaceutical &amp; Biotech" data-fr="Pharmaceutique &amp; Biotech">Pharmaceutical &amp; Biotech</h3>
+                    <p data-en="GMP-compliant on-site calibration for pharma QC labs and cleanrooms." data-fr="Calibration sur site conforme aux BPF pour les laboratoires CQ pharmaceutiques et les salles blanches.">GMP-compliant on-site calibration for pharma QC labs and cleanrooms.</p>
+                </div>
+                <div class="sector-card">
+                    <div class="sector-icon">
+                        <i data-lucide="microscope" style="width:26px;height:26px;color:#C9A55C;stroke-width:1.5;"></i>
+                    </div>
+                    <h3 data-en="Biology Laboratories" data-fr="Laboratoires de Biologie">Biology Laboratories</h3>
+                    <p data-en="On-site calibration for clinical, research and diagnostic biology labs." data-fr="Calibration sur site pour les laboratoires de biologie clinique, de recherche et de diagnostic.">On-site calibration for clinical, research and diagnostic biology labs.</p>
+                </div>
+                <div class="sector-card">
+                    <div class="sector-icon">
+                        <i data-lucide="beaker" style="width:26px;height:26px;color:#C9A55C;stroke-width:1.5;"></i>
+                    </div>
+                    <h3 data-en="Analytical &amp; Environmental" data-fr="Analytique &amp; Environnemental">Analytical &amp; Environmental</h3>
+                    <p data-en="On-site calibration for analytical chemistry and environmental testing facilities." data-fr="Calibration sur site pour les installations de chimie analytique et de tests environnementaux.">On-site calibration for analytical chemistry and environmental testing facilities.</p>
+                </div>
+                <div style="grid-column: 1 / -1; display: flex; justify-content: center;">
+                    <div class="sector-card">
+                        <div class="sector-icon">
+                            <i data-lucide="plus-circle" style="width:26px;height:26px;color:#C9A55C;stroke-width:1.5;"></i>
+                        </div>
+                        <h3 data-en="Your Industry" data-fr="Votre Industrie">Your Industry</h3>
+                        <p data-en="Not listed here? We calibrate any regulated industry — contact us to discuss your specific needs." data-fr="Pas listé ici ? Nous calibrons toute industrie réglementée — contactez-nous pour discuter de vos besoins spécifiques.">Not listed here? We calibrate any regulated industry — contact us to discuss your specific needs.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRE-REGISTRATION FORM -->
+    <section class="contact" id="register">
+        <div class="container">
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h2 data-en="Register Your Interest" data-fr="Enregistrer votre intérêt">Register Your Interest</h2>
+                    <p data-en="Be among the first to access ILS Metrology on-site services — launching October 2026." data-fr="Soyez parmi les premiers à accéder aux services de métrologie ILS sur site — lancement en octobre 2026.">Be among the first to access ILS Metrology on-site services — launching October 2026.</p>
+                    <div class="contact-details">
+                        <div class="contact-detail">
+                            <div class="contact-detail-icon">
+                                <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                            </div>
+                            <div class="contact-detail-text">
+                                <span class="contact-detail-label" data-en="Email" data-fr="Email">Email</span>
+                                <span class="contact-detail-value">sales@ils-link.com</span>
+                            </div>
+                        </div>
+                        <div class="contact-detail">
+                            <div class="contact-detail-icon">
+                                <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                            </div>
+                            <div class="contact-detail-text">
+                                <span class="contact-detail-label" data-en="Address" data-fr="Adresse">Address</span>
+                                <span class="contact-detail-value">30 Rue Branly, 90000 Belfort, France</span>
+                            </div>
+                        </div>
+                        <div class="contact-detail">
+                            <div class="contact-detail-icon">
+                                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                            </div>
+                            <div class="contact-detail-text">
+                                <span class="contact-detail-label" data-en="Launch Date" data-fr="Date de lancement">Launch Date</span>
+                                <span class="contact-detail-value" data-en="October 2026" data-fr="Octobre 2026">October 2026</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form id="registerForm" action="send.php" method="POST">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="name" data-en="Full Name *" data-fr="Nom complet *">Full Name *</label>
+                                <input type="text" id="name" name="name" placeholder="Dr. Pierre Lambert" data-en="Dr. Pierre Lambert" data-fr="Dr. Pierre Lambert" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="company" data-en="Company / Laboratory *" data-fr="Société / Laboratoire *">Company / Laboratory *</label>
+                                <input type="text" id="company" name="company" placeholder="Your organisation" data-en="Your organisation" data-fr="Votre organisation" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="country" data-en="Country" data-fr="Pays">Country</label>
+                                <select id="country" name="country">
+                                    <option value="" disabled selected data-en="Select a country" data-fr="Sélectionner un pays">Select a country</option>
+                                    <option value="France">France</option>
+                                    <option value="Belgium">Belgium</option>
+                                    <option value="Switzerland">Switzerland</option>
+                                    <option value="Germany">Germany</option>
+                                    <option value="Italy">Italy</option>
+                                    <option value="Spain">Spain</option>
+                                    <option value="Other Europe">Other Europe</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="email" data-en="Email *" data-fr="Email *">Email *</label>
+                                <input type="email" id="email" name="email" placeholder="pierre.lambert@lab.fr" data-en="pierre.lambert@lab.fr" data-fr="pierre.lambert@labo.fr" required>
+                            </div>
+                            <div class="form-group full-width">
+                                <label for="phone" data-en="Phone" data-fr="Téléphone">Phone</label>
+                                <input type="tel" id="phone" name="phone" placeholder="+33 3 84 00 00 00" data-en="+33 3 84 00 00 00" data-fr="+33 3 84 00 00 00">
+                            </div>
+                            <div class="form-group full-width">
+                                <label data-en="Instruments to Calibrate" data-fr="Instruments à calibrer">Instruments to Calibrate</label>
+                                <div class="checkbox-group">
+                                    <label class="checkbox-item">
+                                        <input type="checkbox" name="instruments" value="on-site">
+                                        <span data-en="On-site mobile calibration" data-fr="Calibration mobile sur site">On-site mobile calibration</span>
+                                    </label>
+                                    <label class="checkbox-item">
+                                        <input type="checkbox" name="instruments" value="balances">
+                                        <span data-en="Mass &amp; weighing (Class I-II)" data-fr="Masse &amp; pesée (Classe I-II)">Mass &amp; weighing (Class I-II)</span>
+                                    </label>
+                                    <label class="checkbox-item">
+                                        <input type="checkbox" name="instruments" value="temperature">
+                                        <span data-en="Temperature &amp; humidity" data-fr="Température &amp; humidité">Temperature &amp; humidity</span>
+                                    </label>
+                                    <label class="checkbox-item">
+                                        <input type="checkbox" name="instruments" value="ph">
+                                        <span data-en="pH-metry" data-fr="pH-métrie">pH-metry</span>
+                                    </label>
+                                    <label class="checkbox-item">
+                                        <input type="checkbox" name="instruments" value="conductivity">
+                                        <span data-en="Conductivity" data-fr="Conductivité">Conductivity</span>
+                                    </label>
+                                    <label class="checkbox-item">
+                                        <input type="checkbox" name="instruments" value="spectro">
+                                        <span data-en="Spectrophotometry &amp; Turbidimetry" data-fr="Spectrophotométrie &amp; Turbidimétrie">Spectrophotometry &amp; Turbidimetry</span>
+                                    </label>
+                                    <label class="checkbox-item">
+                                        <input type="checkbox" name="instruments" value="other">
+                                        <span data-en="Other" data-fr="Autre">Other</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group full-width">
+                                <label for="volume" data-en="Estimated Annual Calibration Volume" data-fr="Volume annuel estimé de calibration">Estimated Annual Calibration Volume</label>
+                                <select id="volume" name="volume">
+                                    <option value="" disabled selected data-en="Select a range" data-fr="Sélectionner une fourchette">Select a range</option>
+                                    <option value="1-10" data-en="1–10 instruments" data-fr="1–10 instruments">1&ndash;10 instruments</option>
+                                    <option value="11-50" data-en="11–50 instruments" data-fr="11–50 instruments">11&ndash;50 instruments</option>
+                                    <option value="51-200" data-en="51–200 instruments" data-fr="51–200 instruments">51&ndash;200 instruments</option>
+                                    <option value="200+" data-en="200+ instruments" data-fr="200+ instruments">200+ instruments</option>
+                                    <option value="not-sure" data-en="Not sure yet" data-fr="Pas encore sûr">Not sure yet</option>
+                                </select>
+                            </div>
+                            <div class="form-group full-width">
+                                <label for="notes" data-en="Additional Notes" data-fr="Notes supplémentaires">Additional Notes</label>
+                                <textarea id="notes" name="notes" placeholder="Any specific requirements, standards you need to comply with, or questions..." data-en="Any specific requirements, standards you need to comply with, or questions..." data-fr="Toute exigence spécifique, normes auxquelles vous devez vous conformer, ou questions..." rows="4"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-submit">
+                            <button type="submit" class="btn btn-gold" data-html="" data-en='Register My Interest <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>' data-fr='Enregistrer mon intérêt <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>'>
+                                Register My Interest
+                                <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+                            </button>
+                        </div>
+                        <p class="form-note" data-en="We will contact you before our October 2026 launch to discuss your specific requirements. No commitment required." data-fr="Nous vous contacterons avant notre lancement d'octobre 2026 pour discuter de vos exigences spécifiques. Sans engagement.">We will contact you before our October 2026 launch to discuss your specific requirements. No commitment required.</p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="nav-logo">
+                        <span class="nav-logo-text">ILS</span>
+                        <span class="nav-logo-sub">International Link Solutions</span>
+                    </div>
+                    <p class="footer-tagline" data-en="Precision in Lab, Metrology &amp; Energy. Bridging world-class manufacturers with high-growth markets across three continents." data-fr="Précision en Laboratoire, Métrologie &amp; Énergie. Connecter les fabricants de classe mondiale aux marchés à forte croissance sur trois continents.">Precision in Lab, Metrology & Energy. Bridging world-class manufacturers with high-growth markets across three continents.</p>
+                </div>
+                <div class="footer-col">
+                    <h4 data-en="Services" data-fr="Services">Services</h4>
+                    <ul>
+                        <li><a href="laboratory.html" data-en="Laboratory Solutions" data-fr="Solutions de Laboratoire">Laboratory Solutions</a></li>
+                        <li><a href="chemistry.html" data-en="Chemical Products" data-fr="Produits Chimiques">Chemical Products</a></li>
+                        <li><a href="metrology.html" data-en="Metrology" data-fr="Métrologie">Metrology</a></li>
+                        <li><a href="energy.html" data-en="Energy Advisory" data-fr="Conseil en Énergie">Energy Advisory</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4 data-en="Company" data-fr="Entreprise">Company</h4>
+                    <ul>
+                        <li><a href="about.html" data-en="About ILS" data-fr="À propos d'ILS">About ILS</a></li>
+                        <li><a href="index.html#partners" data-en="Partners" data-fr="Partenaires">Partners</a></li>
+                        <li><a href="contact.html" data-en="Contact" data-fr="Contact">Contact</a></li>
+                        <li><a href="index.html" data-en="Home" data-fr="Accueil">Home</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4 data-en="Legal" data-fr="Juridique">Legal</h4>
+                    <ul>
+                        <li><a href="privacy-policy.html" data-en="Privacy Policy" data-fr="Politique de confidentialité">Privacy Policy</a></li>
+                        <li><a href="terms-of-service.html" data-en="Terms of Service" data-fr="Conditions d'utilisation">Terms of Service</a></li>
+                        <li><a href="cookie-policy.html" data-en="Cookie Policy" data-fr="Politique des cookies">Cookie Policy</a></li>
+                        <li><a href="legal-notice.html" data-en="Legal Notice" data-fr="Mentions légales">Legal Notice</a></li>
+                        <li style="margin-top:0.5rem;font-size:0.75rem;color:rgba(255,255,255,0.3);line-height:1.5;">SIRET: 928 301 340 00016<br>TVA: FR82928301340</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 International Link Solutions &mdash; RCS Belfort 928 301 340 &mdash; 30 Rue Branly, 90000 Belfort, France &mdash; sales@ils-link.com</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        (function() {
+            'use strict';
+
+            var navbar = document.getElementById('navbar');
+            var scrollThreshold = 80;
+
+            function checkNavbar() {
+                if (window.scrollY > scrollThreshold) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            }
+
+            window.addEventListener('scroll', checkNavbar, { passive: true });
+            checkNavbar();
+
+            var hamburger = document.getElementById('hamburger');
+            var mobileMenu = document.getElementById('mobileMenu');
+
+            hamburger.addEventListener('click', function() {
+                hamburger.classList.toggle('active');
+                mobileMenu.classList.toggle('open');
+                var isOpen = mobileMenu.classList.contains('open');
+                hamburger.setAttribute('aria-expanded', isOpen);
+                document.body.style.overflow = isOpen ? 'hidden' : '';
+            });
+
+            mobileMenu.querySelectorAll('a').forEach(function(link) {
+                link.addEventListener('click', function() {
+                    hamburger.classList.remove('active');
+                    mobileMenu.classList.remove('open');
+                    hamburger.setAttribute('aria-expanded', 'false');
+                    document.body.style.overflow = '';
+                });
+            });
+
+            var registerForm = document.getElementById('registerForm');
+            if (registerForm) {
+                registerForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    var btn = registerForm.querySelector('.btn');
+                    var originalHTML = btn.innerHTML;
+                    btn.innerHTML = 'Sending...';
+                    btn.disabled = true;
+                    btn.style.opacity = '0.7';
+
+                    var formData = new FormData(registerForm);
+                    fetch('send.php', {
+                        method: 'POST',
+                        body: formData
+                    })
+                    .then(function(r) { return r.json(); })
+                    .then(function(data) {
+                        if (data && data.success) {
+                            btn.innerHTML = 'Message Sent ✓';
+                            btn.style.background = '#2d6a4f';
+                            btn.style.opacity = '1';
+                            registerForm.reset();
+                            setTimeout(function() {
+                                btn.innerHTML = originalHTML;
+                                btn.style.background = '';
+                                btn.disabled = false;
+                            }, 4000);
+                        } else {
+                            btn.innerHTML = 'Error — try again';
+                            btn.style.background = '#c0392b';
+                            btn.style.opacity = '1';
+                            setTimeout(function() {
+                                btn.innerHTML = originalHTML;
+                                btn.style.background = '';
+                                btn.disabled = false;
+                            }, 4000);
+                        }
+                    })
+                    .catch(function() {
+                        btn.innerHTML = 'Network error';
+                        btn.style.background = '#c0392b';
+                        btn.style.opacity = '1';
+                        setTimeout(function() {
+                            btn.innerHTML = originalHTML;
+                            btn.style.background = '';
+                            btn.disabled = false;
+                        }, 4000);
+                    });
+                });
+            }
+
+            document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+                anchor.addEventListener('click', function(e) {
+                    var targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    var target = document.querySelector(targetId);
+                    if (target) {
+                        e.preventDefault();
+                        var offset = navbar.offsetHeight + 16;
+                        var top = target.getBoundingClientRect().top + window.scrollY - offset;
+                        window.scrollTo({ top: top, behavior: 'smooth' });
+                    }
+                });
+            });
+        })();
+    </script>
+
+    <!-- LANGUAGE SWITCHER JS -->
+    <script>
+    (function() {
+      function setLanguage(lang) {
+        document.querySelectorAll('[data-en]').forEach(function(el) {
+          var text = lang === 'fr' ? el.dataset.fr : el.dataset.en;
+          if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+            el.placeholder = text;
+          } else if (el.dataset.html !== undefined) {
+            el.innerHTML = text;
+          } else {
+            el.textContent = text;
+          }
+        });
+        document.querySelectorAll('.lang-btn').forEach(function(btn) {
+          btn.classList.toggle('active', btn.dataset.lang === lang);
+        });
+        localStorage.setItem('ils-lang', lang);
+      }
+      document.querySelectorAll('.lang-btn').forEach(function(btn) {
+        btn.addEventListener('click', function() { setLanguage(btn.dataset.lang); });
+      });
+      var saved = localStorage.getItem('ils-lang') || 'en';
+      if (saved === 'fr') setLanguage('fr');
+    })();
+    </script>
+
+<!-- SHOP FLOATING BUTTON -->
+<style>
+    .shop-float {
+        position: fixed;
+        bottom: 2rem;
+        right: 2rem;
+        z-index: 9998;
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+        background: linear-gradient(135deg, var(--gold), var(--gold-light));
+        color: var(--navy);
+        padding: 0.85rem 1.4rem;
+        border-radius: 50px;
+        font-family: 'Inter', sans-serif;
+        font-size: 0.8rem;
+        font-weight: 700;
+        letter-spacing: 0.05em;
+        text-decoration: none;
+        box-shadow: 0 8px 32px rgba(201,165,92,0.4);
+        transition: all 0.3s cubic-bezier(0.32, 0.72, 0, 1);
+        animation: pulse-gold 2.5s ease-in-out infinite;
+    }
+
+    .shop-float:hover {
+        transform: translateY(-3px) scale(1.05);
+        box-shadow: 0 12px 40px rgba(201,165,92,0.6);
+        animation: none;
+    }
+
+    .shop-float svg {
+        width: 18px;
+        height: 18px;
+        flex-shrink: 0;
+    }
+
+    .shop-float-badge {
+        background: var(--navy);
+        color: var(--gold);
+        font-size: 0.65rem;
+        font-weight: 700;
+        padding: 2px 7px;
+        border-radius: 20px;
+        letter-spacing: 0.08em;
+    }
+
+    @keyframes pulse-gold {
+        0%, 100% {
+            box-shadow: 0 8px 32px rgba(201,165,92,0.4);
+        }
+        50% {
+            box-shadow: 0 8px 48px rgba(201,165,92,0.75),
+                        0 0 0 8px rgba(201,165,92,0.1);
+        }
+    }
+
+    @media (max-width: 768px) {
+        .shop-float {
+            bottom: 1.25rem;
+            right: 1.25rem;
+            padding: 0.75rem 1.1rem;
+            font-size: 0.75rem;
+        }
+    }
+</style>
+
+<a href="/shop/index.html" class="shop-float" aria-label="Browse ILS Shop">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
+        <line x1="3" y1="6" x2="21" y2="6"/>
+        <path d="M16 10a4 4 0 01-8 0"/>
+    </svg>
+    <span data-en="Browse Shop" data-fr="Boutique">Browse Shop</span>
+</a>
+<!-- END SHOP FLOATING BUTTON -->
+
+
+<!-- Scroll to top button -->
+<style>
+    .scroll-top {
+        position: fixed;
+        bottom: 24px;
+        right: 24px;
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        background: #0A1628;
+        color: #C9A55C;
+        border: 1px solid rgba(201, 165, 92, 0.4);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(10px);
+        transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease, background 0.2s, border-color 0.2s;
+        z-index: 998;
+        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+    }
+    .scroll-top.visible { opacity: 1; visibility: visible; transform: translateY(0); }
+    .scroll-top:hover { background: #132138; border-color: rgba(201, 165, 92, 0.8); transform: translateY(-2px); }
+    .scroll-top:focus-visible { outline: 2px solid #C9A55C; outline-offset: 3px; }
+    .scroll-top svg { width: 18px; height: 18px; }
+    /* When shop-float is present, push scroll-top above it */
+    body:has(.shop-float) .scroll-top { bottom: 92px; }
+    @media (max-width: 768px) {
+        .scroll-top { width: 44px; height: 44px; bottom: 20px; right: 20px; }
+        body:has(.shop-float) .scroll-top { bottom: 80px; }
+    }
+</style>
+<button class="scroll-top" id="scrollTopBtn" aria-label="Scroll to top" type="button">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5"/><path d="M5 12l7-7 7 7"/></svg>
+</button>
+<script>
+    (function() {
+        var btn = document.getElementById('scrollTopBtn');
+        if (!btn) return;
+        function toggle() {
+            if (window.scrollY > 400) btn.classList.add('visible');
+            else btn.classList.remove('visible');
+        }
+        window.addEventListener('scroll', toggle, { passive: true });
+        window.addEventListener('pageshow', toggle);
+        btn.addEventListener('click', function() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+        toggle();
+    })();
+</script>
+<!-- /Scroll to top -->
+</body>
+<script>lucide.createIcons();</script>
+</html>

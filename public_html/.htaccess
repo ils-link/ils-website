@@ -1,0 +1,9 @@
+RewriteEngine On
+
+# Forcer HTTPS d'abord
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+# Redirection www vers non-www
+RewriteCond %{HTTP_HOST} ^www\.ils-link\.com$ [NC]
+RewriteRule ^(.*)$ https://ils-link.com/$1 [R=301,L]

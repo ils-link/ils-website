@@ -1,0 +1,1838 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="canonical" href="https://ils-link.com/chemistry.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chemical Products — SRL India, Loba Chemie, TM Media | ILS</title>
+    <meta name="description" content="Produits chimiques de laboratoire en France : réactifs SRL, Loba Chemie, TM Media. Distributeur exclusif pour pharmaceutique, agroalimentaire et recherche.">
+    <meta property="og:title" content="ILS — Chemical Products Division">
+    <meta property="og:description" content="Exclusive distributor for SRL India, Loba Chemie & TM Media in France and Europe">
+    <meta property="og:type" content="website">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="192x192" href="favicon-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="favicon-512x512.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+    <style>
+        /* ========================================
+           CSS RESET & CUSTOM PROPERTIES
+           ======================================== */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --navy: #0A1628;
+            --navy-light: #111d33;
+            --gold: #C9A55C;
+            --gold-light: #d4b876;
+            --gold-dark: #b08f47;
+            --bg: #F8F7F4;
+            --charcoal: #1a1a2e;
+            --text-primary: #1a1a2e;
+            --text-secondary: #5a5a6e;
+            --text-muted: #8a8a9a;
+            --white: #ffffff;
+            --border: rgba(201, 165, 92, 0.15);
+            --ease-premium: cubic-bezier(0.32, 0.72, 0, 1);
+            --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background-color: var(--bg);
+            color: var(--text-primary);
+            line-height: 1.65;
+            overflow-x: hidden;
+        }
+
+        /* ========================================
+           TYPOGRAPHY
+           ======================================== */
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', Georgia, serif;
+            line-height: 1.15;
+            letter-spacing: -0.02em;
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 5.5vw, 4.25rem);
+            font-weight: 600;
+        }
+
+        h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 600;
+        }
+
+        h3 {
+            font-size: clamp(1.25rem, 2vw, 1.5rem);
+            font-weight: 600;
+        }
+
+        p {
+            max-width: 65ch;
+            color: var(--text-secondary);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* ========================================
+           UTILITY
+           ======================================== */
+        .container {
+            max-width: 1320px;
+            margin: 0 auto;
+            padding: 0 clamp(1.25rem, 4vw, 3rem);
+        }
+
+        .fade-up {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity 0.8s var(--ease-premium), transform 0.8s var(--ease-premium);
+        }
+
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .stagger-1 { transition-delay: 0.05s; }
+        .stagger-2 { transition-delay: 0.12s; }
+        .stagger-3 { transition-delay: 0.2s; }
+        .stagger-4 { transition-delay: 0.28s; }
+        .stagger-5 { transition-delay: 0.36s; }
+
+        /* ========================================
+           BUTTONS
+           ======================================== */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.9rem 2rem;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.875rem;
+            font-weight: 600;
+            letter-spacing: 0.03em;
+            border-radius: 4px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.4s var(--ease-premium);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.6s var(--ease-premium);
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn:active {
+            transform: translateY(1px) scale(0.98);
+        }
+
+        .btn-gold {
+            background: linear-gradient(135deg, var(--gold), var(--gold-light));
+            color: var(--navy);
+        }
+
+        .btn-gold:hover {
+            background: linear-gradient(135deg, var(--gold-light), var(--gold));
+            box-shadow: 0 8px 32px rgba(201, 165, 92, 0.35);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--white);
+            border: 1.5px solid rgba(255,255,255,0.4);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+            box-shadow: 0 0 20px rgba(201, 165, 92, 0.15);
+        }
+
+        .btn-navy {
+            background: var(--navy);
+            color: var(--gold);
+        }
+
+        .btn-navy:hover {
+            background: var(--navy-light);
+            box-shadow: 0 8px 32px rgba(10, 22, 40, 0.3);
+        }
+
+        /* ========================================
+           NAVIGATION
+           ======================================== */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 1.25rem 0;
+            transition: all 0.5s var(--ease-premium);
+        }
+
+        .navbar.scrolled {
+            background: rgba(10, 22, 40, 0.92);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            padding: 0.75rem 0;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .navbar .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-logo {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .nav-logo-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--gold);
+            line-height: 1;
+            letter-spacing: 0.08em;
+        }
+
+        .nav-logo-sub {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.6rem;
+            font-weight: 400;
+            color: rgba(255,255,255,0.55);
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            margin-top: 2px;
+        }
+
+        .nav-links {
+            display: flex !important;
+            align-items: center;
+            gap: 2.25rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 0.8125rem;
+            font-weight: 500;
+            color: rgba(255,255,255,0.75);
+            letter-spacing: 0.02em;
+            position: relative;
+            padding-bottom: 3px;
+            transition: color 0.3s var(--ease-premium);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 1.5px;
+            background: var(--gold);
+            transition: width 0.4s var(--ease-premium);
+        }
+
+        .nav-links a:hover {
+            color: var(--white);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+
+        .nav-shop-btn {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: transparent;
+            color: var(--gold);
+            border: 1px solid rgba(201,165,92,0.4);
+            padding: 0.5rem 1rem;
+            border-radius: 30px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            text-decoration: none;
+            white-space: nowrap;
+            flex-shrink: 0;
+            transition: background 0.2s, border-color 0.2s, transform 0.2s;
+        }
+        .nav-shop-btn:hover {
+            background: rgba(201,165,92,0.1);
+            border-color: rgba(201,165,92,0.7);
+            transform: translateY(-1px);
+        }
+        .nav-shop-badge {
+            background: rgba(201,165,92,0.15);
+            color: var(--gold);
+            font-size: 0.6rem;
+            font-weight: 700;
+            padding: 2px 6px;
+            border-radius: 10px;
+            letter-spacing: 0.08em;
+        }
+        .nav-cta {
+            padding: 0.6rem 1.4rem;
+            font-size: 0.8125rem;
+        }
+
+        .hamburger {
+            display: none !important;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 4px;
+            background: none;
+            border: none;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: var(--white);
+            transition: all 0.3s var(--ease-premium);
+            transform-origin: center;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(10, 22, 40, 0.97);
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+            z-index: 99;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s var(--ease-premium);
+                    padding-top: 80px;
+        }
+
+        .mobile-menu.open {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .mobile-menu a {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.75rem;
+            color: rgba(255,255,255,0.8);
+            transition: color 0.3s ease;
+            transform: translateY(20px);
+            opacity: 0;
+        }
+
+        .mobile-menu.open a {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .mobile-menu a:hover {
+            color: var(--gold);
+        }
+
+        /* ========================================
+           HERO SECTION
+           ======================================== */
+        .hero {
+            position: relative;
+            min-height: 100dvh;
+            display: flex;
+            align-items: center;
+            background: var(--navy);
+            overflow: hidden;
+        }
+
+        .hero-gradient {
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 60% 50% at 20% 50%, rgba(201, 165, 92, 0.06) 0%, transparent 70%),
+                radial-gradient(ellipse 40% 60% at 80% 30%, rgba(201, 165, 92, 0.04) 0%, transparent 60%);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .hero .container {
+            position: relative;
+            z-index: 2;
+            padding-top: 8rem;
+            padding-bottom: 4rem;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1.25rem;
+            background: rgba(201, 165, 92, 0.08);
+            border: 1px solid rgba(201, 165, 92, 0.2);
+            border-radius: 100px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: var(--gold);
+            letter-spacing: 0.06em;
+            margin-bottom: 2rem;
+        }
+
+        .hero-badge-dot {
+            width: 6px;
+            height: 6px;
+            background: var(--gold);
+            border-radius: 50%;
+            animation: pulse-dot 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(0.7); }
+        }
+
+        .hero h1 {
+            color: var(--white);
+            max-width: 820px;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero h1 span {
+            color: var(--gold);
+        }
+
+        .hero-sub {
+            font-size: clamp(1rem, 1.5vw, 1.15rem);
+            color: rgba(255,255,255,0.55);
+            max-width: 580px;
+            margin-bottom: 2.5rem;
+            line-height: 1.7;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            animation: float-arrow 2.5s ease-in-out infinite;
+        }
+
+        .scroll-indicator span {
+            font-size: 0.65rem;
+            font-weight: 500;
+            color: rgba(255,255,255,0.35);
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+        }
+
+        .scroll-arrow {
+            width: 20px;
+            height: 20px;
+            border-right: 1.5px solid rgba(255,255,255,0.3);
+            border-bottom: 1.5px solid rgba(255,255,255,0.3);
+            transform: rotate(45deg);
+        }
+
+        @keyframes float-arrow {
+            0%, 100% { transform: translateX(-50%) translateY(0); opacity: 0.6; }
+            50% { transform: translateX(-50%) translateY(8px); opacity: 1; }
+        }
+
+        /* ========================================
+           SECTION HEADERS
+           ======================================== */
+        .section-header {
+            text-align: center;
+            margin-bottom: clamp(3rem, 6vw, 4.5rem);
+        }
+
+        .section-header .eyebrow {
+            display: inline-block;
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: var(--gold);
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        .section-header h2 {
+            color: var(--navy);
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            margin: 0 auto;
+            color: var(--text-muted);
+            font-size: 1.05rem;
+        }
+
+        /* ========================================
+           ABOUT SRL SECTION
+           ======================================== */
+        .about-srl {
+            padding: 0;
+        }
+
+        .about-srl-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+        }
+
+        .about-srl-left {
+            background: var(--navy);
+            padding: clamp(3rem, 6vw, 5rem) clamp(2rem, 4vw, 4rem);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .about-srl-eyebrow {
+            display: inline-block;
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: var(--gold);
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        .about-srl-left h2 {
+            color: var(--white);
+            margin-bottom: 1.5rem;
+        }
+
+        .about-srl-text {
+            font-size: 1rem;
+            line-height: 1.75;
+            color: rgba(255, 255, 255, 0.55);
+            margin-bottom: 1.75rem;
+            max-width: 520px;
+        }
+
+        .srl-stats {
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        .srl-stat {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .srl-stat-number {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 3.5vw, 2.75rem);
+            font-weight: 700;
+            color: var(--gold);
+            line-height: 1.1;
+        }
+
+        .srl-stat-label {
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.4);
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            margin-top: 0.25rem;
+        }
+
+        .about-srl-right {
+            background: #0F2040;
+            padding: clamp(3rem, 6vw, 5rem) clamp(2rem, 4vw, 3.5rem);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 0;
+        }
+
+        .srl-feature {
+            display: grid;
+            grid-template-columns: 48px 1fr;
+            gap: 1rem;
+            align-items: start;
+            padding: 1.5rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .srl-feature:first-child {
+            padding-top: 0;
+        }
+
+        .srl-feature:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .srl-feature-icon {
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(201, 165, 92, 0.08);
+            border: 1px solid rgba(201, 165, 92, 0.12);
+            border-radius: 10px;
+        }
+
+        .srl-feature-content h3 {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--white);
+            margin-bottom: 0.35rem;
+            letter-spacing: 0.01em;
+        }
+
+        .srl-feature-content p {
+            font-size: 0.875rem;
+            color: rgba(255, 255, 255, 0.45);
+            line-height: 1.6;
+            max-width: 360px;
+        }
+
+        /* ========================================
+           PRODUCT CATEGORIES
+           ======================================== */
+        .products {
+            padding: clamp(5rem, 10vw, 8rem) 0;
+            background: var(--white);
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+
+        .product-card {
+            background: var(--bg);
+            border: 1px solid rgba(201, 165, 92, 0.08);
+            border-radius: 12px;
+            padding: clamp(2rem, 3vw, 2.75rem);
+            transition: all 0.5s var(--ease-premium);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-card::before {
+            content: '';
+            position: absolute;
+            inset: -1px;
+            border-radius: 13px;
+            padding: 1px;
+            background: linear-gradient(135deg, transparent 30%, rgba(201, 165, 92, 0.4) 100%);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0;
+            transition: opacity 0.5s var(--ease-premium);
+        }
+
+        .product-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 60px rgba(201, 165, 92, 0.12), 0 8px 24px rgba(0, 0, 0, 0.06);
+        }
+
+        .product-card:hover::before {
+            opacity: 1;
+        }
+
+        .product-icon {
+            width: 52px;
+            height: 52px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--navy);
+            border-radius: 10px;
+            margin-bottom: 1.5rem;
+            transition: background 0.4s var(--ease-premium);
+        }
+
+        .product-card:hover .product-icon {
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+        }
+
+        .product-card h3 {
+            color: var(--navy);
+            margin-bottom: 0.75rem;
+        }
+
+        .product-card p {
+            font-size: 0.925rem;
+            line-height: 1.7;
+        }
+
+        /* ========================================
+           WHY ILS SECTION
+           ======================================== */
+        .why-ils {
+            padding: clamp(5rem, 10vw, 8rem) 0;
+            background: var(--bg);
+        }
+
+        .why-ils .section-header h2 {
+            color: var(--navy);
+        }
+
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+        }
+
+        .why-card {
+            text-align: center;
+            padding: clamp(2rem, 3vw, 2.75rem) 1.5rem;
+            background: var(--white);
+            border: 1px solid rgba(201, 165, 92, 0.08);
+            border-radius: 12px;
+            transition: all 0.5s var(--ease-premium);
+        }
+
+        .why-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 60px rgba(201, 165, 92, 0.12), 0 8px 24px rgba(0, 0, 0, 0.06);
+        }
+
+        .why-icon {
+            width: 56px;
+            height: 56px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(201, 165, 92, 0.08);
+            border: 1px solid rgba(201, 165, 92, 0.12);
+            border-radius: 12px;
+            margin: 0 auto 1.25rem;
+        }
+
+        .why-card h3 {
+            color: var(--navy);
+            margin-bottom: 0.5rem;
+            font-size: 1.15rem;
+        }
+
+        .why-card p {
+            font-size: 0.9rem;
+            line-height: 1.65;
+            margin: 0 auto;
+        }
+
+        /* ========================================
+           CONTACT / QUOTE SECTION
+           ======================================== */
+        .contact {
+            background: var(--navy);
+            padding: clamp(5rem, 10vw, 8rem) 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            opacity: 0.25;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: clamp(3rem, 6vw, 5rem);
+        }
+
+        .contact-info h2 {
+            color: var(--white);
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-info p {
+            color: rgba(255,255,255,0.5);
+            font-size: 1rem;
+            line-height: 1.7;
+            margin-bottom: 2.5rem;
+        }
+
+        .contact-details {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+        }
+
+        .contact-detail {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+        }
+
+        .contact-detail-icon {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(201, 165, 92, 0.08);
+            border: 1px solid rgba(201, 165, 92, 0.15);
+            border-radius: 8px;
+            flex-shrink: 0;
+        }
+
+        .contact-detail-icon svg {
+            width: 18px;
+            height: 18px;
+            stroke: var(--gold);
+            stroke-width: 1.5;
+            fill: none;
+        }
+
+        .contact-detail-text {
+            display: flex;
+            flex-direction: column;
+            gap: 0.15rem;
+        }
+
+        .contact-detail-label {
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: var(--gold);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        .contact-detail-value {
+            font-size: 0.925rem;
+            color: rgba(255,255,255,0.7);
+        }
+
+        .contact-form {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 14px;
+            padding: clamp(2rem, 3vw, 2.75rem);
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.25rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .form-group label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: rgba(255,255,255,0.45);
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 6px;
+            padding: 0.8rem 1rem;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            color: var(--white);
+            transition: all 0.3s var(--ease-premium);
+            outline: none;
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: rgba(255,255,255,0.2);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            border-color: var(--gold);
+            box-shadow: 0 0 0 3px rgba(201, 165, 92, 0.1);
+        }
+
+        .form-group select {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='rgba(255,255,255,0.4)' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+            padding-right: 2.5rem;
+        }
+
+        .form-group select option {
+            background: var(--navy);
+            color: var(--white);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .form-submit {
+            margin-top: 1.5rem;
+            width: 100%;
+        }
+
+        .form-submit .btn {
+            width: 100%;
+            justify-content: center;
+            padding: 1rem;
+        }
+
+        /* ========================================
+           FOOTER
+           ======================================== */
+        .footer {
+            background: var(--navy);
+            border-top: 1px solid rgba(255,255,255,0.05);
+            padding: clamp(3rem, 6vw, 4.5rem) 0 0;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr 1fr;
+            gap: clamp(2rem, 4vw, 3rem);
+            padding-bottom: clamp(3rem, 6vw, 4rem);
+        }
+
+        .footer-brand .nav-logo {
+            margin-bottom: 1rem;
+        }
+
+        .footer-tagline {
+            font-size: 0.875rem;
+            color: rgba(255,255,255,0.4);
+            line-height: 1.6;
+            max-width: 280px;
+        }
+
+        .footer-col h4 {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: var(--gold);
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            margin-bottom: 1.25rem;
+        }
+
+        .footer-col ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.65rem;
+        }
+
+        .footer-col a {
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.45);
+            transition: color 0.3s ease;
+        }
+
+        .footer-col a:hover {
+            color: var(--gold);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.05);
+            padding: 1.5rem 0;
+            text-align: center;
+        }
+
+        .footer-bottom p {
+            font-size: 0.75rem;
+            color: rgba(255,255,255,0.3);
+            max-width: none;
+        }
+
+        /* ========================================
+           NOISE OVERLAY
+           ======================================== */
+        .noise-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            pointer-events: none;
+            opacity: 0.025;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+            background-repeat: repeat;
+            background-size: 256px 256px;
+        }
+
+        /* ========================================
+           LANG SWITCHER
+           ======================================== */
+        .lang-switcher {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            margin-right: 1.5rem;
+        }
+
+        .lang-switcher span {
+            color: rgba(255,255,255,0.3);
+            font-size: 0.8rem;
+        }
+
+        .lang-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            color: rgba(255,255,255,0.4);
+            transition: color 0.2s;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .lang-btn.active {
+            color: var(--gold);
+        }
+
+        .lang-btn:hover {
+            color: var(--white);
+        }
+
+        /* ========================================
+           RESPONSIVE
+           ======================================== */
+        @media (max-width: 1024px) {
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .why-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none !important;
+            }
+
+            .nav-cta {
+                display: none !important;
+            }
+
+            .nav-shop-btn {
+                display: none !important;
+            }
+
+            .hamburger {
+                display: flex !important;
+            }
+
+            .mobile-menu {
+                display: flex;
+            }
+
+            .navbar .lang-switcher {
+                display: flex !important;
+                margin-right: 0.5rem;
+            }
+
+            .hero .container {
+                padding-top: 7rem;
+            }
+
+            .about-srl-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about-srl-left,
+            .about-srl-right {
+                padding: clamp(2.5rem, 5vw, 3.5rem) clamp(1.25rem, 4vw, 2.5rem);
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .why-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 2rem;
+            }
+
+            .footer-brand {
+                grid-column: 1 / -1;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-buttons {
+                flex-direction: column;
+            }
+
+            .hero-buttons .btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .srl-stats {
+                flex-direction: column;
+                gap: 1.25rem;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NOISE OVERLAY -->
+    <div class="noise-overlay" aria-hidden="true"></div>
+
+    <!-- NAVIGATION -->
+    <nav class="navbar" id="navbar" role="navigation" aria-label="Main navigation">
+        <div class="container">
+            <a href="index.html" class="nav-logo" aria-label="ILS - International Link Solutions">
+                <span class="nav-logo-text">ILS</span>
+                <span class="nav-logo-sub">International Link Solutions</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="laboratory.html" data-en="Laboratory" data-fr="Laboratoire">Laboratory</a></li>
+                <li><a href="chemistry.html" style="color:var(--gold);" data-en="Chemistry" data-fr="Chimie">Chemistry</a></li>
+                <li><a href="metrology.html" data-en="Metrology" data-fr="Métrologie">Metrology</a></li>
+                <li><a href="energy.html" data-en="Energy" data-fr="Énergie">Energy</a></li>
+                <li><a href="about.html" data-en="About" data-fr="À Propos">About</a></li>
+                <li><a href="contact.html" data-en="Contact" data-fr="Contact">Contact</a></li>
+            </ul>
+            <div class="lang-switcher">
+                <button class="lang-btn active" data-lang="en">EN</button>
+                <span>|</span>
+                <button class="lang-btn" data-lang="fr">FR</button>
+            </div>
+            <a href="/shop/index.html" class="nav-shop-btn" aria-label="Browse ILS Shop">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+                <span data-en="Browse Shop" data-fr="Boutique">Browse Shop</span>
+            </a>
+            <a href="#quote" class="btn btn-gold nav-cta" data-en="Request a Quote" data-fr="Demander un Devis">Request a Quote</a>
+            <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- MOBILE MENU -->
+    <div class="mobile-menu" id="mobileMenu" role="dialog" aria-label="Mobile navigation">
+        <a href="laboratory.html" data-en="Laboratory" data-fr="Laboratoire">Laboratory</a>
+        <a href="chemistry.html" style="color:var(--gold);" data-en="Chemistry" data-fr="Chimie">Chemistry</a>
+        <a href="metrology.html" data-en="Metrology" data-fr="Métrologie">Metrology</a>
+        <a href="energy.html" data-en="Energy" data-fr="Énergie">Energy</a>
+        <a href="about.html" data-en="About" data-fr="À Propos">About</a>
+        <a href="contact.html" data-en="Contact" data-fr="Contact">Contact</a>
+        <a href="#quote" class="btn btn-gold" style="margin-top: 0.5rem;" data-en="Request a Quote" data-fr="Demander un Devis">Request a Quote</a>
+    </div>
+
+    <!-- HERO SECTION -->
+    <section class="hero" id="hero">
+        <div class="hero-gradient"></div>
+        <div class="container">
+            <div class="hero-badge fade-up">
+                <span class="hero-badge-dot"></span>
+                <span data-en="Exclusive French &amp; European Distributor" data-fr="Distributeur Exclusif France &amp; Europe">Exclusive French &amp; European Distributor</span>
+            </div>
+            <h1 class="fade-up stagger-1" data-en="Premium-Grade <span>Chemical Products</span> for Laboratories" data-fr="<span>Produits Chimiques</span> de Qualité Supérieure pour Laboratoires" data-html="">Premium-Grade <span>Chemical Products</span> for Laboratories</h1>
+            <p class="hero-sub fade-up stagger-2" data-en="ILS is your trusted French distributor for SRL high-purity reagents, solvents, culture media and fine chemicals — delivered to your laboratory from Belfort, France." data-fr="ILS est votre distributeur français de confiance pour les réactifs haute pureté SRL, solvants, milieux de culture et produits chimiques fins — livrés à votre laboratoire depuis Belfort, France.">ILS is your trusted French distributor for SRL high-purity reagents, solvents, culture media and fine chemicals — delivered to your laboratory from Belfort, France.</p>
+            <div class="hero-buttons fade-up stagger-3">
+                <a href="#quote" class="btn btn-gold" data-en="Request a Quote" data-fr="Demander un Devis" data-html="">
+                    Request a Quote
+                    <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><path d="M7 17l9.2-9.2M17 17V7H7"/></svg>
+                </a>
+                <a href="#products" class="btn btn-outline" data-en="View Product Categories" data-fr="Voir les Catégories de Produits">View Product Categories</a>
+            </div>
+        </div>
+        <div class="scroll-indicator" aria-hidden="true">
+            <div class="scroll-arrow"></div>
+        </div>
+    </section>
+
+    <!-- ABOUT SRL SECTION -->
+    <section class="about-srl" id="about-srl">
+        <div class="about-srl-grid">
+            <div class="about-srl-left">
+                <span class="about-srl-eyebrow fade-up" data-en="Our Partner" data-fr="Notre Partenaire">Our Partner</span>
+                <h2 class="fade-up stagger-1" data-en="SRL India — Global Chemical Leader" data-fr="SRL India — Leader Mondial de la Chimie">SRL India — Global Chemical Leader</h2>
+                <p class="about-srl-text fade-up stagger-2" data-en="Founded in 1972, SRL (Sisco Research Laboratories) is one of India's largest manufacturers of laboratory chemicals, reagents and fine chemicals. With ISO 9001, ISO 14001 and ISO 17034 certifications, SRL supplies over 25,000 products to laboratories in 80+ countries worldwide." data-fr="Fondée en 1972, SRL (Sisco Research Laboratories) est l'un des plus grands fabricants indiens de produits chimiques de laboratoire, réactifs et produits chimiques fins. Avec les certifications ISO 9001, ISO 14001 et ISO 17034, SRL fournit plus de 25 000 produits à des laboratoires dans plus de 80 pays.">Founded in 1972, SRL (Sisco Research Laboratories) is one of India's largest manufacturers of laboratory chemicals, reagents and fine chemicals. With ISO 9001, ISO 14001 and ISO 17034 certifications, SRL supplies over 25,000 products to laboratories in 80+ countries worldwide.</p>
+                <p class="about-srl-text fade-up stagger-3" data-en="ILS holds the exclusive distribution agreement for France and Europe, offering the full SRL catalogue of laboratory chemicals, reagents and fine chemicals." data-fr="ILS détient l'accord de distribution exclusif pour la France et l'Europe, offrant le catalogue complet SRL de produits chimiques de laboratoire, réactifs et produits chimiques fins.">ILS holds the exclusive distribution agreement for France and Europe, offering the full SRL catalogue of laboratory chemicals, reagents and fine chemicals.</p>
+                <div class="srl-stats fade-up stagger-4">
+                    <div class="srl-stat">
+                        <span class="srl-stat-number">25,000+</span>
+                        <span class="srl-stat-label" data-en="Products" data-fr="Produits">Products</span>
+                    </div>
+                    <div class="srl-stat">
+                        <span class="srl-stat-number">80+</span>
+                        <span class="srl-stat-label" data-en="Countries Served" data-fr="Pays Desservis">Countries Served</span>
+                    </div>
+                    <div class="srl-stat">
+                        <span class="srl-stat-number">50+</span>
+                        <span class="srl-stat-label" data-en="Years of Experience" data-fr="Années d'Expérience">Years of Experience</span>
+                    </div>
+                </div>
+            </div>
+            <div class="about-srl-right">
+                <div class="srl-feature fade-up">
+                    <div class="srl-feature-icon">
+                        <i data-lucide="award" style="width:22px;height:22px;color:#C9A55C;stroke-width:1.5;"></i>
+                    </div>
+                    <div class="srl-feature-content">
+                        <h3 data-en="ISO Certified Quality" data-fr="Qualité Certifiée ISO">ISO Certified Quality</h3>
+                        <p data-en="ISO 9001, ISO 14001 and ISO 17034 certified manufacturing — meeting the highest international standards" data-fr="Fabrication certifiée ISO 9001, ISO 14001 et ISO 17034 — conformité aux plus hauts standards internationaux">ISO 9001, ISO 14001 and ISO 17034 certified manufacturing — meeting the highest international standards</p>
+                    </div>
+                </div>
+                <div class="srl-feature fade-up stagger-1">
+                    <div class="srl-feature-icon">
+                        <i data-lucide="flask-conical" style="width:22px;height:22px;color:#C9A55C;stroke-width:1.5;"></i>
+                    </div>
+                    <div class="srl-feature-content">
+                        <h3 data-en="Complete Catalogue" data-fr="Catalogue Complet">Complete Catalogue</h3>
+                        <p data-en="From analytical reagents to culture media, fine chemicals and reference standards — one source for all laboratory needs" data-fr="Des réactifs analytiques aux milieux de culture, produits chimiques fins et étalons de référence — une source unique pour tous les besoins du laboratoire">From analytical reagents to culture media, fine chemicals and reference standards — one source for all laboratory needs</p>
+                    </div>
+                </div>
+                <div class="srl-feature fade-up stagger-2">
+                    <div class="srl-feature-icon">
+                        <i data-lucide="truck" style="width:22px;height:22px;color:#C9A55C;stroke-width:1.5;"></i>
+                    </div>
+                    <div class="srl-feature-content">
+                        <h3 data-en="European Logistics" data-fr="Logistique Européenne">European Logistics</h3>
+                        <p data-en="Direct supply chain from production to your laboratory — with dedicated European warehousing and fast delivery" data-fr="Chaîne d'approvisionnement directe de la production à votre laboratoire — avec entreposage européen dédié et livraison rapide">Direct supply chain from production to your laboratory — with dedicated European warehousing and fast delivery</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRODUCT CATEGORIES -->
+    <section class="products" id="products">
+        <div class="container">
+            <div class="section-header">
+                <span class="eyebrow fade-up" data-en="Product Range" data-fr="Gamme de Produits">Product Range</span>
+                <h2 class="fade-up stagger-1" data-en="Six Pillars of Chemical Supply" data-fr="Six Piliers de l'Approvisionnement Chimique">Six Pillars of Chemical Supply</h2>
+                <p class="fade-up stagger-2" data-en="Comprehensive laboratory chemical solutions from SRL India, Loba Chemie and TM Media." data-fr="Solutions chimiques complètes pour laboratoires de SRL India, Loba Chemie et TM Media.">Comprehensive laboratory chemical solutions from SRL India, Loba Chemie and TM Media.</p>
+            </div>
+            <div class="products-grid">
+                <div class="product-card fade-up">
+                    <div class="product-icon">
+                        <i data-lucide="flask-conical" style="width:28px;height:28px;color:#C9A55C;stroke-width:1.5;"></i>
+                    </div>
+                    <h3 data-en="Analytical Reagents" data-fr="Réactifs Analytiques">Analytical Reagents</h3>
+                    <p data-en="High-purity AR and ACS grade reagents for quantitative and qualitative analysis, titration, spectroscopy and chromatography." data-fr="Réactifs de haute pureté AR et ACS pour l'analyse quantitative et qualitative, la titration, la spectroscopie et la chromatographie.">High-purity AR and ACS grade reagents for quantitative and qualitative analysis, titration, spectroscopy and chromatography.</p>
+                </div>
+                <div class="product-card fade-up stagger-1">
+                    <div class="product-icon">
+                        <i data-lucide="microscope" style="width:28px;height:28px;color:#C9A55C;stroke-width:1.5;"></i>
+                    </div>
+                    <h3 data-en="Culture Media" data-fr="Milieux de Culture">Culture Media</h3>
+                    <p data-en="TM Media microbiological culture media — dehydrated, ready-to-use and supplemented — for clinical, food and pharmaceutical microbiology." data-fr="Milieux de culture microbiologiques TM Media — déshydratés, prêts à l'emploi et supplémentés — pour la microbiologie clinique, alimentaire et pharmaceutique.">TM Media microbiological culture media — dehydrated, ready-to-use and supplemented — for clinical, food and pharmaceutical microbiology.</p>
+                </div>
+                <div class="product-card fade-up stagger-2">
+                    <div class="product-icon">
+                        <i data-lucide="atom" style="width:28px;height:28px;color:#C9A55C;stroke-width:1.5;"></i>
+                    </div>
+                    <h3 data-en="Fine Chemicals" data-fr="Produits Chimiques Fins">Fine Chemicals</h3>
+                    <p data-en="Ultra-pure compounds for pharmaceutical synthesis, research and specialty applications. Custom grades available on request." data-fr="Composés ultra-purs pour la synthèse pharmaceutique, la recherche et les applications spécialisées. Grades personnalisés disponibles sur demande.">Ultra-pure compounds for pharmaceutical synthesis, research and specialty applications. Custom grades available on request.</p>
+                </div>
+                <div class="product-card fade-up stagger-3">
+                    <div class="product-icon">
+                        <i data-lucide="shield-check" style="width:28px;height:28px;color:#C9A55C;stroke-width:1.5;"></i>
+                    </div>
+                    <h3 data-en="Reference Standards" data-fr="Étalons de Référence">Reference Standards</h3>
+                    <p data-en="Certified reference materials and standards for instrument calibration, method validation and quality control in regulated environments." data-fr="Matériaux de référence certifiés et étalons pour l'étalonnage d'instruments, la validation de méthodes et le contrôle qualité en environnements réglementés.">Certified reference materials and standards for instrument calibration, method validation and quality control in regulated environments.</p>
+                </div>
+                <div class="product-card fade-up stagger-4">
+                    <div class="product-icon">
+                        <i data-lucide="droplets" style="width:28px;height:28px;color:#C9A55C;stroke-width:1.5;"></i>
+                    </div>
+                    <h3 data-en="Solvents &amp; Acids" data-fr="Solvants &amp; Acides" data-html="">Solvents &amp; Acids</h3>
+                    <p data-en="HPLC, GC and spectroscopy grade solvents. Mineral and organic acids in various concentrations for laboratory and industrial use." data-fr="Solvants de grade HPLC, GC et spectroscopie. Acides minéraux et organiques en diverses concentrations pour usage en laboratoire et industrie.">HPLC, GC and spectroscopy grade solvents. Mineral and organic acids in various concentrations for laboratory and industrial use.</p>
+                </div>
+                <div class="product-card fade-up stagger-5">
+                    <div class="product-icon">
+                        <i data-lucide="test-tubes" style="width:28px;height:28px;color:#C9A55C;stroke-width:1.5;"></i>
+                    </div>
+                    <h3 data-en="Lab Essentials" data-fr="Essentiels de Laboratoire">Lab Essentials</h3>
+                    <p data-en="Indicators, stains, buffers, salts and general-purpose laboratory chemicals — reliable supply for day-to-day laboratory operations." data-fr="Indicateurs, colorants, tampons, sels et produits chimiques à usage général — approvisionnement fiable pour les opérations quotidiennes du laboratoire.">Indicators, stains, buffers, salts and general-purpose laboratory chemicals — reliable supply for day-to-day laboratory operations.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WHY ORDER THROUGH ILS -->
+    <section class="why-ils" id="why-ils">
+        <div class="container">
+            <div class="section-header">
+                <span class="eyebrow fade-up" data-en="The ILS Advantage" data-fr="L'Avantage ILS">The ILS Advantage</span>
+                <h2 class="fade-up stagger-1" data-en="Why Order Through ILS?" data-fr="Pourquoi Commander via ILS ?">Why Order Through ILS?</h2>
+                <p class="fade-up stagger-2" data-en="Direct manufacturer access, European logistics and dedicated technical support." data-fr="Accès direct au fabricant, logistique européenne et support technique dédié.">Direct manufacturer access, European logistics and dedicated technical support.</p>
+            </div>
+            <div class="why-grid">
+                <div class="why-card fade-up">
+                    <div class="why-icon">
+                        <i data-lucide="badge-euro" style="width:26px;height:26px;color:#C9A55C;stroke-width:1.5;"></i>
+                    </div>
+                    <h3 data-en="Competitive Pricing" data-fr="Prix Compétitifs">Competitive Pricing</h3>
+                    <p data-en="Direct-from-manufacturer pricing without intermediaries. Significant savings on volume orders and annual contracts." data-fr="Prix directs du fabricant sans intermédiaires. Économies significatives sur les commandes en volume et les contrats annuels.">Direct-from-manufacturer pricing without intermediaries. Significant savings on volume orders and annual contracts.</p>
+                </div>
+                <div class="why-card fade-up stagger-1">
+                    <div class="why-icon">
+                        <i data-lucide="clock" style="width:26px;height:26px;color:#C9A55C;stroke-width:1.5;"></i>
+                    </div>
+                    <h3 data-en="Fast Delivery" data-fr="Livraison Rapide">Fast Delivery</h3>
+                    <p data-en="European stock for high-demand products. Regular shipments from India with optimized customs clearance and logistics." data-fr="Stock européen pour les produits à forte demande. Expéditions régulières depuis l'Inde avec dédouanement et logistique optimisés.">European stock for high-demand products. Regular shipments from India with optimized customs clearance and logistics.</p>
+                </div>
+                <div class="why-card fade-up stagger-2">
+                    <div class="why-icon">
+                        <i data-lucide="file-check" style="width:26px;height:26px;color:#C9A55C;stroke-width:1.5;"></i>
+                    </div>
+                    <h3 data-en="Full Documentation" data-fr="Documentation Complète">Full Documentation</h3>
+                    <p data-en="Certificates of Analysis (CoA), Safety Data Sheets (SDS) and regulatory documentation provided with every order." data-fr="Certificats d'Analyse (CoA), Fiches de Données de Sécurité (FDS) et documentation réglementaire fournis avec chaque commande.">Certificates of Analysis (CoA), Safety Data Sheets (SDS) and regulatory documentation provided with every order.</p>
+                </div>
+                <div class="why-card fade-up stagger-3">
+                    <div class="why-icon">
+                        <i data-lucide="headphones" style="width:26px;height:26px;color:#C9A55C;stroke-width:1.5;"></i>
+                    </div>
+                    <h3 data-en="Dedicated Support" data-fr="Support Dédié">Dedicated Support</h3>
+                    <p data-en="French-speaking technical team for product selection, custom formulations and after-sales support." data-fr="Équipe technique francophone pour la sélection de produits, les formulations personnalisées et le support après-vente.">French-speaking technical team for product selection, custom formulations and after-sales support.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- QUOTE REQUEST FORM -->
+    <section class="contact" id="quote">
+        <div class="container">
+            <div class="contact-grid">
+                <div class="contact-info fade-up">
+                    <h2 data-en="Request a Chemical Quote" data-fr="Demander un Devis Chimique">Request a Chemical Quote</h2>
+                    <p data-en="Tell us what you need — product references, quantities and delivery timeline. Our team will prepare a competitive quote within 24 hours." data-fr="Dites-nous ce dont vous avez besoin — références produits, quantités et délais de livraison. Notre équipe préparera un devis compétitif sous 24 heures.">Tell us what you need — product references, quantities and delivery timeline. Our team will prepare a competitive quote within 24 hours.</p>
+                    <div class="contact-details">
+                        <div class="contact-detail">
+                            <div class="contact-detail-icon">
+                                <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                            </div>
+                            <div class="contact-detail-text">
+                                <span class="contact-detail-label" data-en="Email" data-fr="E-mail">Email</span>
+                                <span class="contact-detail-value">sales@ils-link.com</span>
+                            </div>
+                        </div>
+                        <div class="contact-detail">
+                            <div class="contact-detail-icon">
+                                <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                            </div>
+                            <div class="contact-detail-text">
+                                <span class="contact-detail-label" data-en="Address" data-fr="Adresse">Address</span>
+                                <span class="contact-detail-value">30 Rue Branly, 90000 Belfort, France</span>
+                            </div>
+                        </div>
+                        <div class="contact-detail">
+                            <div class="contact-detail-icon">
+                                <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                            </div>
+                            <div class="contact-detail-text">
+                                <span class="contact-detail-label" data-en="Division" data-fr="Division">Division</span>
+                                <span class="contact-detail-value" data-en="Chemical Products — SRL India" data-fr="Produits Chimiques — SRL India">Chemical Products — SRL India</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form fade-up stagger-2">
+                    <form id="quoteForm" action="send.php" method="POST">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="name" data-en="Full Name" data-fr="Nom Complet">Full Name</label>
+                                <input type="text" id="name" name="name" placeholder="Dr. Marie Dupont" data-en="Dr. Marie Dupont" data-fr="Dr. Marie Dupont" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="company" data-en="Laboratory / Institution" data-fr="Laboratoire / Institution">Laboratory / Institution</label>
+                                <input type="text" id="company" name="company" placeholder="CNRS, Université de Strasbourg..." data-en="CNRS, Université de Strasbourg..." data-fr="CNRS, Université de Strasbourg..." required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email" data-en="Email" data-fr="E-mail">Email</label>
+                                <input type="email" id="email" name="email" placeholder="marie.dupont@institution.fr" data-en="marie.dupont@institution.fr" data-fr="marie.dupont@institution.fr" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone" data-en="Phone" data-fr="Téléphone">Phone</label>
+                                <input type="tel" id="phone" name="phone" placeholder="+33 3 84 00 00 00" data-en="+33 3 84 00 00 00" data-fr="+33 3 84 00 00 00">
+                            </div>
+                            <div class="form-group full-width">
+                                <label for="products-needed" data-en="Products Needed" data-fr="Produits Recherchés">Products Needed</label>
+                                <select id="products-needed" name="products-needed">
+                                    <option value="" disabled selected data-en="Select a product category" data-fr="Sélectionner une catégorie de produit">Select a product category</option>
+                                    <option value="reagents" data-en="Analytical Reagents" data-fr="Réactifs Analytiques">Analytical Reagents</option>
+                                    <option value="culture-media" data-en="Culture Media (TM Media)" data-fr="Milieux de Culture (TM Media)">Culture Media (TM Media)</option>
+                                    <option value="fine-chemicals" data-en="Fine Chemicals" data-fr="Produits Chimiques Fins">Fine Chemicals</option>
+                                    <option value="reference-standards" data-en="Reference Standards" data-fr="Étalons de Référence">Reference Standards</option>
+                                    <option value="solvents" data-en="Solvents & Acids" data-fr="Solvants & Acides">Solvents & Acids</option>
+                                    <option value="lab-essentials" data-en="Lab Essentials" data-fr="Essentiels de Laboratoire">Lab Essentials</option>
+                                    <option value="multiple" data-en="Multiple Categories" data-fr="Catégories Multiples">Multiple Categories</option>
+                                </select>
+                            </div>
+                            <div class="form-group full-width">
+                                <label for="message" data-en="Details &amp; Product References" data-fr="Détails &amp; Références Produits" data-html="">Details &amp; Product References</label>
+                                <textarea id="message" name="message" placeholder="List product names, CAS numbers, quantities and desired delivery date..." data-en="List product names, CAS numbers, quantities and desired delivery date..." data-fr="Listez les noms de produits, numéros CAS, quantités et date de livraison souhaitée..." rows="5"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-submit">
+                            <button type="submit" class="btn btn-gold" data-en="Submit Quote Request" data-fr="Envoyer la Demande de Devis" data-html="">
+                                Submit Quote Request
+                                <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="nav-logo">
+                        <span class="nav-logo-text">ILS</span>
+                        <span class="nav-logo-sub">International Link Solutions</span>
+                    </div>
+                    <p class="footer-tagline" data-en="Precision in Lab, Metrology & Energy. Bridging world-class manufacturers with high-growth markets across three continents." data-fr="Précision en Laboratoire, Métrologie & Énergie. Connecter les fabricants de classe mondiale aux marchés à forte croissance sur trois continents.">Precision in Lab, Metrology & Energy. Bridging world-class manufacturers with high-growth markets across three continents.</p>
+                </div>
+                <div class="footer-col">
+                    <h4 data-en="Services" data-fr="Services">Services</h4>
+                    <ul>
+                        <li><a href="laboratory.html" data-en="Laboratory Solutions" data-fr="Solutions Laboratoire">Laboratory Solutions</a></li>
+                        <li><a href="chemistry.html" data-en="Chemical Products" data-fr="Produits Chimiques">Chemical Products</a></li>
+                        <li><a href="metrology.html" data-en="Metrology" data-fr="Métrologie">Metrology</a></li>
+                        <li><a href="energy.html" data-en="Energy Advisory" data-fr="Conseil en Énergie">Energy Advisory</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4 data-en="Company" data-fr="Entreprise">Company</h4>
+                    <ul>
+                        <li><a href="about.html" data-en="About ILS" data-fr="À Propos d'ILS">About ILS</a></li>
+                        <li><a href="index.html#partners" data-en="Partners" data-fr="Partenaires">Partners</a></li>
+                        <li><a href="contact.html" data-en="Contact" data-fr="Contact">Contact</a></li>
+                        <li><a href="index.html" data-en="Home" data-fr="Accueil">Home</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4 data-en="Legal" data-fr="Juridique">Legal</h4>
+                    <ul>
+                        <li><a href="privacy-policy.html" data-en="Privacy Policy" data-fr="Politique de Confidentialité">Privacy Policy</a></li>
+                        <li><a href="terms-of-service.html" data-en="Terms of Service" data-fr="Conditions d'Utilisation">Terms of Service</a></li>
+                        <li><a href="cookie-policy.html" data-en="Cookie Policy" data-fr="Politique de Cookies">Cookie Policy</a></li>
+                        <li><a href="legal-notice.html" data-en="Legal Notice" data-fr="Mentions Légales">Legal Notice</a></li>
+                        <li style="margin-top:0.5rem;font-size:0.75rem;color:rgba(255,255,255,0.3);line-height:1.5;">SIRET: 928 301 340 00016<br>TVA: FR82928301340</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 International Link Solutions &mdash; RCS Belfort 928 301 340 &mdash; 30 Rue Branly, 90000 Belfort, France &mdash; sales@ils-link.com</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ========================================
+         JAVASCRIPT
+         ======================================== -->
+    <script>
+        (function() {
+            'use strict';
+
+            /* ----------------------------------------
+               NAVBAR SCROLL STATE
+               ---------------------------------------- */
+            var navbar = document.getElementById('navbar');
+            var scrollThreshold = 80;
+
+            function checkNavbar() {
+                if (window.scrollY > scrollThreshold) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            }
+
+            window.addEventListener('scroll', checkNavbar, { passive: true });
+            checkNavbar();
+
+            /* ----------------------------------------
+               MOBILE MENU
+               ---------------------------------------- */
+            var hamburger = document.getElementById('hamburger');
+            var mobileMenu = document.getElementById('mobileMenu');
+
+            hamburger.addEventListener('click', function() {
+                hamburger.classList.toggle('active');
+                mobileMenu.classList.toggle('open');
+                var isOpen = mobileMenu.classList.contains('open');
+                hamburger.setAttribute('aria-expanded', isOpen);
+                document.body.style.overflow = isOpen ? 'hidden' : '';
+
+                if (isOpen) {
+                    var links = mobileMenu.querySelectorAll('a');
+                    links.forEach(function(link, i) {
+                        link.style.transitionDelay = (0.1 + i * 0.06) + 's';
+                        link.style.transition = 'opacity 0.4s cubic-bezier(0.32, 0.72, 0, 1), transform 0.5s cubic-bezier(0.32, 0.72, 0, 1)';
+                    });
+                }
+            });
+
+            mobileMenu.querySelectorAll('a').forEach(function(link) {
+                link.addEventListener('click', function() {
+                    hamburger.classList.remove('active');
+                    mobileMenu.classList.remove('open');
+                    hamburger.setAttribute('aria-expanded', 'false');
+                    document.body.style.overflow = '';
+                });
+            });
+
+            /* ----------------------------------------
+               INTERSECTION OBSERVER — FADE IN
+               ---------------------------------------- */
+            var fadeObserver = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        fadeObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+            document.querySelectorAll('.fade-up').forEach(function(el) {
+                fadeObserver.observe(el);
+            });
+
+            /* ----------------------------------------
+               FORM HANDLER
+               ---------------------------------------- */
+            var quoteForm = document.getElementById('quoteForm');
+            if (quoteForm) {
+                quoteForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    var btn = quoteForm.querySelector('.btn');
+                    var originalHTML = btn.innerHTML;
+                    btn.innerHTML = 'Sending...';
+                    btn.disabled = true;
+                    btn.style.opacity = '0.7';
+
+                    var formData = new FormData(quoteForm);
+                    fetch('send.php', { method: 'POST', body: formData })
+                    .then(function(r) { return r.json(); })
+                    .then(function(data) {
+                        if (data && data.success) {
+                            btn.innerHTML = 'Quote Request Sent ✓';
+                            btn.style.background = '#2d6a4f';
+                            btn.style.opacity = '1';
+                            quoteForm.reset();
+                            setTimeout(function() {
+                                btn.innerHTML = originalHTML;
+                                btn.style.background = '';
+                                btn.disabled = false;
+                            }, 4000);
+                        } else {
+                            btn.innerHTML = 'Error — try again';
+                            btn.style.background = '#c0392b';
+                            btn.style.opacity = '1';
+                            setTimeout(function() {
+                                btn.innerHTML = originalHTML;
+                                btn.style.background = '';
+                                btn.disabled = false;
+                            }, 4000);
+                        }
+                    })
+                    .catch(function() {
+                        btn.innerHTML = 'Network error';
+                        btn.style.background = '#c0392b';
+                        btn.style.opacity = '1';
+                        setTimeout(function() {
+                            btn.innerHTML = originalHTML;
+                            btn.style.background = '';
+                            btn.disabled = false;
+                        }, 4000);
+                    });
+                });
+            }
+
+            /* ----------------------------------------
+               SMOOTH SCROLL FOR ANCHOR LINKS
+               ---------------------------------------- */
+            document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+                anchor.addEventListener('click', function(e) {
+                    var targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    var target = document.querySelector(targetId);
+                    if (target) {
+                        e.preventDefault();
+                        var offset = navbar.offsetHeight + 16;
+                        var top = target.getBoundingClientRect().top + window.scrollY - offset;
+                        window.scrollTo({ top: top, behavior: 'smooth' });
+                    }
+                });
+            });
+
+            /* ----------------------------------------
+               LANGUAGE SWITCHER
+               ---------------------------------------- */
+            function setLanguage(lang) {
+                document.querySelectorAll('[data-en]').forEach(function(el) {
+                    var text = lang === 'fr' ? el.dataset.fr : el.dataset.en;
+                    if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+                        el.placeholder = text;
+                    } else if (el.dataset.html !== undefined) {
+                        el.innerHTML = text;
+                    } else {
+                        el.textContent = text;
+                    }
+                });
+                document.querySelectorAll('.lang-btn').forEach(function(btn) {
+                    btn.classList.toggle('active', btn.dataset.lang === lang);
+                });
+                localStorage.setItem('ils-lang', lang);
+            }
+
+            document.querySelectorAll('.lang-btn').forEach(function(btn) {
+                btn.addEventListener('click', function() {
+                    setLanguage(btn.dataset.lang);
+                });
+            });
+
+            var saved = localStorage.getItem('ils-lang') || 'en';
+            if (saved === 'fr') setLanguage('fr');
+
+        })();
+    </script>
+
+<!-- SHOP FLOATING BUTTON -->
+<style>
+    .shop-float {
+        position: fixed;
+        bottom: 2rem;
+        right: 2rem;
+        z-index: 9998;
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+        background: linear-gradient(135deg, var(--gold), var(--gold-light));
+        color: var(--navy);
+        padding: 0.85rem 1.4rem;
+        border-radius: 50px;
+        font-family: 'Inter', sans-serif;
+        font-size: 0.8rem;
+        font-weight: 700;
+        letter-spacing: 0.05em;
+        text-decoration: none;
+        box-shadow: 0 8px 32px rgba(201,165,92,0.4);
+        transition: all 0.3s cubic-bezier(0.32, 0.72, 0, 1);
+        animation: pulse-gold 2.5s ease-in-out infinite;
+    }
+
+    .shop-float:hover {
+        transform: translateY(-3px) scale(1.05);
+        box-shadow: 0 12px 40px rgba(201,165,92,0.6);
+        animation: none;
+    }
+
+    .shop-float svg {
+        width: 18px;
+        height: 18px;
+        flex-shrink: 0;
+    }
+
+    .shop-float-badge {
+        background: var(--navy);
+        color: var(--gold);
+        font-size: 0.65rem;
+        font-weight: 700;
+        padding: 2px 7px;
+        border-radius: 20px;
+        letter-spacing: 0.08em;
+    }
+
+    @keyframes pulse-gold {
+        0%, 100% {
+            box-shadow: 0 8px 32px rgba(201,165,92,0.4);
+        }
+        50% {
+            box-shadow: 0 8px 48px rgba(201,165,92,0.75),
+                        0 0 0 8px rgba(201,165,92,0.1);
+        }
+    }
+
+    @media (max-width: 768px) {
+        .shop-float {
+            bottom: 1.25rem;
+            right: 1.25rem;
+            padding: 0.75rem 1.1rem;
+            font-size: 0.75rem;
+        }
+    }
+</style>
+
+<a href="/shop/index.html" class="shop-float" aria-label="Browse ILS Shop">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
+        <line x1="3" y1="6" x2="21" y2="6"/>
+        <path d="M16 10a4 4 0 01-8 0"/>
+    </svg>
+    <span data-en="Browse Shop" data-fr="Boutique">Browse Shop</span>
+</a>
+<!-- END SHOP FLOATING BUTTON -->
+
+
+<!-- Scroll to top button -->
+<style>
+    .scroll-top {
+        position: fixed;
+        bottom: 24px;
+        right: 24px;
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        background: #0A1628;
+        color: #C9A55C;
+        border: 1px solid rgba(201, 165, 92, 0.4);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(10px);
+        transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease, background 0.2s, border-color 0.2s;
+        z-index: 998;
+        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+    }
+    .scroll-top.visible { opacity: 1; visibility: visible; transform: translateY(0); }
+    .scroll-top:hover { background: #132138; border-color: rgba(201, 165, 92, 0.8); transform: translateY(-2px); }
+    .scroll-top:focus-visible { outline: 2px solid #C9A55C; outline-offset: 3px; }
+    .scroll-top svg { width: 18px; height: 18px; }
+    /* When shop-float is present, push scroll-top above it */
+    body:has(.shop-float) .scroll-top { bottom: 92px; }
+    @media (max-width: 768px) {
+        .scroll-top { width: 44px; height: 44px; bottom: 20px; right: 20px; }
+        body:has(.shop-float) .scroll-top { bottom: 80px; }
+    }
+</style>
+<button class="scroll-top" id="scrollTopBtn" aria-label="Scroll to top" type="button">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5"/><path d="M5 12l7-7 7 7"/></svg>
+</button>
+<script>
+    (function() {
+        var btn = document.getElementById('scrollTopBtn');
+        if (!btn) return;
+        function toggle() {
+            if (window.scrollY > 400) btn.classList.add('visible');
+            else btn.classList.remove('visible');
+        }
+        window.addEventListener('scroll', toggle, { passive: true });
+        window.addEventListener('pageshow', toggle);
+        btn.addEventListener('click', function() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+        toggle();
+    })();
+</script>
+<!-- /Scroll to top -->
+</body>
+<script>lucide.createIcons();</script>
+</html>

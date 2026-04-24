@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ILS Shop — Product Detail</title>
+  <link rel="stylesheet" href="shop.css">
+  <style>
+    @media (max-width: 768px) {
+      .nav-logo-sub { display: none !important; }
+      .nav-logo-sep { display: none !important; }
+      .nav-shop-crumb { display: none !important; }
+      .nav-inner { justify-content: space-between !important; }
+      .nav-right { gap: 12px !important; margin-left: auto !important; }
+      .quote-btn { padding: 9px 12px !important; gap: 0 !important; }
+      .quote-btn svg { width: 20px !important; height: 20px !important; }
+      .quote-btn span[data-en] { display: none !important; }
+    }
+  </style>
+  <style>
+    /* ---- BREADCRUMB ---- */
+    .breadcrumb {
+      background: var(--white);
+      border-bottom: 1px solid rgba(0,0,0,.07);
+      padding: 0 48px;
+    }
+    .breadcrumb-inner {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 0;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+    .breadcrumb a {
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color var(--transition);
+    }
+    .breadcrumb a:hover { color: var(--gold); }
+    .breadcrumb-sep { opacity: .4; }
+    .breadcrumb-current { color: var(--text-primary); font-weight: 500; }
+
+    /* ---- PRODUCT DETAIL LAYOUT ---- */
+    .product-detail {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 56px 48px 80px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 72px;
+      align-items: start;
+    }
+
+    /* Left — image */
+    .product-gallery {
+      position: sticky;
+      top: calc(var(--nav-h) + 24px);
+    }
+    .product-main-img {
+      aspect-ratio: 1;
+      background: var(--navy);
+      border-radius: var(--radius-lg);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      position: relative;
+      overflow: hidden;
+      background-image: radial-gradient(ellipse 80% 60% at 50% 30%, rgba(201,165,92,.1) 0%, transparent 70%);
+      border: 1px solid var(--border-strong);
+    }
+    .product-main-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      padding: 40px;
+    }
+    .product-brand-large {
+      font-family: var(--font-serif);
+      font-size: 36px;
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: .04em;
+    }
+    .product-img-grid-icon { opacity: .2; }
+
+    .pdf-download-btn {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 20px;
+      padding: 14px 24px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      background: var(--white);
+      border: 1.5px solid rgba(0,0,0,.1);
+      border-radius: 8px;
+      text-decoration: none;
+      transition: var(--transition);
+      width: 100%;
+      justify-content: center;
+    }
+    .pdf-download-btn:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+      background: rgba(201,165,92,.04);
+    }
+    .pdf-download-btn.disabled {
+      opacity: .4;
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+
+    /* Right — info */
+    .product-info { display: flex; flex-direction: column; gap: 28px; }
+
+    .product-brand-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 5px 14px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      border: 1px solid var(--border-strong);
+      border-radius: 20px;
+      width: fit-content;
+    }
+
+    .product-detail-name {
+      font-family: var(--font-serif);
+      font-size: clamp(28px, 3vw, 40px);
+      font-weight: 600;
+      color: var(--navy);
+      line-height: 1.2;
+    }
+
+    .product-detail-ref {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+    .product-detail-ref strong {
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+
+    .product-detail-desc {
+      font-size: 16px;
+      color: var(--text-secondary);
+      line-height: 1.75;
+      padding-bottom: 28px;
+      border-bottom: 1px solid rgba(0,0,0,.07);
+    }
+
+    /* Specs table */
+    .specs-table { width: 100%; border-collapse: collapse; }
+    .specs-table tr { border-bottom: 1px solid rgba(0,0,0,.06); }
+    .specs-table tr:last-child { border-bottom: none; }
+    .specs-table td {
+      padding: 12px 0;
+      font-size: 14px;
+    }
+    .specs-table td:first-child {
+      color: var(--text-muted);
+      width: 40%;
+      font-weight: 500;
+    }
+    .specs-table td:last-child {
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+
+    /* CTA block */
+    .product-cta-block {
+      background: var(--bg);
+      border: 1px solid rgba(0,0,0,.07);
+      border-radius: var(--radius);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .product-cta-label {
+      font-size: 12px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+    .add-to-quote-large {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      padding: 16px;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--navy);
+      background: var(--gold);
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-family: var(--font-sans);
+      letter-spacing: .02em;
+      transition: var(--transition);
+    }
+    .add-to-quote-large:hover {
+      background: var(--gold-light);
+      transform: translateY(-1px);
+      box-shadow: 0 8px 24px rgba(201,165,92,.3);
+    }
+    .add-to-quote-large.added {
+      background: #2d6a4f;
+      color: var(--white);
+    }
+    .back-to-cat-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 13px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      background: none;
+      border: 1.5px solid rgba(0,0,0,.1);
+      border-radius: 8px;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+    .back-to-cat-btn:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+
+    /* Related products */
+    .related-section {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 48px 80px;
+    }
+    .related-header {
+      display: flex;
+      align-items: flex-end;
+      margin-bottom: 28px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid rgba(201,165,92,.2);
+    }
+
+    /* Not found state */
+    .product-not-found {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 120px 48px;
+      text-align: center;
+      display: none;
+    }
+    .product-not-found.visible { display: block; }
+    .product-not-found h2 {
+      font-family: var(--font-serif);
+      font-size: 32px;
+      color: var(--navy);
+      margin-bottom: 12px;
+    }
+    .product-not-found p { color: var(--text-muted); font-size: 16px; margin-bottom: 32px; }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .product-detail { gap: 48px; padding: 40px 32px 64px; }
+      .breadcrumb { padding: 0 32px; }
+      .related-section { padding: 0 32px 64px; }
+    }
+    @media (max-width: 768px) {
+      .product-detail { grid-template-columns: 1fr; gap: 32px; padding: 24px 20px 56px; }
+      .product-gallery { position: static; }
+      .breadcrumb { padding: 0 20px; }
+      .related-section { padding: 0 20px 56px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="../index.html?skip=1" class="nav-logo">
+        <span class="nav-logo-mark">ILS</span>
+        <div class="nav-logo-sep"></div>
+        <span class="nav-logo-sub">International<br>Link Solutions</span>
+      </a>
+      <span class="nav-shop-crumb" data-en="Product" data-fr="Produit">Product</span>
+      <ul class="nav-links">
+        <li><a href="index.html" data-en="All Products" data-fr="Tous les produits">All Products</a></li>
+        <li><a href="laboratory.html" data-en="Laboratory" data-fr="Laboratoire">Laboratory</a></li>
+        <li><a href="chemistry.html" data-en="Chemistry" data-fr="Chimie">Chemistry</a></li>
+      </ul>
+      <div class="nav-right">
+        <button class="lang-btn active" data-lang="en">EN</button>
+        <span class="lang-sep">|</span>
+        <button class="lang-btn" data-lang="fr">FR</button>
+        <a href="quote-list.html" class="quote-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/></svg>
+          <span data-en="Quote List" data-fr="Demande de devis">Quote List</span>
+          <span class="quote-count" data-count="0">0</span>
+        </a>
+        <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </nav>
+
+  <div id="mobileMenu">
+    <button class="mobile-close" id="mobileClose">&#x2715;</button>
+    <a href="index.html">All Products</a>
+    <a href="laboratory.html">Laboratory</a>
+    <a href="chemistry.html">Chemistry</a>
+    <a href="quote-list.html" class="btn btn-gold" style="margin-top:16px;">Quote List</a>
+  </div>
+
+  <!-- BREADCRUMB -->
+  <div class="breadcrumb" id="breadcrumb" style="margin-top:var(--nav-h);">
+    <div class="breadcrumb-inner">
+      <a href="index.html" data-en="Shop" data-fr="Boutique">Shop</a>
+      <span class="breadcrumb-sep">›</span>
+      <a href="index.html" id="breadcrumbCat">Laboratory</a>
+      <span class="breadcrumb-sep">›</span>
+      <span class="breadcrumb-current" id="breadcrumbName">—</span>
+    </div>
+  </div>
+
+  <!-- PRODUCT DETAIL -->
+  <div class="product-detail" id="productDetail" style="display:none;">
+
+    <!-- Left: Image -->
+    <div class="product-gallery">
+      <div class="product-main-img" id="productImg">
+        <div class="product-brand-large" id="imgBrandName"></div>
+        <svg class="product-img-grid-icon" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#C9A55C" stroke-width="1"><path d="M3 3h18v4H3zm0 4v14h18V7"/><path d="M8 11h8M8 15h5"/></svg>
+      </div>
+      <a href="#" class="pdf-download-btn disabled" id="pdfBtn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        <span data-en="Download Datasheet (PDF)" data-fr="Télécharger la fiche technique (PDF)">Download Datasheet (PDF)</span>
+      </a>
+    </div>
+
+    <!-- Right: Info -->
+    <div class="product-info">
+      <div>
+        <div class="product-brand-tag" id="productBrandTag">Brand</div>
+      </div>
+      <h1 class="product-detail-name" id="productName">Product Name</h1>
+      <div class="product-detail-ref">
+        <span data-en="Reference:" data-fr="Référence :">Reference:</span>
+        <strong id="productRef">—</strong>
+      </div>
+      <p class="product-detail-desc" id="productDesc">—</p>
+
+      <!-- Specs -->
+      <div>
+        <div class="label-overline" style="margin-bottom:16px;" data-en="Technical Specifications" data-fr="Spécifications Techniques">Technical Specifications</div>
+        <table class="specs-table" id="specsTable"></table>
+      </div>
+
+      <!-- CTA -->
+      <div class="product-cta-block">
+        <div class="product-cta-label" data-en="ILS operates on a B2B quote model. Add this product to your quote list and our team will respond within 24 hours with tailored pricing." data-fr="ILS fonctionne sur un modèle de devis B2B. Ajoutez ce produit à votre liste et notre équipe répondra sous 24h avec une tarification adaptée.">
+          ILS operates on a B2B quote model. Add this product to your quote list and our team will respond within 24 hours with tailored pricing.
+        </div>
+        <button class="add-to-quote-large" id="addToQuoteBtn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/></svg>
+          <span data-en="Add to Quote List" data-fr="Ajouter à la liste de devis">Add to Quote List</span>
+        </button>
+        <a href="quote-list.html" class="back-to-cat-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/></svg>
+          <span data-en="View Quote List" data-fr="Voir ma liste de devis">View Quote List</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- NOT FOUND -->
+  <div class="product-not-found" id="productNotFound">
+    <h2 data-en="Product Not Found" data-fr="Produit introuvable">Product Not Found</h2>
+    <p data-en="The product you're looking for doesn't exist or has been removed." data-fr="Le produit que vous cherchez n'existe pas ou a été supprimé.">The product you're looking for doesn't exist or has been removed.</p>
+    <a href="index.html" class="btn btn-gold" data-en="Back to Catalogue" data-fr="Retour au catalogue">Back to Catalogue</a>
+  </div>
+
+  <!-- RELATED PRODUCTS -->
+  <section class="related-section" id="relatedSection" style="display:none;">
+    <div class="related-header">
+      <div>
+        <div class="label-overline" id="relatedOverline">More from Brand</div>
+        <h2 style="font-family:var(--font-serif);font-size:24px;font-weight:600;color:var(--navy);margin-top:4px;" data-en="Related Products" data-fr="Produits similaires">Related Products</h2>
+      </div>
+    </div>
+    <div class="product-grid" id="relatedGrid"></div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <div class="footer-brand-name">ILS</div>
+          <div class="footer-brand-sub">International Link Solutions</div>
+          <p class="footer-tagline">Precision in Lab, Metrology &amp; Energy.</p>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-title">Shop</div>
+          <ul>
+            <li><a href="index.html">All Products</a></li>
+            <li><a href="laboratory.html">Laboratory</a></li>
+            <li><a href="chemistry.html">Chemistry</a></li>
+            <li><a href="quote-list.html">Quote List</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <div class="footer-col-title">Legal</div>
+          <ul><li><a href="../privacy.html">Privacy Policy</a></li><li><a href="../terms.html">Terms</a></li></ul>
+          <div style="margin-top:16px;font-size:12px;color:rgba(255,255,255,.25);line-height:1.6;">SIRET: 928 301 340 00016<br>TVA: FR82928301340</div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copy">© 2026 International Link Solutions — 30 Rue Branly, 90000 Belfort, France</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- TOAST -->
+  <div class="quote-toast" id="quoteToast">
+    <div class="toast-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+    <div class="toast-text">
+      <div class="toast-title">Product added</div>
+      <div class="toast-sub">Added to your quote list</div>
+    </div>
+    <a href="quote-list.html" class="toast-link">View list →</a>
+  </div>
+
+  <script src="products.js?v=20260420b"></script>
+  <script src="shop.js"></script>
+  <script>
+  (function () {
+    var lang = localStorage.getItem('ils-lang') || 'en';
+    var quoteList = JSON.parse(localStorage.getItem('ils-quote') || '[]');
+
+    // Get product ID from URL
+    var params = new URLSearchParams(window.location.search);
+    var id = params.get('id');
+    var product = ILS_PRODUCTS.find(function (p) { return p.id === id; });
+
+    if (!product) {
+      document.getElementById('productNotFound').classList.add('visible');
+      document.title = 'ILS Shop — Product Not Found';
+      return;
+    }
+
+    // Show detail
+    document.getElementById('productDetail').style.display = 'grid';
+    document.title = 'ILS Shop — ' + (lang === 'fr' && product.nameFr ? product.nameFr : product.nameEn);
+
+    var name = lang === 'fr' && product.nameFr ? product.nameFr : product.nameEn;
+    var desc = lang === 'fr' && product.descriptionFr ? product.descriptionFr : product.description;
+    var specs = lang === 'fr' && product.specsFr ? product.specsFr : product.specs;
+    var catLabel = product.category === 'laboratory'
+      ? (lang === 'fr' ? 'Laboratoire' : 'Laboratory')
+      : (lang === 'fr' ? 'Chimie' : 'Chemistry');
+    var catLink = product.category === 'laboratory' ? 'laboratory.html' : 'chemistry.html';
+
+    // Breadcrumb
+    var bcCat = document.getElementById('breadcrumbCat');
+    bcCat.textContent = catLabel;
+    bcCat.href = catLink;
+    document.getElementById('breadcrumbName').textContent = name;
+
+    // Brand tag
+    document.getElementById('productBrandTag').textContent = product.brand;
+    document.getElementById('imgBrandName').textContent = product.brand;
+
+    // Name / ref / desc
+    document.getElementById('productName').textContent = name;
+    document.getElementById('productRef').textContent = product.ref;
+    document.getElementById('productDesc').textContent = desc;
+
+    // Image
+    if (product.image) {
+      var img = document.createElement('img');
+      img.src = product.image;
+      img.alt = name;
+      var imgContainer = document.getElementById('productImg');
+      imgContainer.innerHTML = '';
+      imgContainer.appendChild(img);
+    }
+
+    // PDF
+    if (product.pdf) {
+      var pdfBtn = document.getElementById('pdfBtn');
+      pdfBtn.href = product.pdf;
+      pdfBtn.classList.remove('disabled');
+      pdfBtn.setAttribute('download', '');
+    }
+
+    // Specs table
+    var specsHtml = '';
+    var specLabels = {
+      en: {
+        'temperature': 'Temperature Range',
+        'volume': 'Volume / Capacity',
+        'readout': 'Readout',
+        'capacity': 'Capacity',
+        'speed': 'Max Speed',
+        'purity': 'Purity',
+        'size': 'Package Size',
+        'ph': 'pH Value',
+        'range': 'Measurement Range',
+        'accuracy': 'Accuracy'
+      }
+    };
+    specs.forEach(function (spec, i) {
+      specsHtml += '<tr><td>' + (lang === 'fr' ? 'Caractéristique ' : 'Specification ') + (i + 1) + '</td><td>' + spec + '</td></tr>';
+    });
+    // Extra structured specs
+    specsHtml += '<tr><td>' + (lang === 'fr' ? 'Référence' : 'Reference') + '</td><td>' + product.ref + '</td></tr>';
+    specsHtml += '<tr><td>' + (lang === 'fr' ? 'Marque' : 'Brand') + '</td><td>' + product.brand + '</td></tr>';
+    specsHtml += '<tr><td>' + (lang === 'fr' ? 'Catégorie' : 'Category') + '</td><td>' + catLabel + '</td></tr>';
+    document.getElementById('specsTable').innerHTML = specsHtml;
+
+    // Add to quote button
+    var addBtn = document.getElementById('addToQuoteBtn');
+    var isInQuote = quoteList.some(function (item) { return item.id === product.id; });
+
+    function updateBtnState(inQuote) {
+      if (inQuote) {
+        addBtn.classList.add('added');
+        addBtn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>' + (lang === 'fr' ? 'Dans la liste de devis' : 'In Quote List') + '</span>';
+      } else {
+        addBtn.classList.remove('added');
+        addBtn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/></svg><span>' + (lang === 'fr' ? 'Ajouter à la liste de devis' : 'Add to Quote List') + '</span>';
+      }
+    }
+    updateBtnState(isInQuote);
+
+    addBtn.addEventListener('click', function () {
+      quoteList = JSON.parse(localStorage.getItem('ils-quote') || '[]');
+      var idx = quoteList.findIndex(function (item) { return item.id === product.id; });
+      if (idx >= 0) {
+        quoteList.splice(idx, 1);
+        localStorage.setItem('ils-quote', JSON.stringify(quoteList));
+        updateBtnState(false);
+      } else {
+        quoteList.push({ id: product.id, brand: product.brand, name: name, ref: product.ref });
+        localStorage.setItem('ils-quote', JSON.stringify(quoteList));
+        updateBtnState(true);
+        // Show toast
+        var toast = document.getElementById('quoteToast');
+        var toastTitle = toast.querySelector('.toast-title');
+        if (toastTitle) toastTitle.textContent = name;
+        toast.classList.add('show');
+        setTimeout(function () { toast.classList.remove('show'); }, 3500);
+      }
+      // Update navbar count
+      document.querySelectorAll('.quote-count').forEach(function (el) {
+        el.textContent = quoteList.length;
+        el.dataset.count = quoteList.length;
+      });
+    });
+
+    // Related products (same brand, different product)
+    var related = ILS_PRODUCTS.filter(function (p) {
+      return p.brand === product.brand && p.id !== product.id;
+    }).slice(0, 4);
+
+    if (related.length > 0) {
+      var relSection = document.getElementById('relatedSection');
+      relSection.style.display = 'block';
+      document.getElementById('relatedOverline').textContent =
+        (lang === 'fr' ? 'Plus de ' : 'More from ') + product.brand;
+
+      var relHtml = related.map(function (p) {
+        var rName = lang === 'fr' && p.nameFr ? p.nameFr : p.nameEn;
+        var rSpecs = lang === 'fr' && p.specsFr ? p.specsFr : p.specs;
+        var rInQuote = quoteList.some(function (item) { return item.id === p.id; });
+        var rImg = p.image
+          ? '<img src="' + p.image + '" alt="' + rName + '" loading="lazy" style="width:100%;height:100%;object-fit:contain;">'
+          : '<div class="product-img-brand">' + p.brand + '</div>';
+        return '<div class="product-card fade-up">' +
+          '<div class="product-img">' +
+            '<span class="product-brand-badge">' + p.brand + '</span>' +
+            rImg +
+          '</div>' +
+          '<div class="product-body">' +
+            '<div class="product-ref">' + p.ref + '</div>' +
+            '<div class="product-name">' + rName + '</div>' +
+            '<div class="product-specs">' + rSpecs.slice(0,2).map(function(s){ return '<span class="spec-tag">'+s+'</span>'; }).join('') + '</div>' +
+          '</div>' +
+          '<div class="product-actions">' +
+            '<a href="product.html?id=' + p.id + '" class="btn btn-outline btn-sm" style="flex:1;justify-content:center;">' + (lang === 'fr' ? 'Voir le produit' : 'View Product') + '</a>' +
+          '</div>' +
+        '</div>';
+      }).join('');
+      document.getElementById('relatedGrid').innerHTML = relHtml;
+    }
+
+    // Navbar always scrolled on product page (overrides shop.js transparent-at-top behaviour)
+    var navbar = document.getElementById('navbar');
+    navbar.classList.add('scrolled');
+    window.addEventListener('scroll', function() { navbar.classList.add('scrolled'); }, { passive: true });
+
+  })();
+  </script>
+</body>
+</html>

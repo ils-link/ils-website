@@ -1,0 +1,2512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="canonical" href="https://ils-link.com/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ILS - International Link Solutions | Laboratory, Metrology & Energy</title>
+    <meta name="description" content="Équipements de laboratoire, produits chimiques, métrologie mobile et conseil énergie en France. ILS — votre partenaire scientifique et industriel expert.">
+    <meta property="og:title" content="ILS - International Link Solutions">
+    <meta property="og:description" content="Expert Solutions in Laboratory, Metrology & Energy">
+    <meta property="og:type" content="website">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="192x192" href="favicon-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="favicon-512x512.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+    <style>
+        /* ========================================
+           CSS RESET & CUSTOM PROPERTIES
+           ======================================== */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --navy: #0A1628;
+            --navy-light: #111d33;
+            --gold: #C9A55C;
+            --gold-light: #d4b876;
+            --gold-dark: #b08f47;
+            --bg: #F8F7F4;
+            --charcoal: #1a1a2e;
+            --text-primary: #1a1a2e;
+            --text-secondary: #5a5a6e;
+            --text-muted: #8a8a9a;
+            --white: #ffffff;
+            --border: rgba(201, 165, 92, 0.15);
+            --ease-premium: cubic-bezier(0.32, 0.72, 0, 1);
+            --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background-color: var(--bg);
+            color: var(--text-primary);
+            line-height: 1.65;
+            overflow-x: hidden;
+        }
+
+        /* ========================================
+           TYPOGRAPHY
+           ======================================== */
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', Georgia, serif;
+            line-height: 1.15;
+            letter-spacing: -0.02em;
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 5.5vw, 4.25rem);
+            font-weight: 600;
+        }
+
+        h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 600;
+        }
+
+        h3 {
+            font-size: clamp(1.25rem, 2vw, 1.5rem);
+            font-weight: 600;
+        }
+
+        p {
+            max-width: 65ch;
+            color: var(--text-secondary);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* ========================================
+           UTILITY
+           ======================================== */
+        .container {
+            max-width: 1320px;
+            margin: 0 auto;
+            padding: 0 clamp(1.25rem, 4vw, 3rem);
+        }
+
+        .fade-up {
+            opacity: 1;
+            transform: translateY(0);
+            transition: opacity 0.8s var(--ease-premium), transform 0.8s var(--ease-premium);
+        }
+
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .stagger-1 { transition-delay: 0.05s; }
+        .stagger-2 { transition-delay: 0.12s; }
+        .stagger-3 { transition-delay: 0.2s; }
+        .stagger-4 { transition-delay: 0.28s; }
+        .stagger-5 { transition-delay: 0.36s; }
+
+        /* ========================================
+           BUTTONS
+           ======================================== */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.9rem 2rem;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.875rem;
+            font-weight: 600;
+            letter-spacing: 0.03em;
+            border-radius: 4px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.4s var(--ease-premium);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.6s var(--ease-premium);
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn:active {
+            transform: translateY(1px) scale(0.98);
+        }
+
+        .btn-gold {
+            background: linear-gradient(135deg, var(--gold), var(--gold-light));
+            color: var(--navy);
+        }
+
+        .btn-gold:hover {
+            background: linear-gradient(135deg, var(--gold-light), var(--gold));
+            box-shadow: 0 8px 32px rgba(201, 165, 92, 0.35);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--white);
+            border: 1.5px solid rgba(255,255,255,0.4);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+            box-shadow: 0 0 20px rgba(201, 165, 92, 0.15);
+        }
+
+        .btn-navy {
+            background: var(--navy);
+            color: var(--gold);
+        }
+
+        .btn-navy:hover {
+            background: var(--navy-light);
+            box-shadow: 0 8px 32px rgba(10, 22, 40, 0.3);
+        }
+
+        /* ========================================
+           NAVIGATION
+           ======================================== */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 1.25rem 0;
+            transition: all 0.5s var(--ease-premium);
+        }
+
+        .navbar.scrolled {
+            background: rgba(10, 22, 40, 0.92);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            padding: 0.75rem 0;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .navbar .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-logo {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .nav-logo-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--gold);
+            line-height: 1;
+            letter-spacing: 0.08em;
+        }
+
+        .nav-logo-sub {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.6rem;
+            font-weight: 400;
+            color: rgba(255,255,255,0.55);
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            margin-top: 2px;
+        }
+
+        .nav-links {
+            display: flex !important;
+            align-items: center;
+            gap: 2.25rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 0.8125rem;
+            font-weight: 500;
+            color: rgba(255,255,255,0.75);
+            letter-spacing: 0.02em;
+            position: relative;
+            padding-bottom: 3px;
+            transition: color 0.3s var(--ease-premium);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 1.5px;
+            background: var(--gold);
+            transition: width 0.4s var(--ease-premium);
+        }
+
+        .nav-links a:hover {
+            color: var(--white);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-cta {
+            padding: 0.6rem 1.4rem;
+            font-size: 0.8125rem;
+        }
+
+        .nav-shop-btn {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: transparent;
+            color: var(--gold);
+            border: 1px solid rgba(201,165,92,0.4);
+            padding: 0.5rem 1rem;
+            border-radius: 30px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            text-decoration: none;
+            white-space: nowrap;
+            flex-shrink: 0;
+            transition: background 0.2s, border-color 0.2s, transform 0.2s;
+        }
+        .nav-shop-btn:hover {
+            background: rgba(201,165,92,0.1);
+            border-color: rgba(201,165,92,0.7);
+            transform: translateY(-1px);
+        }
+        .nav-shop-badge {
+            background: rgba(201,165,92,0.15);
+            color: var(--gold);
+            font-size: 0.6rem;
+            font-weight: 700;
+            padding: 2px 6px;
+            border-radius: 10px;
+            letter-spacing: 0.08em;
+        }
+
+        .hamburger {
+            display: none !important;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 4px;
+            background: none;
+            border: none;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: var(--white);
+            transition: all 0.3s var(--ease-premium);
+            transform-origin: center;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(10, 22, 40, 0.97);
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+            z-index: 99;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding-top: 80px;
+            gap: 2rem;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s var(--ease-premium);
+        }
+
+        .mobile-menu.open {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .mobile-menu a {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.75rem;
+            color: rgba(255,255,255,0.8);
+            transition: color 0.3s ease;
+            transform: translateY(20px);
+            opacity: 0;
+        }
+
+        .mobile-menu.open a {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .mobile-menu a:hover {
+            color: var(--gold);
+        }
+
+        /* ========================================
+           HERO SECTION
+           ======================================== */
+        .hero {
+            position: relative;
+            min-height: 100dvh;
+            display: flex;
+            align-items: center;
+            background: var(--navy);
+            overflow: hidden;
+        }
+
+        .hero-particles {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .hero-gradient {
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 60% 50% at 20% 50%, rgba(201, 165, 92, 0.06) 0%, transparent 70%),
+                radial-gradient(ellipse 40% 60% at 80% 30%, rgba(201, 165, 92, 0.04) 0%, transparent 60%);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .hero .container {
+            position: relative;
+            z-index: 2;
+            padding-top: 8rem;
+            padding-bottom: 4rem;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1.25rem;
+            background: rgba(201, 165, 92, 0.08);
+            border: 1px solid rgba(201, 165, 92, 0.2);
+            border-radius: 100px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: var(--gold);
+            letter-spacing: 0.06em;
+            margin-bottom: 2rem;
+        }
+
+        .hero-badge-dot {
+            width: 6px;
+            height: 6px;
+            background: var(--gold);
+            border-radius: 50%;
+            animation: pulse-dot 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(0.7); }
+        }
+
+        .hero h1 {
+            color: var(--white);
+            max-width: 820px;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero h1 span {
+            color: var(--gold);
+        }
+
+        .hero-sub {
+            font-size: clamp(1rem, 1.5vw, 1.15rem);
+            color: rgba(255,255,255,0.55);
+            max-width: 580px;
+            margin-bottom: 2.5rem;
+            line-height: 1.7;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            animation: float-arrow 2.5s ease-in-out infinite;
+        }
+
+        .scroll-indicator span {
+            font-size: 0.65rem;
+            font-weight: 500;
+            color: rgba(255,255,255,0.35);
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+        }
+
+        .scroll-arrow {
+            width: 20px;
+            height: 20px;
+            border-right: 1.5px solid rgba(255,255,255,0.3);
+            border-bottom: 1.5px solid rgba(255,255,255,0.3);
+            transform: rotate(45deg);
+        }
+
+        @keyframes float-arrow {
+            0%, 100% { transform: translateX(-50%) translateY(0); opacity: 0.6; }
+            50% { transform: translateX(-50%) translateY(8px); opacity: 1; }
+        }
+
+        /* ========================================
+           PROOF POINTS
+           ======================================== */
+        .proof-points {
+            background: var(--charcoal);
+            padding: clamp(3.5rem, 7vw, 5.5rem) 0;
+            position: relative;
+        }
+
+        .proof-points::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            opacity: 0.3;
+        }
+
+        .proof-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+        }
+
+        .proof-card {
+            padding: 1.75rem 1.5rem;
+            border-top: 3px solid rgba(201, 165, 92, 0.35);
+            background: rgba(255, 255, 255, 0.025);
+            border-radius: 0 0 8px 8px;
+            transition: border-color 0.4s var(--ease-premium), background 0.4s var(--ease-premium);
+        }
+
+        .proof-card:hover {
+            border-top-color: var(--gold);
+            background: rgba(255, 255, 255, 0.04);
+        }
+
+        .proof-icon {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.25rem;
+        }
+
+        .proof-icon svg {
+            width: 28px;
+            height: 28px;
+            stroke: var(--gold);
+            stroke-width: 1.5;
+            fill: none;
+        }
+
+        .proof-statement {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.5rem, 2.5vw, 2rem);
+            font-weight: 700;
+            color: var(--white);
+            line-height: 1.15;
+            margin-bottom: 0.6rem;
+        }
+
+        .proof-desc {
+            font-size: 0.875rem;
+            color: rgba(255, 255, 255, 0.45);
+            line-height: 1.6;
+            max-width: 280px;
+        }
+
+        /* ========================================
+           ABOUT SECTION
+           ======================================== */
+        .about {
+            padding: 0;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+        }
+
+        .about-left {
+            background: var(--navy);
+            padding: clamp(3rem, 6vw, 5rem) clamp(2rem, 4vw, 4rem);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .about-eyebrow {
+            display: inline-block;
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: var(--gold);
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        .about h2 {
+            color: var(--white);
+            margin-bottom: 1.5rem;
+        }
+
+        .about-text {
+            font-size: 1rem;
+            line-height: 1.75;
+            color: rgba(255, 255, 255, 0.55);
+            margin-bottom: 1.75rem;
+            max-width: 520px;
+        }
+
+        .pull-quote {
+            border-left: 3px solid var(--gold);
+            padding-left: 1.5rem;
+            margin-bottom: 2.25rem;
+        }
+
+        .pull-quote p {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            font-style: italic;
+            color: rgba(255, 255, 255, 0.75);
+            line-height: 1.6;
+        }
+
+        .about-inline-stats {
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        .about-inline-stat {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .about-inline-number {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 3.5vw, 2.75rem);
+            font-weight: 700;
+            color: var(--gold);
+            line-height: 1.1;
+        }
+
+        .about-inline-label {
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.4);
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            margin-top: 0.25rem;
+        }
+
+        .about-right {
+            background: #0F2040;
+            padding: clamp(3rem, 6vw, 5rem) clamp(2rem, 4vw, 3.5rem);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 0;
+        }
+
+        .about-feature {
+            display: grid;
+            grid-template-columns: 48px 1fr;
+            gap: 1rem;
+            align-items: start;
+            padding: 1.5rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .about-feature:first-child {
+            padding-top: 0;
+        }
+
+        .about-feature:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .about-feature-icon {
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(201, 165, 92, 0.08);
+            border: 1px solid rgba(201, 165, 92, 0.12);
+            border-radius: 10px;
+        }
+
+        .about-feature-icon svg {
+            width: 22px;
+            height: 22px;
+            stroke: var(--gold);
+            stroke-width: 1.5;
+            fill: none;
+        }
+
+        .about-feature-content h3 {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--white);
+            margin-bottom: 0.35rem;
+            letter-spacing: 0.01em;
+        }
+
+        .about-feature-content p {
+            font-size: 0.875rem;
+            color: rgba(255, 255, 255, 0.45);
+            line-height: 1.6;
+            max-width: 360px;
+        }
+
+        /* ========================================
+           SERVICES SECTION
+           ======================================== */
+        .services {
+            padding: clamp(5rem, 10vw, 8rem) 0;
+            background: var(--white);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: clamp(3rem, 6vw, 4.5rem);
+        }
+
+        .section-header .eyebrow {
+            display: inline-block;
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: var(--gold);
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        .section-header h2 {
+            color: var(--navy);
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            margin: 0 auto;
+            color: var(--text-muted);
+            font-size: 1.05rem;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+
+        .service-card {
+            background: var(--bg);
+            border: 1px solid rgba(201, 165, 92, 0.08);
+            border-radius: 12px;
+            padding: clamp(2rem, 3vw, 2.75rem);
+            transition: all 0.5s var(--ease-premium);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            inset: -1px;
+            border-radius: 13px;
+            padding: 1px;
+            background: linear-gradient(135deg, transparent 30%, rgba(201, 165, 92, 0.4) 100%);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0;
+            transition: opacity 0.5s var(--ease-premium);
+            pointer-events: none;
+        }
+
+        .service-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 60px rgba(201, 165, 92, 0.12), 0 8px 24px rgba(0, 0, 0, 0.06);
+        }
+
+        .service-card:hover::before {
+            opacity: 1;
+        }
+
+        .service-icon {
+            width: 52px;
+            height: 52px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--navy);
+            border-radius: 10px;
+            margin-bottom: 1.5rem;
+            transition: background 0.4s var(--ease-premium);
+        }
+
+        .service-card:hover .service-icon {
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+        }
+
+        .service-icon svg {
+            width: 24px;
+            height: 24px;
+            stroke: var(--gold);
+            stroke-width: 1.5;
+            fill: none;
+            transition: stroke 0.4s var(--ease-premium);
+        }
+
+        .service-card:hover .service-icon svg {
+            stroke: var(--navy);
+        }
+
+        .service-card h3 {
+            color: var(--navy);
+            margin-bottom: 0.75rem;
+        }
+
+        .service-card p {
+            font-size: 0.925rem;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.8125rem;
+            font-weight: 600;
+            color: var(--gold-dark);
+            letter-spacing: 0.02em;
+            transition: gap 0.3s var(--ease-premium), color 0.3s ease;
+        }
+
+        .service-link:hover {
+            gap: 0.7rem;
+            color: var(--gold);
+        }
+
+        .service-link svg {
+            width: 14px;
+            height: 14px;
+            stroke: currentColor;
+            stroke-width: 2;
+            fill: none;
+        }
+
+        /* ========================================
+           PARTNERS SECTION
+           ======================================== */
+        .partners {
+            padding: clamp(5rem, 10vw, 7rem) 0;
+            overflow: hidden;
+        }
+
+        .partners .section-header {
+            margin-bottom: clamp(2.5rem, 4vw, 3.5rem);
+        }
+
+        .partners-subtitle {
+            margin: 0 auto;
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            max-width: 600px;
+            text-align: center;
+        }
+
+        .partners-tags {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 0.75rem;
+            flex-wrap: wrap;
+        }
+
+        @media (max-width: 768px) {
+            .partners-tags {
+                flex-direction: column;
+                align-items: center;
+                gap: 0.6rem;
+            }
+            .partners-tag-sep {
+                display: none;
+            }
+        }
+
+        .partners-tag {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--gold-dark);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .partners-tag-sep {
+            color: var(--text-muted);
+            opacity: 0.4;
+            font-weight: 300;
+        }
+
+        .partners-track-wrapper {
+            position: relative;
+        }
+
+        .partners-track-wrapper::before,
+        .partners-track-wrapper::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 80px;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .partners-track-wrapper::before {
+            left: 0;
+            background: linear-gradient(90deg, var(--bg), transparent);
+        }
+
+        .partners-track-wrapper::after {
+            right: 0;
+            background: linear-gradient(-90deg, var(--bg), transparent);
+        }
+
+        .partners-track {
+            display: flex;
+            gap: 40px;
+            animation: scroll-partners 30s linear infinite;
+            width: max-content;
+        }
+
+        .partners-track:hover {
+            animation-play-state: paused;
+        }
+
+        .partner-item {
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            width: 200px;
+            height: 80px;
+            padding: 0 1.5rem;
+            background: var(--white);
+            border: 1px solid rgba(0,0,0,0.05);
+            border-left: 4px solid var(--partner-color, #C9A55C);
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            transition: box-shadow 0.4s var(--ease-premium), transform 0.4s var(--ease-premium);
+            cursor: default;
+        }
+
+        .partner-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 24px var(--partner-glow, rgba(201, 165, 92, 0.15));
+        }
+
+        .partner-name {
+            font-family: 'Inter', sans-serif;
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--text-primary);
+            letter-spacing: 0.03em;
+            text-transform: uppercase;
+            line-height: 1.2;
+        }
+
+        @keyframes scroll-partners {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* ========================================
+           CONTACT SECTION
+           ======================================== */
+        .contact {
+            background: var(--navy);
+            padding: clamp(5rem, 10vw, 8rem) 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            opacity: 0.25;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: clamp(3rem, 6vw, 5rem);
+        }
+
+        .contact-info h2 {
+            color: var(--white);
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-info p {
+            color: rgba(255,255,255,0.5);
+            font-size: 1rem;
+            line-height: 1.7;
+            margin-bottom: 2.5rem;
+        }
+
+        .contact-details {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+        }
+
+        .contact-detail {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+        }
+
+        .contact-detail-icon {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(201, 165, 92, 0.08);
+            border: 1px solid rgba(201, 165, 92, 0.15);
+            border-radius: 8px;
+            flex-shrink: 0;
+        }
+
+        .contact-detail-icon svg {
+            width: 18px;
+            height: 18px;
+            stroke: var(--gold);
+            stroke-width: 1.5;
+            fill: none;
+        }
+
+        .contact-detail-text {
+            display: flex;
+            flex-direction: column;
+            gap: 0.15rem;
+        }
+
+        .contact-detail-label {
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: var(--gold);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        .contact-detail-value {
+            font-size: 0.925rem;
+            color: rgba(255,255,255,0.7);
+        }
+
+        .contact-form {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 14px;
+            padding: clamp(2rem, 3vw, 2.75rem);
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.25rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .form-group label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: rgba(255,255,255,0.45);
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 6px;
+            padding: 0.8rem 1rem;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            color: var(--white);
+            transition: all 0.3s var(--ease-premium);
+            outline: none;
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: rgba(255,255,255,0.2);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            border-color: var(--gold);
+            box-shadow: 0 0 0 3px rgba(201, 165, 92, 0.1);
+        }
+
+        .form-group select {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='rgba(255,255,255,0.4)' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+            padding-right: 2.5rem;
+        }
+
+        .form-group select option {
+            background: var(--navy);
+            color: var(--white);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .form-submit {
+            margin-top: 1.5rem;
+            width: 100%;
+        }
+
+        .form-submit .btn {
+            width: 100%;
+            justify-content: center;
+            padding: 1rem;
+        }
+
+        /* ========================================
+           FOOTER
+           ======================================== */
+        .footer {
+            background: var(--navy);
+            border-top: 1px solid rgba(255,255,255,0.05);
+            padding: clamp(3rem, 6vw, 4.5rem) 0 0;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr 1fr;
+            gap: clamp(2rem, 4vw, 3rem);
+            padding-bottom: clamp(3rem, 6vw, 4rem);
+        }
+
+        .footer-brand .nav-logo {
+            margin-bottom: 1rem;
+        }
+
+        .footer-tagline {
+            font-size: 0.875rem;
+            color: rgba(255,255,255,0.4);
+            line-height: 1.6;
+            max-width: 280px;
+        }
+
+        .footer-col h4 {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: var(--gold);
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            margin-bottom: 1.25rem;
+        }
+
+        .footer-col ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.65rem;
+        }
+
+        .footer-col a {
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.45);
+            transition: color 0.3s ease;
+        }
+
+        .footer-col a:hover {
+            color: var(--gold);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.05);
+            padding: 1.5rem 0;
+            text-align: center;
+        }
+
+        .footer-bottom p {
+            font-size: 0.75rem;
+            color: rgba(255,255,255,0.3);
+            max-width: none;
+        }
+
+        /* ========================================
+           NOISE OVERLAY
+           ======================================== */
+        .noise-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            pointer-events: none;
+            opacity: 0.025;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+            background-repeat: repeat;
+            background-size: 256px 256px;
+        }
+
+        .lang-switcher { display: flex; align-items: center; gap: 0.4rem; margin-right: 1.5rem; }
+        .lang-switcher span { color: rgba(255,255,255,0.3); font-size: 0.8rem; }
+        .lang-btn { background: none; border: none; cursor: pointer; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em; color: rgba(255,255,255,0.4); transition: color 0.2s; padding: 0; font-family: 'Inter', sans-serif; }
+        .lang-btn.active { color: var(--gold); }
+        .lang-btn:hover { color: var(--white); }
+
+        /* ========================================
+           RESPONSIVE
+           ======================================== */
+        @media (max-width: 1024px) {
+            .services-grid {
+                gap: 1.25rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none !important;
+            }
+
+            .nav-cta {
+                display: none !important;
+            }
+
+            .nav-shop-btn {
+                display: none !important;
+            }
+
+            .hamburger {
+                display: flex !important;
+            }
+
+            .navbar .lang-switcher {
+                display: flex !important;
+                margin-right: 0.5rem;
+            }
+
+            .hamburger {
+                display: flex !important;
+            }
+
+            .mobile-menu .lang-switcher {
+                display: none !important;
+            }
+
+            .mobile-menu {
+                display: flex;
+            }
+
+            .hero .container {
+                padding-top: 7rem;
+            }
+
+            .proof-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.25rem;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about-left,
+            .about-right {
+                padding: clamp(2.5rem, 5vw, 3.5rem) clamp(1.25rem, 4vw, 2.5rem);
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 2rem;
+            }
+
+            .footer-brand {
+                grid-column: 1 / -1;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .proof-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+            }
+
+            .hero-buttons .btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ========================================
+           SCROLL INTRO
+           ======================================== */
+        #scroll-intro {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
+            z-index: 9999;
+            background: #0A1628;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        #intro-stars {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at center,
+                #0F2040 0%, #0A1628 50%, #060E1C 100%);
+        }
+
+        #intro-content {
+            position: relative;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            transition: opacity 0.1s linear;
+        }
+
+        #intro-logo-wrap {
+            width: 200px;
+            height: 200px;
+            transition: transform 0.05s linear, opacity 0.05s linear;
+            filter: drop-shadow(0 0 40px rgba(201,165,92,0.5));
+            animation: logoPulse 3s ease-in-out infinite;
+        }
+
+        #intro-logo {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        #intro-ils {
+            font-family: 'Playfair Display', serif;
+            font-size: 64px;
+            font-weight: 700;
+            color: #C9A55C;
+            letter-spacing: 12px;
+            text-align: center;
+        }
+
+        #intro-tagline {
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            color: rgba(255,255,255,0.7);
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            text-align: center;
+        }
+
+        #intro-sub {
+            font-family: 'Inter', sans-serif;
+            font-size: 11px;
+            color: rgba(201,165,92,0.6);
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            text-align: center;
+        }
+
+        #scroll-hint {
+            margin-top: 50px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            color: rgba(255,255,255,0.92);
+            font-size: 11px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            animation: hintBounce 2s ease-in-out infinite;
+            text-shadow: 0 0 20px rgba(255,255,255,0.3);
+        }
+
+        #scroll-hint span:first-child {
+            font-size: 24px;
+            color: #C9A55C;
+            filter: drop-shadow(0 0 8px rgba(201,165,92,0.8));
+        }
+
+        @keyframes logoPulse {
+            0%, 100% {
+                filter: drop-shadow(0 0 30px rgba(201,165,92,0.3));
+                transform: scale(1);
+            }
+            50% {
+                filter: drop-shadow(0 0 60px rgba(201,165,92,0.7));
+                transform: scale(1.05);
+            }
+        }
+
+        @keyframes hintBounce {
+            0%, 100% { transform: translateY(0); opacity: 0.35; }
+            50% { transform: translateY(10px); opacity: 0.7; }
+        }
+
+        @keyframes starTwinkle {
+            0%, 100% { opacity: 0.2; }
+            50% { opacity: 1; }
+        }
+
+        @media (max-width: 768px) {
+            #intro-logo-wrap {
+                width: 140px;
+                height: 140px;
+                margin: 0 auto;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            #intro-ils {
+                font-size: 42px;
+                letter-spacing: 8px;
+            }
+
+            #intro-tagline {
+                font-size: 11px;
+                letter-spacing: 3px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- SCROLL INTRO -->
+    <div id="scroll-intro">
+        <div id="intro-stars"></div>
+        <div id="intro-content">
+            <div id="intro-logo-wrap">
+                <img src="ILS_logo_dore_transparent.png" id="intro-logo-img" alt="ILS Logo" onerror="this.style.display='none';document.getElementById('intro-logo-svg').style.display='block';" style="width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 0 40px rgba(201,165,92,0.5));display:block;margin:0 auto;">
+                <svg id="intro-logo-svg" display="none" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" width="200" height="200">
+                    <defs>
+                        <radialGradient id="goldG" cx="40%" cy="30%" r="70%">
+                            <stop offset="0%" stop-color="#F5D98B"/>
+                            <stop offset="50%" stop-color="#C9A55C"/>
+                            <stop offset="100%" stop-color="#7A5510"/>
+                        </radialGradient>
+                    </defs>
+                    <ellipse cx="100" cy="100" rx="78" ry="26" fill="none" stroke="url(#goldG)" stroke-width="9" transform="rotate(-35 100 100)"/>
+                    <ellipse cx="100" cy="100" rx="78" ry="26" fill="none" stroke="url(#goldG)" stroke-width="9" transform="rotate(35 100 100)"/>
+                    <ellipse cx="100" cy="100" rx="78" ry="26" fill="none" stroke="url(#goldG)" stroke-width="9" transform="rotate(90 100 100)"/>
+                    <circle cx="100" cy="100" r="11" fill="url(#goldG)"/>
+                    <circle cx="100" cy="23" r="7" fill="url(#goldG)"/>
+                    <circle cx="168" cy="138" r="7" fill="url(#goldG)"/>
+                    <circle cx="32" cy="138" r="7" fill="url(#goldG)"/>
+                </svg>
+            </div>
+            <div id="intro-text">
+                <div id="intro-ils">ILS</div>
+                <div id="intro-tagline">International Link Solutions</div>
+                <div id="intro-sub" data-en="Laboratory &middot; Metrology &middot; Energy" data-fr="Laboratoire &middot; Métrologie &middot; Énergie" data-html="">Laboratory &middot; Metrology &middot; Energy</div>
+            </div>
+            <div id="scroll-hint">
+                <span>&darr;</span>
+                <span data-en="Scroll to explore" data-fr="Défiler pour explorer">Scroll to explore</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- NOISE OVERLAY -->
+    <div class="noise-overlay" aria-hidden="true"></div>
+
+    <!-- NAVIGATION -->
+    <nav class="navbar" id="navbar" role="navigation" aria-label="Main navigation">
+        <div class="container">
+            <a href="index.html" class="nav-logo" aria-label="ILS - International Link Solutions">
+                <span class="nav-logo-text">ILS</span>
+                <span class="nav-logo-sub">International Link Solutions</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="laboratory.html" data-en="Laboratory" data-fr="Laboratoire">Laboratory</a></li>
+                <li><a href="chemistry.html" data-en="Chemistry" data-fr="Chimie">Chemistry</a></li>
+                <li><a href="metrology.html" data-en="Metrology" data-fr="Métrologie">Metrology</a></li>
+                <li><a href="energy.html" data-en="Energy" data-fr="Énergie">Energy</a></li>
+                <li><a href="about.html" data-en="About" data-fr="À Propos">About</a></li>
+                <li><a href="contact.html" data-en="Contact" data-fr="Contact">Contact</a></li>
+            </ul>
+            <div class="lang-switcher">
+                <button class="lang-btn active" data-lang="en">EN</button>
+                <span>|</span>
+                <button class="lang-btn" data-lang="fr">FR</button>
+            </div>
+            <a href="/shop/index.html" class="nav-shop-btn" aria-label="Browse ILS Shop">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+                <span data-en="Browse Shop" data-fr="Boutique">Browse Shop</span>
+            </a>
+            <a href="#contact" class="btn btn-gold nav-cta" data-en="Request a Quote" data-fr="Demander un devis">Request a Quote</a>
+            <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- MOBILE MENU -->
+    <div class="mobile-menu" id="mobileMenu" role="dialog" aria-label="Mobile navigation">
+        <a href="laboratory.html" class="mobile-link" data-en="Laboratory" data-fr="Laboratoire">Laboratory</a>
+        <a href="chemistry.html" class="mobile-link" data-en="Chemistry" data-fr="Chimie">Chemistry</a>
+        <a href="metrology.html" class="mobile-link" data-en="Metrology" data-fr="Métrologie">Metrology</a>
+        <a href="energy.html" class="mobile-link" data-en="Energy" data-fr="Énergie">Energy</a>
+        <a href="about.html" class="mobile-link" data-en="About" data-fr="À propos">About</a>
+        <a href="contact.html" class="mobile-link" data-en="Contact" data-fr="Contact">Contact</a>
+        <div class="lang-switcher" style="margin-right:0;">
+            <button class="lang-btn active" data-lang="en">EN</button>
+            <span>|</span>
+            <button class="lang-btn" data-lang="fr">FR</button>
+        </div>
+        <a href="#contact" class="btn btn-gold" style="margin-top: 0.5rem;" data-en="Request a Quote" data-fr="Demander un devis">Request a Quote</a>
+    </div>
+
+    <!-- HERO SECTION -->
+    <section class="hero" id="hero">
+        <div class="hero-gradient"></div>
+        <canvas class="hero-particles" id="heroParticles" aria-hidden="true"></canvas>
+        <div class="container">
+            <div class="hero-badge fade-up">
+                <span class="hero-badge-dot"></span>
+                <span data-en="20 Years of Industrial Expertise &middot; Belfort, France &middot; Techn'Hom" data-fr="20 Ans d'Expertise Industrielle &middot; Belfort, France &middot; Techn'Hom" data-html="">20 Years of Industrial Expertise &middot; Belfort, France &middot; Techn'Hom</span>
+            </div>
+            <h1 class="fade-up stagger-1" data-en="Expert Solutions in <span>Laboratory</span>, <span>Metrology</span> &amp; <span>Energy</span>" data-fr="Solutions d'Excellence en <span>Laboratoire</span>, <span>Métrologie</span> &amp; <span>Énergie</span>" data-html="">Expert Solutions in <span>Laboratory</span>, <span>Metrology</span> & <span>Energy</span></h1>
+            <p class="hero-sub fade-up stagger-2" data-en="Delivering precision, reliability and strategic excellence across North Africa, Europe and the Middle East." data-fr="Précision, fiabilité et excellence stratégique en Afrique du Nord, en Europe et au Moyen-Orient.">Delivering precision, reliability and strategic excellence across North Africa, Europe and the Middle East.</p>
+            <div class="hero-buttons fade-up stagger-3">
+                <a href="#services" class="btn btn-gold" data-en="Discover Our Services" data-fr="Découvrir Nos Services" data-html="">
+                    Discover Our Services
+                    <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><path d="M7 17l9.2-9.2M17 17V7H7"/></svg>
+                </a>
+                <a href="#partners" class="btn btn-outline" data-en="View Our References" data-fr="Voir Nos Références">View Our References</a>
+            </div>
+        </div>
+        <div class="scroll-indicator" aria-hidden="true">
+            <div class="scroll-arrow"></div>
+        </div>
+    </section>
+
+    <!-- PROOF POINTS -->
+    <section class="proof-points" id="proof-points">
+        <div class="container">
+            <div class="proof-grid">
+                <div class="proof-card fade-up">
+                    <div class="proof-icon">
+                        <svg viewBox="0 0 24 24"><path d="M9 3v6l-4 8h14l-4-8V3"/><path d="M8 3h8"/><circle cx="13" cy="14" r="1.5"/><circle cx="10" cy="16" r="1"/></svg>
+                    </div>
+                    <div class="proof-statement" data-en="Top 8 Brands" data-fr="Top 8 Marques">Top 8 Brands</div>
+                    <p class="proof-desc" data-en="Distributor for Sartorius, Mettler Toledo, Eppendorf, Merck and leading scientific manufacturers" data-fr="Distributeur pour Sartorius, Mettler Toledo, Eppendorf, Merck et les principaux fabricants scientifiques">Distributor for Sartorius, Mettler Toledo, Eppendorf, Merck and leading scientific manufacturers</p>
+                </div>
+                <div class="proof-card fade-up stagger-1">
+                    <div class="proof-icon">
+                        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                    </div>
+                    <div class="proof-statement" data-en="3 Continents" data-fr="3 Continents">3 Continents</div>
+                    <p class="proof-desc" data-en="Active distribution network across Europe, Africa and MENA" data-fr="Réseau de distribution actif en Europe, Afrique et MENA">Active distribution network across Europe, Africa and MENA</p>
+                </div>
+                <div class="proof-card fade-up stagger-2">
+                    <div class="proof-icon">
+                        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    </div>
+                    <div class="proof-statement" data-en="20 Years" data-fr="20 Ans">20 Years</div>
+                    <p class="proof-desc" data-en="Executive experience in industrial sales, contract structuring and market entry" data-fr="Expérience de direction en ventes industrielles, structuration de contrats et entrée sur le marché">Executive experience in industrial sales, contract structuring and market entry</p>
+                </div>
+                <div class="proof-card fade-up stagger-3">
+                    <div class="proof-icon">
+                        <svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                    </div>
+                    <div class="proof-statement" data-en="$6 Billion" data-fr="6 Milliards $">$6 Billion</div>
+                    <p class="proof-desc" data-en="P&amp;L managed across Algeria and MENA energy sector at General Electric Vernova" data-fr="P&amp;L géré en Algérie et dans le secteur énergétique MENA chez General Electric Vernova">P&amp;L managed across Algeria and MENA energy sector at General Electric Vernova</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section class="about" id="about">
+        <div class="about-grid">
+            <div class="about-left">
+                <span class="about-eyebrow fade-up" data-en="Who We Are" data-fr="Qui Nous Sommes">Who We Are</span>
+                <h2 class="fade-up stagger-1" data-en="Built on 20 Years of Industrial Excellence" data-fr="Fondé sur 20 Ans d'Excellence Industrielle">Built on 20 Years of Industrial Excellence</h2>
+                <p class="about-text fade-up stagger-2" data-en="ILS is led by a former General Electric Vernova executive with 20 years of experience managing a $6 billion P&amp;L across Algeria and the MENA energy sector. We combine deep technical expertise with strategic commercial execution." data-fr="ILS est dirigé par un ancien cadre dirigeant de General Electric Vernova avec 20 ans d'expérience dans la gestion d'un P&amp;L de 6 milliards $ en Algérie et dans le secteur énergétique MENA. Nous combinons une expertise technique approfondie avec une exécution commerciale stratégique.">ILS is led by a former General Electric Vernova executive with 20 years of experience managing a $6 billion P&amp;L across Algeria and the MENA energy sector. We combine deep technical expertise with strategic commercial execution.</p>
+                <div class="pull-quote fade-up stagger-3">
+                    <p data-en="&ldquo;We bridge the gap between world-class manufacturers and high-growth markets, turning complexity into competitive advantage.&rdquo;" data-fr="&ldquo;Nous comblons le fossé entre les fabricants de classe mondiale et les marchés à forte croissance, transformant la complexité en avantage compétitif.&rdquo;" data-html="">"We bridge the gap between world-class manufacturers and high-growth markets, turning complexity into competitive advantage."</p>
+                </div>
+                <div class="about-inline-stats fade-up stagger-4">
+                    <div class="about-inline-stat">
+                        <span class="about-inline-number">20+</span>
+                        <span class="about-inline-label" data-en="Years at GE Vernova" data-fr="Ans chez GE Vernova">Years at GE Vernova</span>
+                    </div>
+                    <div class="about-inline-stat">
+                        <span class="about-inline-number">$6B</span>
+                        <span class="about-inline-label" data-en="P&amp;L Managed" data-fr="P&amp;L Géré">P&amp;L Managed</span>
+                    </div>
+                </div>
+            </div>
+            <div class="about-right">
+                <div class="about-feature fade-up">
+                    <div class="about-feature-icon">
+                        <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    </div>
+                    <div class="about-feature-content">
+                        <h3 data-en="Technical Excellence" data-fr="Excellence Technique">Technical Excellence</h3>
+                        <p data-en="Deep expertise across laboratory science, precision measurement and industrial energy systems" data-fr="Expertise approfondie en sciences de laboratoire, mesure de précision et systèmes énergétiques industriels">Deep expertise across laboratory science, precision measurement and industrial energy systems</p>
+                    </div>
+                </div>
+                <div class="about-feature fade-up stagger-1">
+                    <div class="about-feature-icon">
+                        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                    </div>
+                    <div class="about-feature-content">
+                        <h3 data-en="International Reach" data-fr="Portée Internationale">International Reach</h3>
+                        <p data-en="Active networks across Europe, North Africa and MENA — built over two decades" data-fr="Réseaux actifs en Europe, Afrique du Nord et MENA — construits sur deux décennies">Active networks across Europe, North Africa and MENA — built over two decades</p>
+                    </div>
+                </div>
+                <div class="about-feature fade-up stagger-2">
+                    <div class="about-feature-icon">
+                        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/><path d="M12 2v4"/><path d="M12 18v4"/><path d="M2 12h4"/><path d="M18 12h4"/></svg>
+                    </div>
+                    <div class="about-feature-content">
+                        <h3 data-en="Strategic Execution" data-fr="Exécution Stratégique">Strategic Execution</h3>
+                        <p data-en="From market entry to contract negotiation — we deliver end-to-end commercial solutions" data-fr="De l'entrée sur le marché à la négociation de contrats — nous livrons des solutions commerciales de bout en bout">From market entry to contract negotiation — we deliver end-to-end commercial solutions</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICES SECTION -->
+    <section class="services" id="services">
+        <div class="container">
+            <div class="section-header">
+                <span class="eyebrow fade-up" data-en="Our Divisions" data-fr="Nos Divisions">Our Divisions</span>
+                <h2 class="fade-up stagger-1" data-en="Four Pillars of Expertise" data-fr="Quatre Piliers d'Expertise">Four Pillars of Expertise</h2>
+                <p class="fade-up stagger-2" data-en="Integrated solutions spanning laboratory science, chemical distribution, precision measurement and energy advisory." data-fr="Solutions intégrées couvrant les sciences de laboratoire, la distribution chimique, la mesure de précision et le conseil en énergie.">Integrated solutions spanning laboratory science, chemical distribution, precision measurement and energy advisory.</p>
+            </div>
+            <div class="services-grid">
+                <!-- Laboratory Solutions -->
+                <div class="service-card fade-up">
+                    <div class="service-icon">
+                        <i data-lucide="microscope" style="width:28px;height:28px;color:#C9A55C;stroke-width:1.5;"></i>
+                    </div>
+                    <h3 data-en="Laboratory Solutions" data-fr="Solutions Laboratoire">Laboratory Solutions</h3>
+                    <p data-en="High-quality scientific equipment and consumables with dedicated distribution networks across North Africa, serving research institutions and industrial laboratories." data-fr="Équipements scientifiques et consommables de haute qualité avec des réseaux de distribution dédiés en Afrique du Nord, au service des institutions de recherche et des laboratoires industriels.">High-quality scientific equipment and consumables with dedicated distribution networks across North Africa, serving research institutions and industrial laboratories.</p>
+                    <a href="laboratory.html" class="service-link" data-en="Learn more" data-fr="En savoir plus">
+                        Learn more
+                        <svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+                    </a>
+                </div>
+                <!-- Chemical Products -->
+                <div class="service-card fade-up stagger-1">
+                    <div class="service-icon">
+                        <i data-lucide="flask-conical" style="width:28px;height:28px;color:#C9A55C;stroke-width:1.5;"></i>
+                    </div>
+                    <h3 data-en="Chemical Products" data-fr="Produits Chimiques">Chemical Products</h3>
+                    <p data-en="ILS supplies a comprehensive range of chemical products to research and industrial laboratories — including solvents, reagents, culture media, fine chemicals and analytical standards. ILS is the official representative of SRL India in France, one of the world's leading manufacturers of laboratory chemicals and biochemicals." data-fr="ILS fournit une gamme complète de produits chimiques aux laboratoires de recherche et industriels — solvants, réactifs, milieux de culture, produits chimiques fins et standards analytiques. ILS est le représentant officiel de SRL India en France, l'un des principaux fabricants mondiaux de produits chimiques et biochimiques de laboratoire.">ILS supplies a comprehensive range of chemical products to research and industrial laboratories — including solvents, reagents, culture media, fine chemicals and analytical standards. ILS is the official representative of SRL India in France, one of the world's leading manufacturers of laboratory chemicals and biochemicals.</p>
+                    <a href="chemistry.html" class="service-link" data-en="Learn more" data-fr="En savoir plus">
+                        Learn more
+                        <svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+                    </a>
+                </div>
+                <!-- Metrology -->
+                <div class="service-card fade-up stagger-2">
+                    <div class="service-icon">
+                        <i data-lucide="ruler" style="width:28px;height:28px;color:#C9A55C;stroke-width:1.5;"></i>
+                    </div>
+                    <h3 data-en="Metrology" data-fr="Métrologie">Metrology</h3>
+                    <p data-en="Calibration services, measurement accuracy consulting and international standards compliance. Ensuring your instruments meet the highest precision benchmarks. Launching October 2026." data-fr="Services d'étalonnage, conseil en précision de mesure et conformité aux normes internationales. Garantir que vos instruments atteignent les plus hauts niveaux de précision. Lancement octobre 2026.">Calibration services, measurement accuracy consulting and international standards compliance. Ensuring your instruments meet the highest precision benchmarks. Launching October 2026.</p>
+                    <a href="metrology.html" class="service-link" data-en="Learn more" data-fr="En savoir plus">
+                        Learn more
+                        <svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+                    </a>
+                </div>
+                <!-- Energy & OEM Advisory -->
+                <div class="service-card fade-up stagger-3">
+                    <div class="service-icon">
+                        <i data-lucide="zap" style="width:28px;height:28px;color:#C9A55C;stroke-width:1.5;"></i>
+                    </div>
+                    <h3 data-en="Energy &amp; OEM Advisory" data-fr="Conseil Énergie &amp; OEM" data-html="">Energy & OEM Advisory</h3>
+                    <p data-en="Market entry strategy, commercial negotiation and contract structuring for OEMs and energy companies targeting the MENA region. Two decades of executive relationships at work." data-fr="Stratégie d'entrée sur le marché, négociation commerciale et structuration de contrats pour les OEM et les entreprises énergétiques ciblant la région MENA. Deux décennies de relations de direction à l'œuvre.">Market entry strategy, commercial negotiation and contract structuring for OEMs and energy companies targeting the MENA region. Two decades of executive relationships at work.</p>
+                    <a href="energy.html" class="service-link" data-en="Learn more" data-fr="En savoir plus">
+                        Learn more
+                        <svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PARTNERS SECTION -->
+    <section class="partners" id="partners">
+        <div class="container">
+            <div class="section-header">
+                <span class="eyebrow fade-up" data-en="Our Network" data-fr="Notre Réseau">Our Network</span>
+                <h2 class="fade-up stagger-1" data-en="Trusted by Industry Leaders" data-fr="La Confiance des Leaders de l'Industrie">Trusted by Industry Leaders</h2>
+                <p class="partners-subtitle fade-up stagger-2" data-en="Official distributor for leading scientific instrument and chemical manufacturers across North Africa and Europe" data-fr="Distributeur officiel des principaux fabricants d'instruments scientifiques et de produits chimiques en Afrique du Nord et en Europe">Official distributor for leading scientific instrument and chemical manufacturers across North Africa and Europe</p>
+                <div class="partners-tags fade-up stagger-3">
+                    <span class="partners-tag" data-en="Laboratory Equipment" data-fr="Équipement de Laboratoire">Laboratory Equipment</span>
+                    <span class="partners-tag-sep">&middot;</span>
+                    <span class="partners-tag" data-en="Chemical Products" data-fr="Produits Chimiques">Chemical Products</span>
+                    <span class="partners-tag-sep">&middot;</span>
+                    <span class="partners-tag" data-en="Metrology Instruments" data-fr="Instruments de Métrologie">Metrology Instruments</span>
+                </div>
+            </div>
+        </div>
+        <div class="partners-track-wrapper">
+            <div class="partners-track" id="partnersTrack">
+                <div class="partner-item" style="--partner-color: #00A8E0; --partner-glow: rgba(0, 168, 224, 0.18);"><span class="partner-name">Sartorius</span></div>
+                <div class="partner-item" style="--partner-color: #003087; --partner-glow: rgba(0, 48, 135, 0.18);"><span class="partner-name">Mettler Toledo</span></div>
+                <div class="partner-item" style="--partner-color: #009FE3; --partner-glow: rgba(0, 159, 227, 0.18);"><span class="partner-name">Eppendorf</span></div>
+                <div class="partner-item" style="--partner-color: #E2001A; --partner-glow: rgba(226, 0, 26, 0.15);"><span class="partner-name">Merck</span></div>
+                <div class="partner-item" style="--partner-color: #1A3A5C; --partner-glow: rgba(26, 58, 92, 0.18);"><span class="partner-name">Memmert</span></div>
+                <div class="partner-item" style="--partner-color: #E2000F; --partner-glow: rgba(226, 0, 15, 0.15);"><span class="partner-name">Testo</span></div>
+                <div class="partner-item" style="--partner-color: #005BAC; --partner-glow: rgba(0, 91, 172, 0.18);"><span class="partner-name">Lauda</span></div>
+                <div class="partner-item" style="--partner-color: #E87722; --partner-glow: rgba(232, 119, 34, 0.18);"><span class="partner-name">VWR</span></div>
+                <div class="partner-item" style="--partner-color: #E84E1B; --partner-glow: rgba(232, 78, 27, 0.18);"><span class="partner-name">SRL</span></div>
+                <div class="partner-item" style="--partner-color: #005A9C; --partner-glow: rgba(0, 90, 156, 0.18);"><span class="partner-name">AMETEK Brookfield</span></div>
+                <!-- Duplicated for seamless loop -->
+                <div class="partner-item" style="--partner-color: #00A8E0; --partner-glow: rgba(0, 168, 224, 0.18);"><span class="partner-name">Sartorius</span></div>
+                <div class="partner-item" style="--partner-color: #003087; --partner-glow: rgba(0, 48, 135, 0.18);"><span class="partner-name">Mettler Toledo</span></div>
+                <div class="partner-item" style="--partner-color: #009FE3; --partner-glow: rgba(0, 159, 227, 0.18);"><span class="partner-name">Eppendorf</span></div>
+                <div class="partner-item" style="--partner-color: #E2001A; --partner-glow: rgba(226, 0, 26, 0.15);"><span class="partner-name">Merck</span></div>
+                <div class="partner-item" style="--partner-color: #1A3A5C; --partner-glow: rgba(26, 58, 92, 0.18);"><span class="partner-name">Memmert</span></div>
+                <div class="partner-item" style="--partner-color: #E2000F; --partner-glow: rgba(226, 0, 15, 0.15);"><span class="partner-name">Testo</span></div>
+                <div class="partner-item" style="--partner-color: #005BAC; --partner-glow: rgba(0, 91, 172, 0.18);"><span class="partner-name">Lauda</span></div>
+                <div class="partner-item" style="--partner-color: #E87722; --partner-glow: rgba(232, 119, 34, 0.18);"><span class="partner-name">VWR</span></div>
+                <div class="partner-item" style="--partner-color: #E84E1B; --partner-glow: rgba(232, 78, 27, 0.18);"><span class="partner-name">SRL</span></div>
+                <div class="partner-item" style="--partner-color: #005A9C; --partner-glow: rgba(0, 90, 156, 0.18);"><span class="partner-name">AMETEK Brookfield</span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <span class="about-eyebrow fade-up" data-en="Get in Touch" data-fr="Contactez-Nous">Get in Touch</span>
+                    <h2 class="fade-up stagger-1" data-en="Let's Build Something Together" data-fr="Construisons Ensemble">Let's Build Something Together</h2>
+                    <p class="fade-up stagger-2" data-en="Whether you need laboratory equipment, chemical reagents, metrology services, or energy sector advisory, our team is ready to deliver." data-fr="Que vous ayez besoin d'équipements de laboratoire, de réactifs chimiques, de services de métrologie ou de conseil en énergie, notre équipe est prête à livrer.">Whether you need laboratory equipment, chemical reagents, metrology services, or energy sector advisory, our team is ready to deliver.</p>
+                    <div class="contact-details fade-up stagger-3">
+                        <div class="contact-detail">
+                            <div class="contact-detail-icon">
+                                <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                            </div>
+                            <div class="contact-detail-text">
+                                <span class="contact-detail-label" data-en="Location" data-fr="Adresse">Location</span>
+                                <span class="contact-detail-value">Techn'Hom — 30 Rue Branly, 90000 Belfort, France</span>
+                            </div>
+                        </div>
+                        <div class="contact-detail">
+                            <div class="contact-detail-icon">
+                                <svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-10 6L2 7"/></svg>
+                            </div>
+                            <div class="contact-detail-text">
+                                <span class="contact-detail-label" data-en="Email" data-fr="E-mail">Email</span>
+                                <span class="contact-detail-value">sales@ils-link.com</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form fade-up stagger-1">
+                    <form id="contactForm" action="send.php" method="POST" novalidate>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="name" data-en="Full Name" data-fr="Nom Complet">Full Name</label>
+                                <input type="text" id="name" name="name" placeholder="Your name" data-en="Your name" data-fr="Votre nom" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="company" data-en="Company" data-fr="Entreprise">Company</label>
+                                <input type="text" id="company" name="company" placeholder="Company name" data-en="Company name" data-fr="Nom de l'entreprise">
+                            </div>
+                            <div class="form-group">
+                                <label for="email" data-en="Email" data-fr="E-mail">Email</label>
+                                <input type="email" id="email" name="email" placeholder="you@company.com" data-en="you@company.com" data-fr="vous@entreprise.com" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone" data-en="Phone" data-fr="Téléphone">Phone</label>
+                                <input type="tel" id="phone" name="phone" placeholder="+33 6 00 00 00 00" data-en="+33 6 00 00 00 00" data-fr="+33 6 00 00 00 00">
+                            </div>
+                            <div class="form-group full-width">
+                                <label for="division" data-en="Division of Interest" data-fr="Division d'Intérêt">Division of Interest</label>
+                                <select id="division" name="division">
+                                    <option value="" disabled selected data-en="Select a division" data-fr="Sélectionner une division">Select a division</option>
+                                    <option value="laboratory" data-en="Laboratory Solutions" data-fr="Solutions Laboratoire">Laboratory Solutions</option>
+                                    <option value="chemistry" data-en="Chemical Products" data-fr="Produits Chimiques">Chemical Products</option>
+                                    <option value="metrology" data-en="Metrology" data-fr="Métrologie">Metrology</option>
+                                    <option value="energy" data-en="Energy &amp; OEM Advisory" data-fr="Conseil Énergie &amp; OEM">Energy & OEM Advisory</option>
+                                </select>
+                            </div>
+                            <div class="form-group full-width">
+                                <label for="message" data-en="Message" data-fr="Message">Message</label>
+                                <textarea id="message" name="message" placeholder="Tell us about your project or requirements..." data-en="Tell us about your project or requirements..." data-fr="Parlez-nous de votre projet ou de vos besoins..." rows="5"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-submit">
+                            <button type="submit" class="btn btn-gold" data-en="Send Message" data-fr="Envoyer le Message" data-html="">
+                                Send Message
+                                <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="nav-logo">
+                        <span class="nav-logo-text">ILS</span>
+                        <span class="nav-logo-sub">International Link Solutions</span>
+                    </div>
+                    <p class="footer-tagline" data-en="Precision in Lab, Metrology & Energy. Bridging world-class manufacturers with high-growth markets across three continents." data-fr="Précision en Laboratoire, Métrologie & Énergie. Connecter les fabricants de classe mondiale aux marchés à forte croissance sur trois continents.">Precision in Lab, Metrology & Energy. Bridging world-class manufacturers with high-growth markets across three continents.</p>
+                </div>
+                <div class="footer-col">
+                    <h4 data-en="Services" data-fr="Services">Services</h4>
+                    <ul>
+                        <li><a href="laboratory.html" data-en="Laboratory Solutions" data-fr="Solutions Laboratoire">Laboratory Solutions</a></li>
+                        <li><a href="chemistry.html" data-en="Chemical Products" data-fr="Produits Chimiques">Chemical Products</a></li>
+                        <li><a href="metrology.html" data-en="Metrology" data-fr="Métrologie">Metrology</a></li>
+                        <li><a href="energy.html" data-en="Energy Advisory" data-fr="Conseil en Énergie">Energy Advisory</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4 data-en="Company" data-fr="Entreprise">Company</h4>
+                    <ul>
+                        <li><a href="about.html" data-en="About ILS" data-fr="À Propos d'ILS">About ILS</a></li>
+                        <li><a href="#partners" data-en="Partners" data-fr="Partenaires">Partners</a></li>
+                        <li><a href="contact.html" data-en="Contact" data-fr="Contact">Contact</a></li>
+                        <li><a href="contact.html" data-en="Work With Us" data-fr="Travailler Avec Nous">Work With Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4 data-en="Legal" data-fr="Juridique">Legal</h4>
+                    <ul>
+                        <li><a href="privacy-policy.html" data-en="Privacy Policy" data-fr="Politique de confidentialité">Privacy Policy</a></li>
+                        <li><a href="terms-of-service.html" data-en="Terms of Service" data-fr="Conditions d'utilisation">Terms of Service</a></li>
+                        <li><a href="cookie-policy.html" data-en="Cookie Policy" data-fr="Politique des cookies">Cookie Policy</a></li>
+                        <li><a href="legal-notice.html" data-en="Legal Notice" data-fr="Mentions légales">Legal Notice</a></li>
+                        <li style="margin-top:0.5rem;font-size:0.75rem;color:rgba(255,255,255,0.3);line-height:1.5;">SIRET: 928 301 340 00016<br>TVA: FR82928301340</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 International Link Solutions &mdash; RCS Belfort 928 301 340 &mdash; 30 Rue Branly, 90000 Belfort, France &mdash; sales@ils-link.com</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ========================================
+         JAVASCRIPT
+         ======================================== -->
+    <script>
+        (function() {
+            'use strict';
+
+            /* ----------------------------------------
+               PARTICLE CANVAS
+               ---------------------------------------- */
+            const canvas = document.getElementById('heroParticles');
+            const ctx = canvas.getContext('2d');
+            let particles = [];
+            let animFrameId;
+
+            function resizeCanvas() {
+                const hero = document.querySelector('.hero');
+                canvas.width = hero.offsetWidth;
+                canvas.height = hero.offsetHeight;
+            }
+
+            function createParticles() {
+                particles = [];
+                const count = Math.min(Math.floor((canvas.width * canvas.height) / 18000), 60);
+                for (let i = 0; i < count; i++) {
+                    particles.push({
+                        x: Math.random() * canvas.width,
+                        y: Math.random() * canvas.height,
+                        radius: Math.random() * 1.8 + 0.5,
+                        vx: (Math.random() - 0.5) * 0.25,
+                        vy: (Math.random() - 0.5) * 0.15 - 0.08,
+                        opacity: Math.random() * 0.5 + 0.15,
+                        gold: Math.random() > 0.35
+                    });
+                }
+            }
+
+            function drawParticles() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                particles.forEach(function(p) {
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                    if (p.gold) {
+                        ctx.fillStyle = 'rgba(201, 165, 92, ' + p.opacity + ')';
+                    } else {
+                        ctx.fillStyle = 'rgba(255, 255, 255, ' + (p.opacity * 0.5) + ')';
+                    }
+                    ctx.fill();
+
+                    p.x += p.vx;
+                    p.y += p.vy;
+
+                    if (p.x < -10) p.x = canvas.width + 10;
+                    if (p.x > canvas.width + 10) p.x = -10;
+                    if (p.y < -10) p.y = canvas.height + 10;
+                    if (p.y > canvas.height + 10) p.y = -10;
+                });
+                animFrameId = requestAnimationFrame(drawParticles);
+            }
+
+            resizeCanvas();
+            createParticles();
+            drawParticles();
+
+            window.addEventListener('resize', function() {
+                resizeCanvas();
+                createParticles();
+            });
+
+            /* ----------------------------------------
+               NAVBAR SCROLL STATE
+               ---------------------------------------- */
+            var navbar = document.getElementById('navbar');
+            var scrollThreshold = 80;
+
+            function checkNavbar() {
+                if (window.scrollY > scrollThreshold) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            }
+
+            window.addEventListener('scroll', checkNavbar, { passive: true });
+            checkNavbar();
+
+            /* ----------------------------------------
+               MOBILE MENU
+               ---------------------------------------- */
+            var hamburger = document.getElementById('hamburger');
+            var mobileMenu = document.getElementById('mobileMenu');
+
+            hamburger.addEventListener('click', function() {
+                hamburger.classList.toggle('active');
+                mobileMenu.classList.toggle('open');
+                var isOpen = mobileMenu.classList.contains('open');
+                hamburger.setAttribute('aria-expanded', isOpen);
+                document.body.style.overflow = isOpen ? 'hidden' : '';
+
+                if (isOpen) {
+                    var links = mobileMenu.querySelectorAll('a');
+                    links.forEach(function(link, i) {
+                        link.style.transitionDelay = (0.1 + i * 0.06) + 's';
+                        link.style.transition = 'opacity 0.4s cubic-bezier(0.32, 0.72, 0, 1), transform 0.5s cubic-bezier(0.32, 0.72, 0, 1)';
+                    });
+                }
+            });
+
+            mobileMenu.querySelectorAll('a').forEach(function(link) {
+                link.addEventListener('click', function() {
+                    hamburger.classList.remove('active');
+                    mobileMenu.classList.remove('open');
+                    hamburger.setAttribute('aria-expanded', 'false');
+                    document.body.style.overflow = '';
+                });
+            });
+
+            /* ----------------------------------------
+               INTERSECTION OBSERVER — FADE IN
+               ---------------------------------------- */
+            var fadeObserver = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        fadeObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0, rootMargin: '0px 0px 0px 0px' });
+
+            document.querySelectorAll('.fade-up').forEach(function(el) {
+                fadeObserver.observe(el);
+            });
+
+            // Fallback : rendre tous les éléments visibles après 1.5s
+            setTimeout(function() {
+                document.querySelectorAll('.fade-up').forEach(function(el) {
+                    el.classList.add('visible');
+                });
+            }, 1500);
+
+
+            /* ----------------------------------------
+               FORM HANDLER
+               ---------------------------------------- */
+            var contactForm = document.getElementById('contactForm');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+
+                    // Validation champs obligatoires
+                    var nameField = document.getElementById('name');
+                    var emailField = document.getElementById('email');
+                    var messageField = document.getElementById('message');
+                    var isValid = true;
+
+                    [nameField, emailField, messageField].forEach(function(field) {
+                        if (!field.value.trim()) {
+                            field.style.border = '2px solid #e74c3c';
+                            field.style.boxShadow = '0 0 0 3px rgba(231,76,60,0.2)';
+                            isValid = false;
+                        } else {
+                            field.style.border = '';
+                            field.style.boxShadow = '';
+                        }
+                    });
+
+                    if (emailField.value.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailField.value.trim())) {
+                        emailField.style.border = '2px solid #e74c3c';
+                        emailField.style.boxShadow = '0 0 0 3px rgba(231,76,60,0.2)';
+                        isValid = false;
+                    }
+
+                    if (!isValid) return;
+
+                    var btn = contactForm.querySelector('.btn');
+                    var originalHTML = btn.innerHTML;
+                    btn.innerHTML = 'Sending...';
+                    btn.disabled = true;
+                    btn.style.opacity = '0.7';
+
+                    var formData = new FormData(contactForm);
+                    fetch('send.php', { method: 'POST', body: formData })
+                    .then(function() {
+                        btn.innerHTML = 'Message Sent ✓';
+                        btn.style.background = '#2d6a4f';
+                        btn.style.opacity = '1';
+                        setTimeout(function() {
+                            btn.innerHTML = originalHTML;
+                            btn.style.background = '';
+                            btn.disabled = false;
+                            contactForm.reset();
+                            [nameField, emailField, messageField].forEach(function(f) {
+                                f.style.border = '';
+                                f.style.boxShadow = '';
+                            });
+                        }, 2500);
+                    })
+                    .catch(function() {
+                        btn.innerHTML = originalHTML;
+                        btn.disabled = false;
+                        btn.style.opacity = '1';
+                        alert('Erreur lors de l\'envoi. Veuillez réessayer.');
+                    });
+                });
+            }
+
+            /* ----------------------------------------
+               SMOOTH SCROLL FOR ANCHOR LINKS
+               ---------------------------------------- */
+            document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+                anchor.addEventListener('click', function(e) {
+                    var targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    var target = document.querySelector(targetId);
+                    if (target) {
+                        e.preventDefault();
+                        var offset = navbar.offsetHeight + 16;
+                        var top = target.getBoundingClientRect().top + window.scrollY - offset;
+                        window.scrollTo({ top: top, behavior: 'smooth' });
+                    }
+                });
+            });
+
+            /* ----------------------------------------
+               LANGUAGE SWITCHER
+               ---------------------------------------- */
+            function setLanguage(lang) {
+                document.querySelectorAll('[data-en]').forEach(function(el) {
+                    var text = lang === 'fr' ? el.dataset.fr : el.dataset.en;
+                    if (!text) return;
+                    if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+                        el.placeholder = text;
+                    } else if (el.tagName === 'A') {
+                        // If the <a> contains a <span> with data-en, skip — the span handles it
+                        var hasTranslatedSpan = el.querySelector('[data-en]');
+                        if (!hasTranslatedSpan) {
+                            for (var n = 0; n < el.childNodes.length; n++) {
+                                if (el.childNodes[n].nodeType === 3) {
+                                    el.childNodes[n].textContent = ' ' + text + ' ';
+                                    break;
+                                }
+                            }
+                        }
+                    } else if (el.dataset.html !== undefined) {
+                        el.innerHTML = text;
+                    } else {
+                        el.textContent = text;
+                    }
+                });
+                document.querySelectorAll('.lang-btn').forEach(function(btn) {
+                    btn.classList.toggle('active', btn.dataset.lang === lang);
+                });
+                localStorage.setItem('ils-lang', lang);
+            }
+
+            document.querySelectorAll('.lang-btn').forEach(function(btn) {
+                btn.addEventListener('click', function() {
+                    setLanguage(btn.dataset.lang);
+                });
+            });
+
+            var saved = localStorage.getItem('ils-lang') || 'en';
+            if (saved === 'fr') setLanguage('fr');
+
+        })();
+    </script>
+
+    <!-- SCROLL INTRO ENGINE -->
+    <script>
+    (function() {
+        // Skip intro if coming from shop (?skip=1)
+        if (window.location.search.indexOf('skip=1') !== -1) {
+            var intro = document.getElementById('scroll-intro');
+            if (intro) intro.style.display = 'none';
+            document.body.style.overflow = '';
+            // Wait for full DOM before showing button
+            function showShopBtn() {
+                var shopBtn = document.querySelector('.shop-float');
+                if (shopBtn) {
+                    shopBtn.classList.add('visible');
+                } else {
+                    setTimeout(showShopBtn, 50);
+                }
+            }
+            showShopBtn();
+            // Also show nav-shop-btn
+            var navShopBtn = document.querySelector('.nav-shop-btn');
+            if (navShopBtn) navShopBtn.style.opacity = '1';
+            return;
+        }
+
+        // Generate 120 stars
+        var starsContainer = document.getElementById('intro-stars');
+        for (var i = 0; i < 120; i++) {
+            var star = document.createElement('div');
+            var size = Math.random() * 2.5 + 0.5;
+            star.style.cssText =
+                'position:absolute;' +
+                'width:' + size + 'px;' +
+                'height:' + size + 'px;' +
+                'background:white;' +
+                'border-radius:50%;' +
+                'left:' + (Math.random() * 100) + '%;' +
+                'top:' + (Math.random() * 100) + '%;' +
+                'opacity:' + (Math.random() * 0.5 + 0.1) + ';' +
+                'animation:starTwinkle ' + (Math.random() * 3 + 2) + 's ease-in-out infinite;' +
+                'animation-delay:' + (Math.random() * 3) + 's;';
+            starsContainer.appendChild(star);
+        }
+
+        var progress = 0;
+        var active = true;
+        var autoCompleting = false;
+        var animFrame = null;
+        var intro = document.getElementById('scroll-intro');
+        var logoWrap = document.getElementById('intro-logo-wrap');
+        var content = document.getElementById('intro-content');
+
+        function completeIntro() {
+            intro.style.display = 'none';
+            active = false;
+            autoCompleting = false;
+            document.body.style.overflow = '';
+            // Show the Browse Shop button after intro
+            var shopBtn = document.querySelector('.shop-float');
+            if (shopBtn) {
+                setTimeout(function() {
+                    shopBtn.classList.add('visible');
+                }, 300);
+            }
+        }
+
+        function updateIntro(p) {
+            if (!active) return;
+            progress = Math.max(0, Math.min(1, p));
+
+            // Logo scales up and fades
+            var scale = 1 + progress * 12;
+            var logoOpacity = Math.max(0, 1 - progress * 1.5);
+            logoWrap.style.transform = 'scale(' + scale + ')';
+            logoWrap.style.opacity = logoOpacity;
+            logoWrap.style.animation = progress > 0.05 ? 'none' : '';
+
+            // Text fades out quickly
+            var textOpacity = Math.max(0, 1 - progress * 3);
+            content.style.opacity = textOpacity;
+
+            // Overall intro fades at the end
+            if (progress > 0.85) {
+                intro.style.opacity = 1 - (progress - 0.85) / 0.15;
+            } else {
+                intro.style.opacity = 1;
+            }
+
+            // Complete
+            if (progress >= 1) {
+                if (animFrame) { cancelAnimationFrame(animFrame); animFrame = null; }
+                setTimeout(completeIntro, 100);
+            }
+        }
+
+        // Auto-complete: smoothly animate progress to 1 once user triggers scroll
+        function autoComplete() {
+            if (!active || !autoCompleting) return;
+            progress += 0.025; // speed of auto-completion
+            updateIntro(progress);
+            if (progress < 1) {
+                animFrame = requestAnimationFrame(autoComplete);
+            }
+        }
+
+        function triggerAutoComplete() {
+            if (!active || autoCompleting) return;
+            autoCompleting = true;
+            animFrame = requestAnimationFrame(autoComplete);
+        }
+
+        // Block scroll while active
+        document.body.style.overflow = 'hidden';
+
+        // Any scroll/wheel triggers auto-complete
+        window.addEventListener('wheel', function(e) {
+            if (!active) return;
+            e.preventDefault();
+            triggerAutoComplete();
+        }, { passive: false });
+
+        // Touch support
+        var touchStartY = 0;
+        window.addEventListener('touchstart', function(e) {
+            if (!active) return;
+            touchStartY = e.touches[0].clientY;
+        }, { passive: false });
+
+        window.addEventListener('touchmove', function(e) {
+            if (!active) return;
+            e.preventDefault();
+            var delta = touchStartY - e.touches[0].clientY;
+            if (delta > 5) triggerAutoComplete(); // only downward swipe
+        }, { passive: false });
+
+        // Allow skip with click
+        intro.addEventListener('click', function() {
+            triggerAutoComplete();
+        });
+    })();
+    </script>
+    
+    <!-- SHOP FLOATING BUTTON -->
+<style>
+    .shop-float {
+        position: fixed;
+        bottom: 2rem;
+        right: 2rem;
+        z-index: 9998;
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+        background: linear-gradient(135deg, var(--gold), var(--gold-light));
+        color: var(--navy);
+        padding: 0.85rem 1.4rem;
+        border-radius: 50px;
+        font-family: 'Inter', sans-serif;
+        font-size: 0.8rem;
+        font-weight: 700;
+        letter-spacing: 0.05em;
+        text-decoration: none;
+        box-shadow: 0 8px 32px rgba(201,165,92,0.4);
+        transition: all 0.3s cubic-bezier(0.32, 0.72, 0, 1), opacity 0.6s ease, transform 0.6s ease;
+        animation: pulse-gold 2.5s ease-in-out infinite;
+        /* Hidden until intro completes */
+        opacity: 0;
+        pointer-events: none;
+        transform: translateY(12px);
+    }
+    .shop-float.visible {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateY(0);
+    }
+
+    .shop-float:hover {
+        transform: translateY(-3px) scale(1.05);
+        box-shadow: 0 12px 40px rgba(201,165,92,0.6);
+        animation: none;
+    }
+
+    .shop-float svg {
+        width: 18px;
+        height: 18px;
+        flex-shrink: 0;
+    }
+
+    .shop-float-badge {
+        background: var(--navy);
+        color: var(--gold);
+        font-size: 0.65rem;
+        font-weight: 700;
+        padding: 2px 7px;
+        border-radius: 20px;
+        letter-spacing: 0.08em;
+    }
+
+    @keyframes pulse-gold {
+        0%, 100% {
+            box-shadow: 0 8px 32px rgba(201,165,92,0.4);
+        }
+        50% {
+            box-shadow: 0 8px 48px rgba(201,165,92,0.75),
+                        0 0 0 8px rgba(201,165,92,0.1);
+        }
+    }
+
+    @media (max-width: 768px) {
+        .shop-float {
+            bottom: 1.25rem;
+            right: 1.25rem;
+            padding: 0.75rem 1.1rem;
+            font-size: 0.75rem;
+        }
+    }
+</style>
+
+<a href="/shop/index.html" class="shop-float" aria-label="Browse ILS Shop">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
+        <line x1="3" y1="6" x2="21" y2="6"/>
+        <path d="M16 10a4 4 0 01-8 0"/>
+    </svg>
+    <span data-en="Browse Shop" data-fr="Boutique">Browse Shop</span>
+</a>
+<!-- END SHOP FLOATING BUTTON -->
+
+<!-- Scroll to top button -->
+<style>
+    .scroll-top {
+        position: fixed;
+        bottom: 24px;
+        right: 24px;
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        background: #0A1628;
+        color: #C9A55C;
+        border: 1px solid rgba(201, 165, 92, 0.4);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(10px);
+        transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease, background 0.2s, border-color 0.2s;
+        z-index: 998;
+        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+    }
+    .scroll-top.visible { opacity: 1; visibility: visible; transform: translateY(0); }
+    .scroll-top:hover { background: #132138; border-color: rgba(201, 165, 92, 0.8); transform: translateY(-2px); }
+    .scroll-top:focus-visible { outline: 2px solid #C9A55C; outline-offset: 3px; }
+    .scroll-top svg { width: 18px; height: 18px; }
+    body:has(.shop-float) .scroll-top { bottom: 92px; }
+    @media (max-width: 768px) {
+        .scroll-top { width: 44px; height: 44px; bottom: 20px; right: 20px; }
+        body:has(.shop-float) .scroll-top { bottom: 80px; }
+    }
+</style>
+<button class="scroll-top" id="scrollTopBtn" aria-label="Scroll to top" type="button">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5"/><path d="M5 12l7-7 7 7"/></svg>
+</button>
+<script>
+    (function() {
+        var btn = document.getElementById('scrollTopBtn');
+        if (!btn) return;
+        function toggle() {
+            if (window.scrollY > 400) btn.classList.add('visible');
+            else btn.classList.remove('visible');
+        }
+        window.addEventListener('scroll', toggle, { passive: true });
+        window.addEventListener('pageshow', toggle);
+        btn.addEventListener('click', function() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+        toggle();
+    })();
+</script>
+<!-- /Scroll to top -->
+
+<!-- hash-anchor-fix -->
+<script>
+    (function() {
+        if (!window.location.hash) return;
+        var hash = window.location.hash;
+        console.log('[hash-fix] init for hash:', hash);
+        function jumpToHash() {
+            var target = document.querySelector(hash);
+            if (!target) { console.log('[hash-fix] target not found:', hash); return; }
+            // Force unlock body overflow if locked
+            if (getComputedStyle(document.body).overflow === 'hidden') {
+                document.body.style.overflow = 'auto';
+            }
+            console.log('[hash-fix] scrolling to', hash, 'scrollY before:', window.scrollY);
+            // Hide the scroll-intro splash only when arriving with a #hash (targeted fix)
+            var introEl = document.getElementById('scroll-intro');
+            if (introEl) introEl.style.display = 'none';
+            target.scrollIntoView({ behavior: 'instant', block: 'start' });
+            // Correct for fixed navbar offset
+            setTimeout(function() {
+                var navH = (document.getElementById('navbar') || {}).offsetHeight || 80;
+                if (navH > 0 && window.scrollY > navH) {
+                    window.scrollBy({ top: -navH - 16, behavior: 'instant' });
+                }
+                console.log('[hash-fix] scrollY after:', window.scrollY);
+            }, 700);
+        }
+        function runWithRetries() {
+            console.log('[hash-fix] running retries, readyState:', document.readyState);
+            setTimeout(jumpToHash, 500);
+            setTimeout(jumpToHash, 1500);
+            setTimeout(jumpToHash, 2800);
+        }
+        if (document.readyState === 'complete') {
+            runWithRetries();
+        } else {
+            window.addEventListener('load', runWithRetries);
+        }
+    })();
+</script>
+<!-- /hash-anchor-fix -->
+</body>
+<script>lucide.createIcons();</script>
+</html>

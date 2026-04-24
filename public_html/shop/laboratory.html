@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ILS Shop — Laboratory Equipment</title>
+  <meta name="description" content="ILS — Official distributor of Memmert, Sartorius, Eppendorf, Merck, Brookfield and Precisa. Precision laboratory equipment for North Africa and Europe.">
+  <link rel="stylesheet" href="shop.css">
+  <style>
+    @media (max-width: 768px) {
+      .nav-logo-sub { display: none !important; }
+      .nav-logo-sep { display: none !important; }
+      .nav-shop-crumb { display: none !important; }
+      .nav-inner { justify-content: space-between !important; }
+      .nav-right { gap: 12px !important; margin-left: auto !important; }
+      .quote-btn { padding: 9px 12px !important; gap: 0 !important; }
+      .quote-btn svg { width: 20px !important; height: 20px !important; }
+      .quote-btn span[data-en] { display: none !important; }
+    }
+  </style>
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="../index.html?skip=1" class="nav-logo">
+        <span class="nav-logo-mark">ILS</span>
+        <div class="nav-logo-sep"></div>
+        <span class="nav-logo-sub">International<br>Link Solutions</span>
+      </a>
+      <span class="nav-shop-crumb" data-en="Laboratory" data-fr="Laboratoire">Laboratory</span>
+      <ul class="nav-links">
+        <li><a href="index.html" data-en="All Products" data-fr="Tous les produits">All Products</a></li>
+        <li><a href="laboratory.html" style="color:var(--gold)" data-en="Laboratory" data-fr="Laboratoire">Laboratory</a></li>
+        <li><a href="chemistry.html" data-en="Chemistry" data-fr="Chimie">Chemistry</a></li>
+      </ul>
+      <div class="nav-right">
+        <button class="lang-btn active" data-lang="en">EN</button>
+        <span class="lang-sep">|</span>
+        <button class="lang-btn" data-lang="fr">FR</button>
+        <a href="quote-list.html" class="quote-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/></svg>
+          <span data-en="Quote List" data-fr="Demande de devis">Quote List</span>
+          <span class="quote-count" data-count="0">0</span>
+        </a>
+        <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div id="mobileMenu">
+    <button class="mobile-close" id="mobileClose">&#x2715;</button>
+    <a href="index.html">All Products</a>
+    <a href="laboratory.html">Laboratory</a>
+    <a href="chemistry.html">Chemistry</a>
+    <a href="quote-list.html" class="btn btn-gold" style="margin-top:16px;">Quote List</a>
+  </div>
+
+  <!-- HERO -->
+  <section class="shop-hero">
+    <div class="shop-hero-inner">
+      <div class="shop-hero-badge">
+        <span data-en="Memmert · Sartorius · Eppendorf · Merck · Brookfield · Precisa · Testo" data-fr="Memmert · Sartorius · Eppendorf · Merck · Brookfield · Precisa · Testo">
+          Memmert · Sartorius · Eppendorf · Merck · Brookfield · Precisa · Testo
+        </span>
+      </div>
+      <h1>
+        <span data-en="Laboratory" data-fr="Équipements de">Laboratory</span>
+        <br><em data-en="Equipment" data-fr="Laboratoire">Equipment</em>
+      </h1>
+      <p data-en="Precision instruments, analytical balances, centrifuges, water baths and measurement solutions from world-leading scientific manufacturers."
+         data-fr="Instruments de précision, balances analytiques, centrifugeuses, bains-marie et solutions de mesure des meilleurs fabricants scientifiques mondiaux.">
+        Precision instruments, analytical balances, centrifuges, water baths and measurement solutions from world-leading scientific manufacturers.
+      </p>
+      <div class="search-bar">
+        <span class="search-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        </span>
+        <input id="searchInput" type="text"
+          placeholder="Search laboratory equipment…"
+          data-en="Search laboratory equipment…"
+          data-fr="Rechercher des équipements de laboratoire…"
+          autocomplete="off" spellcheck="false">
+        <button class="search-clear" id="searchClear">&#x2715;</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- FILTER BAR -->
+  <div class="filter-bar">
+    <div class="filter-inner">
+      <div class="filter-group">
+        <span class="filter-label" data-en="Category" data-fr="Catégorie">Category</span>
+        <button class="filter-chip cat-chip" data-cat="all" data-en="All" data-fr="Tous">All</button>
+        <button class="filter-chip cat-chip" data-cat="laboratory" data-en="Laboratory" data-fr="Laboratoire">Laboratory</button>
+        <button class="filter-chip cat-chip" data-cat="chemistry" data-en="Chemistry" data-fr="Chimie">Chemistry</button>
+      </div>
+      <div class="filter-group">
+        <span class="filter-label" data-en="Brand" data-fr="Marque">Brand</span>
+        <button class="filter-chip brand-chip active" data-brand="all" data-en="All brands" data-fr="Toutes marques">All brands</button>
+        <button class="filter-chip brand-chip" data-brand="memmert">Memmert</button>
+        <button class="filter-chip brand-chip" data-brand="brookfield">Brookfield</button>
+        <button class="filter-chip brand-chip" data-brand="precisa">Precisa</button>
+        <button class="filter-chip brand-chip" data-brand="testo">Testo</button>
+        <button class="filter-chip brand-chip" data-brand="sartorius">Sartorius</button>
+        <button class="filter-chip brand-chip" data-brand="eppendorf">Eppendorf</button>
+        <button class="filter-chip brand-chip" data-brand="merck">Merck</button>
+        <button class="filter-chip brand-chip" data-brand="srl">SRL</button>
+      </div>
+      <!-- Subcategory filter (populated dynamically by shop.js) -->
+      <div class="filter-group" id="subcatGroup" style="display:none;"></div>
+
+      <div class="filter-count" id="resultCount"><strong>—</strong></div>
+    </div>
+  </div>
+
+  <!-- ALPHA FILTER -->
+  <div id="alphaBar">
+    <button class="alpha-btn active" data-letter="all" data-en="All" data-fr="Tous">All</button>
+    <button class="alpha-btn" data-letter="A">A</button>
+    <button class="alpha-btn" data-letter="B">B</button>
+    <button class="alpha-btn" data-letter="C">C</button>
+    <button class="alpha-btn" data-letter="D">D</button>
+    <button class="alpha-btn" data-letter="E">E</button>
+    <button class="alpha-btn" data-letter="F">F</button>
+    <button class="alpha-btn" data-letter="G">G</button>
+    <button class="alpha-btn" data-letter="H">H</button>
+    <button class="alpha-btn" data-letter="I">I</button>
+    <button class="alpha-btn" data-letter="J">J</button>
+    <button class="alpha-btn" data-letter="K">K</button>
+    <button class="alpha-btn" data-letter="L">L</button>
+    <button class="alpha-btn" data-letter="M">M</button>
+    <button class="alpha-btn" data-letter="N">N</button>
+    <button class="alpha-btn" data-letter="O">O</button>
+    <button class="alpha-btn" data-letter="P">P</button>
+    <button class="alpha-btn" data-letter="Q">Q</button>
+    <button class="alpha-btn" data-letter="R">R</button>
+    <button class="alpha-btn" data-letter="S">S</button>
+    <button class="alpha-btn" data-letter="T">T</button>
+    <button class="alpha-btn" data-letter="U">U</button>
+    <button class="alpha-btn" data-letter="V">V</button>
+    <button class="alpha-btn" data-letter="W">W</button>
+    <button class="alpha-btn" data-letter="X">X</button>
+    <button class="alpha-btn" data-letter="Y">Y</button>
+    <button class="alpha-btn" data-letter="Z">Z</button>
+  </div>
+
+  <!-- PRODUCTS -->
+  <main class="shop-main">
+    <div id="productsContainer"></div>
+    <div class="empty-state" id="emptyState">
+      <div class="empty-state-icon">🔬</div>
+      <h3 data-en="No products found" data-fr="Aucun produit trouvé">No products found</h3>
+      <p data-en="Try a different search or filter." data-fr="Essayez une autre recherche.">Try a different search or filter.</p>
+    </div>
+  </main>
+
+  <!-- CTA -->
+  <section style="background:var(--navy);padding:64px 48px;text-align:center;border-top:1px solid var(--border);">
+    <div style="max-width:640px;margin:0 auto;">
+      <div class="label-overline" style="margin-bottom:16px;" data-en="B2B · Custom Pricing" data-fr="B2B · Tarification personnalisée">B2B · Custom Pricing</div>
+      <h2 style="font-family:var(--font-serif);font-size:clamp(28px,4vw,40px);color:var(--white);margin-bottom:16px;" data-en="Request a Custom Quote" data-fr="Demander un devis personnalisé">Request a Custom Quote</h2>
+      <p style="color:rgba(255,255,255,.6);font-size:16px;margin-bottom:32px;line-height:1.7;"
+         data-en="Add equipment to your quote list. Our team responds within 24 hours with tailored pricing for North Africa and Europe."
+         data-fr="Ajoutez des équipements à votre liste. Notre équipe répond sous 24h avec des tarifs adaptés.">
+        Add equipment to your quote list. Our team responds within 24 hours with tailored pricing for North Africa and Europe.
+      </p>
+      <a href="quote-list.html" class="btn btn-gold" style="font-size:15px;padding:16px 36px;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/></svg>
+        <span data-en="View Quote List" data-fr="Voir ma liste de devis">View Quote List</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <div class="footer-brand-name">ILS</div>
+          <div class="footer-brand-sub">International Link Solutions</div>
+          <p class="footer-tagline" data-en="Precision in Lab, Metrology &amp; Energy." data-fr="Précision en laboratoire, métrologie et énergie.">Precision in Lab, Metrology &amp; Energy.</p>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-title" data-en="Shop" data-fr="Boutique">Shop</div>
+          <ul>
+            <li><a href="index.html" data-en="All Products" data-fr="Tous les produits">All Products</a></li>
+            <li><a href="laboratory.html" data-en="Laboratory" data-fr="Laboratoire">Laboratory</a></li>
+            <li><a href="chemistry.html" data-en="Chemistry" data-fr="Chimie">Chemistry</a></li>
+            <li><a href="quote-list.html" data-en="Quote List" data-fr="Liste de devis">Quote List</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <div class="footer-col-title">Legal</div>
+          <ul>
+            <li><a href="../privacy.html">Privacy Policy</a></li>
+            <li><a href="../terms.html">Terms</a></li>
+          </ul>
+          <div style="margin-top:16px;font-size:12px;color:rgba(255,255,255,.25);line-height:1.6;">SIRET: 928 301 340 00016<br>TVA: FR82928301340</div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copy">© 2026 International Link Solutions — 30 Rue Branly, 90000 Belfort, France</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- TOAST -->
+  <div class="quote-toast" id="quoteToast">
+    <div class="toast-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+    <div class="toast-text">
+      <div class="toast-title">Product added</div>
+      <div class="toast-sub">Added to your quote list</div>
+    </div>
+    <a href="quote-list.html" class="toast-link">View →</a>
+  </div>
+
+  <script>window.ILS_SHOP_CONFIG = { defaultCat: 'laboratory' };</script>
+  <script src="products.js?v=20260420"></script>
+  <script src="shop.js?v=20260420"></script>
+</body>
+</html>
