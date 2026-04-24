@@ -89,72 +89,77 @@
     </div>
   </section>
 
-  <!-- FILTER BAR -->
-  <div class="filter-bar">
-    <div class="filter-inner">
-      <div class="filter-group">
-        <span class="filter-label" data-en="Category" data-fr="Catégorie">Category</span>
-        <button class="filter-chip cat-chip" data-cat="all" data-en="All" data-fr="Tous">All</button>
-        <button class="filter-chip cat-chip" data-cat="laboratory" data-en="Laboratory" data-fr="Laboratoire">Laboratory</button>
-        <button class="filter-chip cat-chip" data-cat="chemistry" data-en="Chemistry" data-fr="Chimie">Chemistry</button>
-      </div>
-      <div class="filter-group">
-        <span class="filter-label" data-en="Brand" data-fr="Marque">Brand</span>
-        <button class="filter-chip brand-chip active" data-brand="all" data-en="All brands" data-fr="Toutes marques">All brands</button>
-        <button class="filter-chip brand-chip" data-brand="memmert">Memmert</button>
-        <button class="filter-chip brand-chip" data-brand="brookfield">Brookfield</button>
-        <button class="filter-chip brand-chip" data-brand="precisa">Precisa</button>
-        <button class="filter-chip brand-chip" data-brand="testo">Testo</button>
-        <button class="filter-chip brand-chip" data-brand="sartorius">Sartorius</button>
-        <button class="filter-chip brand-chip" data-brand="eppendorf">Eppendorf</button>
-        <button class="filter-chip brand-chip" data-brand="merck">Merck</button>
-        <button class="filter-chip brand-chip" data-brand="srl">SRL</button>
-      </div>
-      <!-- Subcategory filter (populated dynamically by shop.js) -->
-      <div class="filter-group" id="subcatGroup" style="display:none;"></div>
+  <!-- STICKY FILTER WRAPPER (filter-bar + alpha bar collent ensemble) -->
+  <div class="sticky-filters">
 
-      <div class="filter-count" id="resultCount"><strong>—</strong></div>
+    <!-- FILTER BAR -->
+    <div class="filter-bar">
+      <div class="filter-inner">
+        <div class="filter-group">
+          <span class="filter-label" data-en="Category" data-fr="Catégorie">Category</span>
+          <button class="filter-chip cat-chip" data-cat="all" data-en="All" data-fr="Tous">All</button>
+          <button class="filter-chip cat-chip" data-cat="laboratory" data-en="Laboratory" data-fr="Laboratoire">Laboratory</button>
+          <button class="filter-chip cat-chip" data-cat="chemistry" data-en="Chemistry" data-fr="Chimie">Chemistry</button>
+        </div>
+        <div class="filter-group">
+          <span class="filter-label" data-en="Brand" data-fr="Marque">Brand</span>
+          <button class="filter-chip brand-chip active" data-brand="all" data-en="All brands" data-fr="Toutes marques">All brands</button>
+          <button class="filter-chip brand-chip" data-brand="memmert">Memmert</button>
+          <button class="filter-chip brand-chip" data-brand="brookfield">Brookfield</button>
+          <button class="filter-chip brand-chip" data-brand="precisa">Precisa</button>
+          <button class="filter-chip brand-chip" data-brand="testo">Testo</button>
+          <button class="filter-chip brand-chip" data-brand="sartorius">Sartorius</button>
+          <button class="filter-chip brand-chip" data-brand="eppendorf">Eppendorf</button>
+          <button class="filter-chip brand-chip" data-brand="merck">Merck</button>
+          <button class="filter-chip brand-chip" data-brand="srl">SRL</button>
+        </div>
+        <!-- Subcategory filter (populated dynamically by shop.js) -->
+        <div class="filter-group" id="subcatGroup" style="display:none;"></div>
+
+        <div class="filter-count" id="resultCount"><strong>—</strong></div>
+      </div>
     </div>
-  </div>
 
-  <!-- ALPHA FILTER -->
-  <div id="alphaBar">
-    <button class="alpha-btn active" data-letter="all" data-en="All" data-fr="Tous">All</button>
-    <button class="alpha-btn" data-letter="A">A</button>
-    <button class="alpha-btn" data-letter="B">B</button>
-    <button class="alpha-btn" data-letter="C">C</button>
-    <button class="alpha-btn" data-letter="D">D</button>
-    <button class="alpha-btn" data-letter="E">E</button>
-    <button class="alpha-btn" data-letter="F">F</button>
-    <button class="alpha-btn" data-letter="G">G</button>
-    <button class="alpha-btn" data-letter="H">H</button>
-    <button class="alpha-btn" data-letter="I">I</button>
-    <button class="alpha-btn" data-letter="J">J</button>
-    <button class="alpha-btn" data-letter="K">K</button>
-    <button class="alpha-btn" data-letter="L">L</button>
-    <button class="alpha-btn" data-letter="M">M</button>
-    <button class="alpha-btn" data-letter="N">N</button>
-    <button class="alpha-btn" data-letter="O">O</button>
-    <button class="alpha-btn" data-letter="P">P</button>
-    <button class="alpha-btn" data-letter="Q">Q</button>
-    <button class="alpha-btn" data-letter="R">R</button>
-    <button class="alpha-btn" data-letter="S">S</button>
-    <button class="alpha-btn" data-letter="T">T</button>
-    <button class="alpha-btn" data-letter="U">U</button>
-    <button class="alpha-btn" data-letter="V">V</button>
-    <button class="alpha-btn" data-letter="W">W</button>
-    <button class="alpha-btn" data-letter="X">X</button>
-    <button class="alpha-btn" data-letter="Y">Y</button>
-    <button class="alpha-btn" data-letter="Z">Z</button>
-  </div>
+    <!-- ALPHA FILTER -->
+    <div id="alphaBar">
+      <button class="alpha-btn active" data-letter="all" data-en="All" data-fr="Tous">All</button>
+      <button class="alpha-btn" data-letter="A">A</button>
+      <button class="alpha-btn" data-letter="B">B</button>
+      <button class="alpha-btn" data-letter="C">C</button>
+      <button class="alpha-btn" data-letter="D">D</button>
+      <button class="alpha-btn" data-letter="E">E</button>
+      <button class="alpha-btn" data-letter="F">F</button>
+      <button class="alpha-btn" data-letter="G">G</button>
+      <button class="alpha-btn" data-letter="H">H</button>
+      <button class="alpha-btn" data-letter="I">I</button>
+      <button class="alpha-btn" data-letter="J">J</button>
+      <button class="alpha-btn" data-letter="K">K</button>
+      <button class="alpha-btn" data-letter="L">L</button>
+      <button class="alpha-btn" data-letter="M">M</button>
+      <button class="alpha-btn" data-letter="N">N</button>
+      <button class="alpha-btn" data-letter="O">O</button>
+      <button class="alpha-btn" data-letter="P">P</button>
+      <button class="alpha-btn" data-letter="Q">Q</button>
+      <button class="alpha-btn" data-letter="R">R</button>
+      <button class="alpha-btn" data-letter="S">S</button>
+      <button class="alpha-btn" data-letter="T">T</button>
+      <button class="alpha-btn" data-letter="U">U</button>
+      <button class="alpha-btn" data-letter="V">V</button>
+      <button class="alpha-btn" data-letter="W">W</button>
+      <button class="alpha-btn" data-letter="X">X</button>
+      <button class="alpha-btn" data-letter="Y">Y</button>
+      <button class="alpha-btn" data-letter="Z">Z</button>
+    </div>
+
+  </div><!-- /.sticky-filters -->
 
   <!-- PRODUCTS -->
   <main class="shop-main">
     <div id="productsContainer"></div>
     <div class="empty-state" id="emptyState">
       <div class="empty-state-icon">🔬</div>
-      <h3 data-en="No products found" data-fr="Aucun produit trouvé">No products found</h3>
-      <p data-en="Try a different search or filter." data-fr="Essayez une autre recherche.">Try a different search or filter.</p>
+      <h3 data-en="No equipment matches these filters" data-fr="Aucun équipement ne correspond à ces filtres">No equipment matches these filters</h3>
+      <p data-en="Try a different brand or letter, or reset filters." data-fr="Essayez une autre marque ou lettre, ou réinitialisez les filtres.">Try a different brand or letter, or reset filters.</p>
     </div>
   </main>
 

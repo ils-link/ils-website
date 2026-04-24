@@ -309,22 +309,6 @@
   }
 
   /* ----------------------------------------
-     ALPHA FILTER
-     ---------------------------------------- */
-  (function bindAlpha() {
-    var bar = document.getElementById('alphaBar');
-    if (!bar) return;
-    bar.addEventListener('click', function (e) {
-      var btn = e.target.closest('[data-letter]');
-      if (!btn) return;
-      currentLetter = btn.dataset.letter;
-      bar.querySelectorAll('[data-letter]').forEach(function (b) { b.classList.remove('active'); });
-      btn.classList.add('active');
-      renderProducts();
-    });
-  })();
- 
-  /* ----------------------------------------
      RENDER PRODUCTS
      ---------------------------------------- */
   function buildProductCard(product) {
@@ -353,11 +337,13 @@
  
     var productUrl = 'product.html?id=' + escHtml(product.id);
     return '<div class="product-card fade-up" data-id="' + escHtml(product.id) + '">' +
-      '<div class="product-img" style="cursor:pointer" onclick="location.href=\'' + productUrl + '\'">' +
-        '<span class="product-brand-badge">' + escHtml(product.brand) + '</span>' +
-        pdfHtml +
-        imgHtml +
-      '</div>' +
+      '<a href="' + productUrl + '" class="product-img-link" aria-label="' + escHtml(name) + '">' +
+        '<div class="product-img">' +
+          '<span class="product-brand-badge">' + escHtml(product.brand) + '</span>' +
+          pdfHtml +
+          imgHtml +
+        '</div>' +
+      '</a>' +
       '<div class="product-body">' +
         '<div class="product-ref">' + escHtml(product.ref) + '</div>' +
         '<div class="product-name">' + escHtml(name) + '</div>' +
@@ -604,6 +590,34 @@
     setLanguage(currentLang);
     renderProducts();
     observeFadeUp();
+
+    /* ----------------------------------------
+       ALPHA FILTER — bound inside init() so the
+       DOM is guaranteed ready and state is live
+       ---------------------------------------- */
+    var alphaBar = document.getElementById('alphaBar');
+    if (alphaBar) {
+      alphaBar.addEventListener('click', function (e) {
+        var btn = e.target.closest('[data-letter]');
+        if (!btn) return;
+
+        var letter = btn.dataset.letter;
+
+        // Toggle: clicking the already-active letter resets to 'all'
+        if (letter !== 'all' && currentLetter === letter) {
+          letter = 'all';
+        }
+
+        currentLetter = letter;
+
+        // Update active state on the bar
+        alphaBar.querySelectorAll('[data-letter]').forEach(function (b) {
+          b.classList.toggle('active', b.dataset.letter === currentLetter);
+        });
+
+        renderProducts();
+      });
+    }
   }
  
   if (document.readyState === 'loading') {

@@ -725,14 +725,18 @@ h1, h2, h3, h4 { font-family: var(--font-serif); line-height: 1.2; }
 /* ----------------------------------------
    FILTER BAR
    ---------------------------------------- */
-.filter-bar {
-  background: var(--white);
-  border-bottom: 1px solid rgba(0,0,0,0.08);
-  padding: 0 48px;
+/* Sticky wrapper — groups filter-bar + alpha bar so both stick together */
+.sticky-filters {
   position: sticky;
   top: var(--nav-h);
   z-index: 100;
   box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+}
+
+.filter-bar {
+  background: var(--white);
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+  padding: 0 48px;
 }
 
 .filter-inner {
@@ -809,12 +813,13 @@ h1, h2, h3, h4 { font-family: var(--font-serif); line-height: 1.2; }
    ---------------------------------------- */
 #alphaBar {
   background: var(--white);
+  border-top: 1px solid rgba(0,0,0,0.05);
   border-bottom: 1px solid var(--border);
-  padding: 8px 48px;
+  padding: 6px 48px;
   display: flex;
   align-items: center;
-  gap: 3px;
-  flex-wrap: wrap;
+  gap: 2px;
+  flex-wrap: nowrap;
   overflow-x: auto;
   scrollbar-width: none;
 }
@@ -960,6 +965,19 @@ h1, h2, h3, h4 { font-family: var(--font-serif); line-height: 1.2; }
   inset: 0;
   background:
     radial-gradient(ellipse 80% 60% at 50% 30%, rgba(201,165,92,0.08) 0%, transparent 70%);
+  pointer-events: none; /* never intercept clicks meant for the image */
+}
+
+/* Clickable image link wrapper */
+.product-img-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  flex-shrink: 0;
+}
+.product-img-link:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
 }
 
 .product-img-brand {
