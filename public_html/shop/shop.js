@@ -329,21 +329,19 @@
     var pdfHtml = product.pdf
       ? '<a href="' + escHtml(product.pdf) + '" class="product-pdf-badge" target="_blank" rel="noopener" title="Datasheet PDF">PDF</a>'
       : '';
- 
+
     /* Placeholder image — navy bg + brand name in gold */
     var imgHtml = product.image
       ? '<img src="' + escHtml(product.image) + '" alt="' + escHtml(name) + '" loading="lazy">'
       : buildPlaceholder(product.brand);
- 
+
     var productUrl = 'product.html?id=' + escHtml(product.id);
     return '<div class="product-card fade-up" data-id="' + escHtml(product.id) + '">' +
-      '<a href="' + productUrl + '" class="product-img-link" aria-label="' + escHtml(name) + '">' +
-        '<div class="product-img">' +
-          '<span class="product-brand-badge">' + escHtml(product.brand) + '</span>' +
-          imgHtml +
-        '</div>' +
-      '</a>' +
-      pdfHtml +
+      '<div class="product-img" data-url="' + productUrl + '" role="link" tabindex="0" aria-label="' + escHtml(name) + '" style="cursor:pointer;">' +
+        '<span class="product-brand-badge">' + escHtml(product.brand) + '</span>' +
+        pdfHtml +
+        imgHtml +
+      '</div>' +
       '<div class="product-body">' +
         '<div class="product-ref">' + escHtml(product.ref) + '</div>' +
         '<div class="product-name">' + escHtml(name) + '</div>' +
@@ -443,6 +441,18 @@
  
     container.innerHTML = html;
  
+    // Bind product image clicks → navigate to product page
+    container.querySelectorAll('.product-img[data-url]').forEach(function (imgDiv) {
+      imgDiv.addEventListener('click', function (e) {
+        // Don't navigate when clicking the PDF badge
+        if (e.target.closest('.product-pdf-badge')) return;
+        location.href = imgDiv.dataset.url;
+      });
+      imgDiv.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') location.href = imgDiv.dataset.url;
+      });
+    });
+
     // Bind add-to-quote buttons
     container.querySelectorAll('.add-to-quote-btn').forEach(function (btn) {
       btn.addEventListener('click', function () {
