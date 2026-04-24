@@ -852,5 +852,57 @@
 
   })();
   </script>
+
+<!-- Scroll to top button -->
+<style>
+    .scroll-top {
+        position: fixed;
+        bottom: 24px;
+        right: 24px;
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        background: #0A1628;
+        color: #C9A55C;
+        border: 1px solid rgba(201, 165, 92, 0.4);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(10px);
+        transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease, background 0.2s, border-color 0.2s;
+        z-index: 998;
+        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+    }
+    .scroll-top.visible { opacity: 1; visibility: visible; transform: translateY(0); }
+    .scroll-top:hover { background: #132138; border-color: rgba(201, 165, 92, 0.8); transform: translateY(-2px); }
+    .scroll-top:focus-visible { outline: 2px solid #C9A55C; outline-offset: 3px; }
+    .scroll-top svg { width: 18px; height: 18px; }
+    @media (max-width: 768px) {
+        .scroll-top { width: 44px; height: 44px; bottom: 20px; right: 20px; }
+    }
+</style>
+<button class="scroll-top" id="scrollTopBtn" aria-label="Scroll to top" type="button">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5"/><path d="M5 12l7-7 7 7"/></svg>
+</button>
+<script>
+    (function() {
+        var btn = document.getElementById('scrollTopBtn');
+        if (!btn) return;
+        function toggle() {
+            if (window.scrollY > 400) btn.classList.add('visible');
+            else btn.classList.remove('visible');
+        }
+        window.addEventListener('scroll', toggle, { passive: true });
+        window.addEventListener('pageshow', toggle);
+        btn.addEventListener('click', function() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+        toggle();
+    })();
+</script>
+<!-- /Scroll to top -->
 </body>
 </html>
