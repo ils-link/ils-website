@@ -1,8 +1,6 @@
 <?php
 header('Content-Type: application/json');
-$tenant_id     = '2ffacc06-2e65-4164-985c-623385be9ccf';
-$client_id     = '1fdcd81b-cc2d-444f-93f9-5a07967fc482';
-$client_secret = 'REMOVED';
+require_once __DIR__ . '/config.php';
 
 $to_user = $_GET['from'] ?? 'sales@ils-link.com';
 $recipient = $_GET['to'] ?? 'sales@ils-link.com';
